@@ -1,0 +1,1250 @@
+{
+  "worldId": "PEH",
+  "grade": 6,
+  "missions": [
+    {
+      "id": "G6-PEH-M1",
+      "number": 1,
+      "title": "Whole-Self Wellness Challenge",
+      "story": "A village fitness fair needs help. Learners assess how habits affect physical, emotional and social well-being, then guide teammates through a target-and-invasion game.",
+      "focus": "Interrelated wellness dimensions, healthy habits, physical activity benefits and target/invasion game concepts.",
+      "finalChallenge": {
+        "title": "Wellness Fair Finale",
+        "description": "Wellness Fair final: make a balanced daily routine and choose a safe target/invasion-game strategy. Demonstrate an age-appropriate movement skill if observed by the teacher.",
+        "rewardName": "Whole-Self Wellness Badge",
+        "steps": [
+          {
+            "id": "G6-PEH-M1-F1",
+            "type": "sort",
+            "prompt": "Wellness Fair Finale: build a balanced routine by categorizing these weekly practices.",
+            "context": "",
+            "items": [
+              "Consistent bedtime with 8-9 hours of sleep",
+              "Staying up all night gaming before a sports tournament",
+              "Encouraging friends and resolving conflicts respectfully",
+              "Refusing all water during vigorous workouts"
+            ],
+            "buckets": [
+              "Healthy Habit",
+              "Detrimental Practice"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Balanced routine established!"
+          },
+          {
+            "id": "G6-PEH-M1-F2",
+            "type": "choose",
+            "prompt": "Select the most effective target and invasion strategy:",
+            "context": "",
+            "items": [
+              "Run through the thickest crowd of defenders without looking",
+              "Scan the field, pass to an open teammate, and cut into scoring space",
+              "Never pass to teammates under any circumstances"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 1 complete! You earned the Whole-Self Wellness Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-PEH-M1-CP1",
+          "index": 1,
+          "title": "Wellness Center",
+          "npcName": "Nurse Carla",
+          "npcOpening": "Hello! Welcome to Wellness Center. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Wellness includes physical, mental/emotional and social aspects. Sleep, regular movement, respectful relationships and asking for support can affect more than one area. Learners should avoid judging others by appearance or making medical claims about classmates.",
+          "miniGame": {
+            "name": "Wellness Web",
+            "type": "quiz",
+            "instructions": "Connect sleep, friendships, movement and asking for support to more than one wellness dimension.",
+            "steps": [
+              {
+                "id": "G6-PEH-M1-CP1-A1",
+                "type": "sort",
+                "prompt": "Wellness Web: connect each daily habit to its primary wellness dimension.",
+                "context": "",
+                "items": [
+                  "Getting 8-9 hours of consistent sleep",
+                  "Maintaining respectful, supportive friendships",
+                  "Practicing slow breathing when feeling overwhelmed",
+                  "Participating in regular active games and exercise",
+                  "Talking with a trusted teacher when stressed"
+                ],
+                "buckets": [
+                  "Physical Wellness",
+                  "Social Wellness",
+                  "Emotional Wellness"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2,
+                  0,
+                  2
+                ],
+                "minChars": 0,
+                "success": "Excellent holistic understanding! All three dimensions support whole-self wellness."
+              }
+            ]
+          },
+          "rewardName": "Wellness Ring",
+          "questions": [
+            {
+              "id": "G6-PEH-M1-CP1-Q01",
+              "skill": "Health: interconnected wellness",
+              "text": "Which habit can support both physical and emotional wellness?",
+              "options": [
+                "Getting enough rest",
+                "Staying awake every night",
+                "Avoiding all activity",
+                "Hiding serious concerns"
+              ],
+              "correctIndex": 0,
+              "explanation": "Adequate rest supports physical functions and emotional regulation.",
+              "feedback": "Adequate rest supports physical functions and emotional regulation."
+            },
+            {
+              "id": "G6-PEH-M1-CP1-Q02",
+              "skill": "Health: social wellness",
+              "text": "Which example shows social well-being?",
+              "options": [
+                "Counting steps alone",
+                "Measuring shoe length",
+                "Maintaining respectful friendships",
+                "Choosing a favorite color"
+              ],
+              "correctIndex": 2,
+              "explanation": "Positive relationships are part of social health.",
+              "feedback": "Positive relationships are part of social health."
+            },
+            {
+              "id": "G6-PEH-M1-CP1-Q03",
+              "skill": "Health: emotional wellness",
+              "text": "A student feels overwhelmed by schoolwork. What is a constructive response?",
+              "options": [
+                "Keep problems secret",
+                "Organize tasks and seek appropriate support",
+                "Blame a classmate",
+                "Stop attending every class"
+              ],
+              "correctIndex": 1,
+              "explanation": "Planning and support can help manage stress.",
+              "feedback": "Planning and support can help manage stress."
+            },
+            {
+              "id": "G6-PEH-M1-CP1-Q04",
+              "skill": "Health: holistic view",
+              "text": "Why is wellness described as interconnected?",
+              "options": [
+                "Each part never changes",
+                "Only exercise matters",
+                "Friendships have no influence",
+                "One habit may affect several dimensions"
+              ],
+              "correctIndex": 3,
+              "explanation": "Physical, emotional and social experiences can influence one another.",
+              "feedback": "Physical, emotional and social experiences can influence one another."
+            },
+            {
+              "id": "G6-PEH-M1-CP1-Q05",
+              "skill": "Health: healthy choices",
+              "text": "Which is a realistic goal for a healthier routine?",
+              "options": [
+                "Move regularly and keep a consistent sleep schedule",
+                "Never rest between activities",
+                "Skip meals to play more",
+                "Do one intense workout and never repeat"
+              ],
+              "correctIndex": 0,
+              "explanation": "Sustainable habits can support health over time.",
+              "feedback": "Sustainable habits can support health over time."
+            }
+          ]
+        },
+        {
+          "id": "G6-PEH-M1-CP2",
+          "index": 2,
+          "title": "Target and Invasion Field",
+          "npcName": "Coach Ian",
+          "npcOpening": "Hello! Welcome to Target and Invasion Field. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Target games focus on sending an object toward a goal; invasion games involve advancing into an opposing area while keeping possession and defending space. Scan the field, communicate, make safe passes and use balanced movements.",
+          "miniGame": {
+            "name": "Tactics Board",
+            "type": "quiz",
+            "instructions": "Place players into open passing lanes and choose a suitable throw toward a target.",
+            "steps": [
+              {
+                "id": "G6-PEH-M1-CP2-A1",
+                "type": "choose",
+                "prompt": "In an invasion game, why is moving into open space important?",
+                "context": "",
+                "items": [
+                  "It makes passing and teamwork unnecessary",
+                  "It creates a safe passing lane to receive the ball",
+                  "It prevents defenders from following rules"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Tactical awareness! Open space unlocks scoring plays."
+              },
+              {
+                "id": "G6-PEH-M1-CP2-A2",
+                "type": "sort",
+                "prompt": "Tactics Board: classify these skills into Target Game Skill vs Invasion Game Tactic.",
+                "context": "",
+                "items": [
+                  "Aiming accurately toward a stationary goal",
+                  "Defending open space against moving attackers",
+                  "Throwing a beanbag into a target ring",
+                  "Cutting into an open lane to receive a pass"
+                ],
+                "buckets": [
+                  "Target Game Skill",
+                  "Invasion Game Tactic"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Great tactical distinction between target and invasion games!"
+              }
+            ]
+          },
+          "rewardName": "Game Sense Pin",
+          "questions": [
+            {
+              "id": "G6-PEH-M1-CP2-Q01",
+              "skill": "PE: target games",
+              "text": "What is a main goal in a target game?",
+              "options": [
+                "Hide every piece of equipment",
+                "Reach a designated target accurately",
+                "Run without direction",
+                "Push opponents"
+              ],
+              "correctIndex": 1,
+              "explanation": "Target games emphasize accuracy toward a goal.",
+              "feedback": "Target games emphasize accuracy toward a goal."
+            },
+            {
+              "id": "G6-PEH-M1-CP2-Q02",
+              "skill": "PE: invasion space",
+              "text": "In an invasion game, why is moving into open space useful?",
+              "options": [
+                "It makes teamwork unnecessary",
+                "It guarantees a win",
+                "It prevents passing",
+                "It creates a possible passing option"
+              ],
+              "correctIndex": 3,
+              "explanation": "Open space can provide a safer or more effective passing lane.",
+              "feedback": "Open space can provide a safer or more effective passing lane."
+            },
+            {
+              "id": "G6-PEH-M1-CP2-Q03",
+              "skill": "PE: defensive decisions",
+              "text": "What should a defender watch during play?",
+              "options": [
+                "Ball, player positions and safe space",
+                "Only the scoreboard",
+                "Only the spectators",
+                "Only the weather forecast"
+              ],
+              "correctIndex": 0,
+              "explanation": "Awareness helps a defender respond effectively.",
+              "feedback": "Awareness helps a defender respond effectively."
+            },
+            {
+              "id": "G6-PEH-M1-CP2-Q04",
+              "skill": "PE: communication",
+              "text": "Which action shows safe game strategy?",
+              "options": [
+                "Body-check another player",
+                "Ignore team signals",
+                "Communicate before receiving a pass",
+                "Run into crowded space on purpose"
+              ],
+              "correctIndex": 2,
+              "explanation": "Communication promotes coordination and safety.",
+              "feedback": "Communication promotes coordination and safety."
+            },
+            {
+              "id": "G6-PEH-M1-CP2-Q05",
+              "skill": "PE: motor skills",
+              "text": "Which skill especially supports an accurate throw?",
+              "options": [
+                "Speed without control",
+                "Coordination",
+                "Closing the eyes",
+                "Random movement"
+              ],
+              "correctIndex": 1,
+              "explanation": "Coordination helps direct a throw toward its target.",
+              "feedback": "Coordination helps direct a throw toward its target."
+            }
+          ]
+        },
+        {
+          "id": "G6-PEH-M1-CP3",
+          "index": 3,
+          "title": "Balance Trail",
+          "npcName": "Guide Tessa",
+          "npcOpening": "Hello! Welcome to Balance Trail. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Healthy routines combine movement, rest, hydration and supportive relationships. During team games, using space, respecting rules and adapting activities to skill levels can help all learners participate.",
+          "miniGame": {
+            "name": "Balance Planner",
+            "type": "quiz",
+            "instructions": "Select weekly habits and a legal passing route while avoiding overtraining and unsafe play.",
+            "steps": [
+              {
+                "id": "G6-PEH-M1-CP3-A1",
+                "type": "sort",
+                "prompt": "Balance Planner: sort the practices into Balanced Routine vs Unsafe / Overtraining.",
+                "context": "",
+                "items": [
+                  "Active play with planned hydration and rest breaks",
+                  "Continuing to play through sharp pain or exhaustion",
+                  "Offering an appropriate role to an excluded classmate",
+                  "Skipping meals and sleep to practice more"
+                ],
+                "buckets": [
+                  "Balanced Routine",
+                  "Unsafe / Overtraining"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Well done! Recognizing limits and staying inclusive protects health."
+              }
+            ]
+          },
+          "rewardName": "Balance Medal",
+          "questions": [
+            {
+              "id": "G6-PEH-M1-CP3-Q01",
+              "skill": "Health: balanced habits",
+              "text": "Which habit should accompany regular physical activity?",
+              "options": [
+                "Avoiding all water",
+                "Skipping sleep",
+                "Adequate rest and hydration",
+                "Playing through any injury"
+              ],
+              "correctIndex": 2,
+              "explanation": "Rest and hydration help support safe physical activity.",
+              "feedback": "Rest and hydration help support safe physical activity."
+            },
+            {
+              "id": "G6-PEH-M1-CP3-Q02",
+              "skill": "Health: relationships",
+              "text": "A classmate is repeatedly left out of games. What should the team do?",
+              "options": [
+                "Offer an appropriate role and encourage participation",
+                "Continue excluding them",
+                "Mock their skills",
+                "Ignore the teacher's directions"
+              ],
+              "correctIndex": 0,
+              "explanation": "Inclusive behavior supports social well-being.",
+              "feedback": "Inclusive behavior supports social well-being."
+            },
+            {
+              "id": "G6-PEH-M1-CP3-Q03",
+              "skill": "PE: decision making",
+              "text": "A teammate is open near the goal. Which choice may support the play?",
+              "options": [
+                "Throw toward the busiest defender",
+                "Close your eyes while passing",
+                "Abandon the rules",
+                "Make a controlled pass when safe"
+              ],
+              "correctIndex": 3,
+              "explanation": "A controlled pass to an open teammate can improve the play.",
+              "feedback": "A controlled pass to an open teammate can improve the play."
+            },
+            {
+              "id": "G6-PEH-M1-CP3-Q04",
+              "skill": "PE: safe participation",
+              "text": "When a player becomes exhausted, what is a safe response?",
+              "options": [
+                "Ignore the warning signs",
+                "Take an appropriate break and tell an adult if unwell",
+                "Increase effort regardless of symptoms",
+                "Hide discomfort"
+              ],
+              "correctIndex": 1,
+              "explanation": "Recognizing limits and resting supports safe activity.",
+              "feedback": "Recognizing limits and resting supports safe activity."
+            },
+            {
+              "id": "G6-PEH-M1-CP3-Q05",
+              "skill": "Integrated: wellness and PE",
+              "text": "Which plan addresses physical and social wellness?",
+              "options": [
+                "Exercise alone while insulting peers",
+                "Avoid movement and friends",
+                "Join inclusive active games with appropriate rest",
+                "Make everyone use the same skill level"
+              ],
+              "correctIndex": 2,
+              "explanation": "Activity plus positive interactions supports multiple wellness dimensions.",
+              "feedback": "Activity plus positive interactions supports multiple wellness dimensions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6-PEH-M2",
+      "number": 2,
+      "title": "Healthy Decisions and Game Strategy",
+      "story": "Learners prepare a Respect and Fair-Play Week. They practice finding trustworthy health information, responding respectfully to sensitive questions and making safe decisions in different games.",
+      "focus": "Age-appropriate adolescent/reproductive health and family support; striking/fielding and net/wall game tactics.",
+      "finalChallenge": {
+        "title": "Respect and Strategy Week Finale",
+        "description": "Respect and Strategy Week final: evaluate one sensitive-information scenario and solve two game-strategy problems; demonstrate a controlled movement task if facilities permit.",
+        "rewardName": "Respect and Strategy Badge",
+        "steps": [
+          {
+            "id": "G6-PEH-M2-F1",
+            "type": "choose",
+            "prompt": "Evaluating Health Information: Which source provides the most reliable reproductive and puberty health guidance?",
+            "context": "",
+            "items": [
+              "Viral social media gossip comments",
+              "Qualified healthcare professionals, registered school nurses, and trusted guardians",
+              "Anonymous chat forum participants"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Reliable health guidance verified!"
+          },
+          {
+            "id": "G6-PEH-M2-F2",
+            "type": "sort",
+            "prompt": "Game Decision Solving: sort these choices into Fair-Play Decision vs Foul / Unfair Play.",
+            "context": "",
+            "items": [
+              "Accepting referee calls respectfully and shaking hands after the match",
+              "Deliberately tripping an opponent during an open drive",
+              "Using legal court angles to return difficult shots",
+              "Taunting and mocking someone after an error"
+            ],
+            "buckets": [
+              "Fair-Play Decision",
+              "Foul / Unfair Play"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 2 complete! You earned the Respect and Strategy Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-PEH-M2-CP1",
+          "index": 1,
+          "title": "Trusted Choices Clinic",
+          "npcName": "Health Guide Luna",
+          "npcOpening": "Hello! Welcome to Trusted Choices Clinic. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "As young people develop, accurate information, respect, personal boundaries and trusted adult support are important. Reproductive health is part of overall health. Questions about puberty, personal safety and pregnancy prevention should be discussed in age-appropriate ways with qualified adults or health professionals; rumors are unreliable.",
+          "miniGame": {
+            "name": "Trust the Source",
+            "type": "quiz",
+            "instructions": "Classify messages from health professionals, caregivers, advertisements and anonymous rumors by reliability.",
+            "steps": [
+              {
+                "id": "G6-PEH-M2-CP1-A1",
+                "type": "sort",
+                "prompt": "Trust the Source: classify these health information sources by reliability.",
+                "context": "",
+                "items": [
+                  "Guidance from a qualified school nurse or doctor",
+                  "Anonymous viral rumors on a video platform",
+                  "Factual advice from a supportive parent or guardian",
+                  "A stranger selling secret quick-growth products online"
+                ],
+                "buckets": [
+                  "Reliable Source",
+                  "Unreliable Source"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Smart thinking! Evidence-based sources and trusted adults protect your well-being."
+              }
+            ]
+          },
+          "rewardName": "Trusted Guide Card",
+          "questions": [
+            {
+              "id": "G6-PEH-M2-CP1-Q01",
+              "skill": "Health: reliable guidance",
+              "text": "A learner has a sensitive health question. Who is an appropriate source?",
+              "options": [
+                "An anonymous rumor account",
+                "A person selling secret cures",
+                "A trusted adult or qualified health professional",
+                "Any stranger in a game chat"
+              ],
+              "correctIndex": 2,
+              "explanation": "Qualified adults and professionals provide more reliable, age-appropriate guidance.",
+              "feedback": "Qualified adults and professionals provide more reliable, age-appropriate guidance."
+            },
+            {
+              "id": "G6-PEH-M2-CP1-Q02",
+              "skill": "Health: respect",
+              "text": "Why are personal boundaries important?",
+              "options": [
+                "They help protect dignity and safety",
+                "They make bullying acceptable",
+                "They replace all communication",
+                "They stop healthy friendships"
+              ],
+              "correctIndex": 0,
+              "explanation": "Respect for boundaries supports safer relationships.",
+              "feedback": "Respect for boundaries supports safer relationships."
+            },
+            {
+              "id": "G6-PEH-M2-CP1-Q03",
+              "skill": "Health: misinformation",
+              "text": "A classmate spreads false information about puberty. What is a reasonable response?",
+              "options": [
+                "Repeat it for fun",
+                "Shame the classmate",
+                "Ignore all health education",
+                "Check trusted health information and avoid spreading rumors"
+              ],
+              "correctIndex": 3,
+              "explanation": "Verification reduces the spread of harmful misinformation.",
+              "feedback": "Verification reduces the spread of harmful misinformation."
+            },
+            {
+              "id": "G6-PEH-M2-CP1-Q04",
+              "skill": "Health: family support",
+              "text": "What is one helpful role of a trusted family member?",
+              "options": [
+                "Forcing someone to share private details publicly",
+                "Offering support and factual guidance",
+                "Encouraging risky decisions",
+                "Mocking changes in development"
+              ],
+              "correctIndex": 1,
+              "explanation": "Supportive family members can help during adolescence.",
+              "feedback": "Supportive family members can help during adolescence."
+            },
+            {
+              "id": "G6-PEH-M2-CP1-Q05",
+              "skill": "Health: responsible decisions",
+              "text": "Which action best supports responsible adolescent decisions?",
+              "options": [
+                "Following pressure without thinking",
+                "Sharing private photos as proof",
+                "Considering consequences and seeking reliable guidance",
+                "Believing every viral claim"
+              ],
+              "correctIndex": 2,
+              "explanation": "Thoughtful, well-informed decisions support safety.",
+              "feedback": "Thoughtful, well-informed decisions support safety."
+            }
+          ]
+        },
+        {
+          "id": "G6-PEH-M2-CP2",
+          "index": 2,
+          "title": "Strategy Games Court",
+          "npcName": "Coach Rafi",
+          "npcOpening": "Hello! Welcome to Strategy Games Court. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "In striking/fielding games, players send the ball into field space while opponents retrieve it. In net/wall games, players send and return an object legally. Both require positioning, controlled movement, communication and rules.",
+          "miniGame": {
+            "name": "Tactics Switch",
+            "type": "quiz",
+            "instructions": "Compare a field diagram with a net/wall diagram; select legal open areas and correct ready positions.",
+            "steps": [
+              {
+                "id": "G6-PEH-M2-CP2-A1",
+                "type": "choose",
+                "prompt": "When fielders crowd one side of the play area, where should a striker send the ball?",
+                "context": "",
+                "items": [
+                  "Directly into the crowd of fielders",
+                  "Toward clear open space on the opposite side",
+                  "Beyond a forbidden boundary"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Great striking strategy! Exploiting legal open space is key."
+              },
+              {
+                "id": "G6-PEH-M2-CP2-A2",
+                "type": "choose",
+                "prompt": "After a controlled return over the net, what should a player do immediately?",
+                "context": "",
+                "items": [
+                  "Celebrate before watching the play",
+                  "Recover a balanced ready position to cover open space",
+                  "Drop equipment and walk off"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Court recovery keeps you ready for the next shot."
+              }
+            ]
+          },
+          "rewardName": "Team Strategy Star",
+          "questions": [
+            {
+              "id": "G6-PEH-M2-CP2-Q01",
+              "skill": "PE: striking",
+              "text": "When fielders crowd one side, where could a striker send the ball?",
+              "options": [
+                "Toward clear space on the opposite side",
+                "Directly at a person's face",
+                "Beyond a forbidden boundary",
+                "Anywhere with no regard for rules"
+              ],
+              "correctIndex": 0,
+              "explanation": "Using legal open space can be an effective striking tactic.",
+              "feedback": "Using legal open space can be an effective striking tactic."
+            },
+            {
+              "id": "G6-PEH-M2-CP2-Q02",
+              "skill": "PE: defense",
+              "text": "Which is a useful defensive position in a net/wall game?",
+              "options": [
+                "Facing away from play",
+                "Standing outside the court always",
+                "Blocking a teammate's sight",
+                "Staying ready to cover reachable open space"
+              ],
+              "correctIndex": 3,
+              "explanation": "A balanced ready position helps cover the court.",
+              "feedback": "A balanced ready position helps cover the court."
+            },
+            {
+              "id": "G6-PEH-M2-CP2-Q03",
+              "skill": "PE: positioning",
+              "text": "After a controlled return, what should a player do?",
+              "options": [
+                "Celebrate before watching the play",
+                "Recover a balanced position",
+                "Drop all equipment",
+                "Cross into the opponent's area"
+              ],
+              "correctIndex": 1,
+              "explanation": "Recovery prepares the player for the next exchange.",
+              "feedback": "Recovery prepares the player for the next exchange."
+            },
+            {
+              "id": "G6-PEH-M2-CP2-Q04",
+              "skill": "PE: cooperation",
+              "text": "Why should teammates call for a ball?",
+              "options": [
+                "To confuse opponents intentionally",
+                "To replace learning the rules",
+                "To reduce confusion over who receives it",
+                "To blame a teammate"
+              ],
+              "correctIndex": 2,
+              "explanation": "Clear communication supports coordinated safe play.",
+              "feedback": "Clear communication supports coordinated safe play."
+            },
+            {
+              "id": "G6-PEH-M2-CP2-Q05",
+              "skill": "PE: sportsmanship",
+              "text": "Which statement shows good sportsmanship?",
+              "options": [
+                "Following rules and respecting opponents",
+                "Mocking mistakes",
+                "Intentionally unsafe play",
+                "Refusing to rotate roles"
+              ],
+              "correctIndex": 0,
+              "explanation": "Fair play requires respect and agreed rules.",
+              "feedback": "Fair play requires respect and agreed rules."
+            }
+          ]
+        },
+        {
+          "id": "G6-PEH-M2-CP3",
+          "index": 3,
+          "title": "Decision Junction",
+          "npcName": "Guide Sam",
+          "npcOpening": "Hello! Welcome to Decision Junction. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Responsible choices consider accurate information, consent and boundaries, and the safety of others. A good player also checks rules, adapts to game conditions and chooses controlled movements.",
+          "miniGame": {
+            "name": "Two-Path Challenge",
+            "type": "quiz",
+            "instructions": "Answer a respectful communication scenario, then select a useful game tactic from a court image.",
+            "steps": [
+              {
+                "id": "G6-PEH-M2-CP3-A1",
+                "type": "choose",
+                "prompt": "A student is pressured in a group chat to share private health details. What is safest?",
+                "context": "",
+                "items": [
+                  "Post private details to avoid criticism",
+                  "Keep personal boundaries and consult a trusted adult privately",
+                  "Ask classmates to vote on it publicly"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Respecting boundaries and seeking trusted guidance protects dignity and safety."
+              },
+              {
+                "id": "G6-PEH-M2-CP3-A2",
+                "type": "sort",
+                "prompt": "Two-Path Challenge: classify these actions as Responsible Decision vs Risky Choice.",
+                "context": "",
+                "items": [
+                  "Seeking reliable guidance from health professionals",
+                  "Spreading unverified rumors on social media",
+                  "Calling clearly to communicate who will catch a ball",
+                  "Body-checking another player during games"
+                ],
+                "buckets": [
+                  "Responsible Decision",
+                  "Risky Choice"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Clear judgment in both health decisions and game strategy!"
+              }
+            ]
+          },
+          "rewardName": "Fair Choice Emblem",
+          "questions": [
+            {
+              "id": "G6-PEH-M2-CP3-Q01",
+              "skill": "Health: privacy",
+              "text": "A student is pressured to share a private health concern in a group chat. What is safest?",
+              "options": [
+                "Share it immediately",
+                "Ignore all help forever",
+                "Ask classmates to vote on it",
+                "Keep privacy and talk with a trusted adult privately"
+              ],
+              "correctIndex": 3,
+              "explanation": "Sensitive concerns should be handled respectfully with appropriate support.",
+              "feedback": "Sensitive concerns should be handled respectfully with appropriate support."
+            },
+            {
+              "id": "G6-PEH-M2-CP3-Q02",
+              "skill": "Health: evidence",
+              "text": "A friend claims a viral video is always correct about health. What should you do?",
+              "options": [
+                "Trust view counts only",
+                "Compare its claims with reliable health guidance",
+                "Share it without checking",
+                "Assume all experts are wrong"
+              ],
+              "correctIndex": 1,
+              "explanation": "Reliable sources matter more than popularity.",
+              "feedback": "Reliable sources matter more than popularity."
+            },
+            {
+              "id": "G6-PEH-M2-CP3-Q03",
+              "skill": "PE: game analysis",
+              "text": "In a striking game, what should influence the shot choice?",
+              "options": [
+                "The color of the uniform only",
+                "The loudest spectator",
+                "Open legal space and defender positions",
+                "The brand of the ball"
+              ],
+              "correctIndex": 2,
+              "explanation": "Players consider space and opposing positions when choosing a tactic.",
+              "feedback": "Players consider space and opposing positions when choosing a tactic."
+            },
+            {
+              "id": "G6-PEH-M2-CP3-Q04",
+              "skill": "PE: net/wall tactics",
+              "text": "In a net/wall match, what is an effective response to a short return?",
+              "options": [
+                "Move safely toward the ball and make a controlled return",
+                "Ignore the ball",
+                "Enter the opponent's court illegally",
+                "Push the partner aside"
+              ],
+              "correctIndex": 0,
+              "explanation": "Safe movement and controlled return respond to the play.",
+              "feedback": "Safe movement and controlled return respond to the play."
+            },
+            {
+              "id": "G6-PEH-M2-CP3-Q05",
+              "skill": "Integrated: health and PE",
+              "text": "Which pair shows responsible decisions in both settings?",
+              "options": [
+                "Spread rumors and ignore boundaries",
+                "Break rules to win",
+                "Stay silent when threatened and play unsafely",
+                "Seek reliable guidance and follow safe game rules"
+              ],
+              "correctIndex": 3,
+              "explanation": "Both choices prioritize evidence, respect and safety.",
+              "feedback": "Both choices prioritize evidence, respect and safety."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6-PEH-M3",
+      "number": 3,
+      "title": "Healthy Community, Active Environment",
+      "story": "The village prepares for a Community Health Walk. Learners identify ways to prevent illness, protect shared spaces and choose safe rhythmic and outdoor activities.",
+      "focus": "Communicable disease prevention, sanitation and One Health; rhythm, active transportation, outdoor activity and leadership.",
+      "finalChallenge": {
+        "title": "Community Health Walk Finale",
+        "description": "Community Health Walk finale: diagnose a hygiene issue, explain a One Health action and lead a safe rhythmic warm-up or short walk with teacher observation where possible.",
+        "rewardName": "Healthy Community Badge",
+        "steps": [
+          {
+            "id": "G6-PEH-M3-F1",
+            "type": "sort",
+            "prompt": "One Health Community Walk: classify these actions for environmental and personal health.",
+            "context": "",
+            "items": [
+              "Organizing community cleanups to eliminate stagnant mosquito breeding sites",
+              "Leaving animal waste unmanaged near local water wells",
+              "Using marked pedestrian sidewalks and crosswalks during active walks",
+              "Washing hands thoroughly with soap after outdoor activities"
+            ],
+            "buckets": [
+              "Promotes Health & Safety",
+              "Sanitation Hazard"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "minChars": 0,
+            "success": "One Health principles applied!"
+          },
+          {
+            "id": "G6-PEH-M3-F2",
+            "type": "choose",
+            "prompt": "During a community walk in hot weather, what is the best leadership action?",
+            "context": "",
+            "items": [
+              "Force participants to run as fast as possible without drinking water",
+              "Provide water hydration stations, shaded rest breaks, and monitor participants for heat exhaustion",
+              "Cancel all safety rules"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 3 complete! You earned the Healthy Community Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-PEH-M3-CP1",
+          "index": 1,
+          "title": "Community Health Watch",
+          "npcName": "Health Worker Bea",
+          "npcOpening": "Hello! Welcome to Community Health Watch. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Communicable illnesses may spread between people through different routes depending on the illness. Handwashing, appropriate respiratory hygiene, clean water and reliable immunization guidance reduce some health risks. One Health connects human, animal and environmental well-being.",
+          "miniGame": {
+            "name": "Break the Chain",
+            "type": "quiz",
+            "instructions": "Place handwashing, safe food handling, clean water and ventilation cards at relevant prevention spots in a village scene.",
+            "steps": [
+              {
+                "id": "G6-PEH-M3-CP1-A1",
+                "type": "sort",
+                "prompt": "Break the Chain: classify these practices into Infection Prevention vs Health Risk.",
+                "context": "",
+                "items": [
+                  "Washing hands properly with clean water and soap",
+                  "Drinking untreated water from an unknown source",
+                  "Covering sneezes and practicing respiratory hygiene",
+                  "Leaving stagnant water containers uncovered"
+                ],
+                "buckets": [
+                  "Infection Prevention",
+                  "Health Risk"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Great prevention mindset! Clean habits protect the entire community."
+              }
+            ]
+          },
+          "rewardName": "Health Watch Shield",
+          "questions": [
+            {
+              "id": "G6-PEH-M3-CP1-Q01",
+              "skill": "Health: infection prevention",
+              "text": "Which habit helps reduce the spread of many infections?",
+              "options": [
+                "Sharing used tissues",
+                "Washing hands properly",
+                "Drinking untreated water",
+                "Ignoring hygiene"
+              ],
+              "correctIndex": 1,
+              "explanation": "Proper handwashing reduces spread of many microbes.",
+              "feedback": "Proper handwashing reduces spread of many microbes."
+            },
+            {
+              "id": "G6-PEH-M3-CP1-Q02",
+              "skill": "Health: sanitation",
+              "text": "Why is safe drinking water important?",
+              "options": [
+                "It changes every virus into air",
+                "It replaces every medicine",
+                "It guarantees nobody gets sick",
+                "It helps prevent some waterborne illnesses"
+              ],
+              "correctIndex": 3,
+              "explanation": "Clean water lowers risk from waterborne pathogens.",
+              "feedback": "Clean water lowers risk from waterborne pathogens."
+            },
+            {
+              "id": "G6-PEH-M3-CP1-Q03",
+              "skill": "Health: One Health",
+              "text": "What does One Health emphasize?",
+              "options": [
+                "Connections among people, animals and the environment",
+                "Only human hospitals",
+                "Only pet grooming",
+                "Only sports equipment"
+              ],
+              "correctIndex": 0,
+              "explanation": "One Health considers linked human, animal and environmental health.",
+              "feedback": "One Health considers linked human, animal and environmental health."
+            },
+            {
+              "id": "G6-PEH-M3-CP1-Q04",
+              "skill": "Health: vaccination guidance",
+              "text": "Which is a reliable source for vaccine questions?",
+              "options": [
+                "An unverified chain message",
+                "A rumor from a game lobby",
+                "A health professional or official public-health guidance",
+                "A random product seller"
+              ],
+              "correctIndex": 2,
+              "explanation": "Qualified professionals and public-health sources provide reliable guidance.",
+              "feedback": "Qualified professionals and public-health sources provide reliable guidance."
+            },
+            {
+              "id": "G6-PEH-M3-CP1-Q05",
+              "skill": "Health: dignity",
+              "text": "A classmate returns after an illness. What is respectful behavior?",
+              "options": [
+                "Shame the classmate",
+                "Follow school health guidance and treat them kindly",
+                "Spread gossip",
+                "Exclude them forever"
+              ],
+              "correctIndex": 1,
+              "explanation": "Prevention should be paired with respect for others.",
+              "feedback": "Prevention should be paired with respect for others."
+            }
+          ]
+        },
+        {
+          "id": "G6-PEH-M3-CP2",
+          "index": 2,
+          "title": "Active Nature Trail",
+          "npcName": "Coach Dana",
+          "npcOpening": "Hello! Welcome to Active Nature Trail. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Outdoor recreation and active transportation can provide regular movement and enjoyment while supporting environmental awareness. Rhythmic activities combine beats, patterns and movement levels. Choose safe paths, check conditions and respect shared spaces.",
+          "miniGame": {
+            "name": "Trail Planner",
+            "type": "quiz",
+            "instructions": "Choose a safe walking route and tap or arrange a four-count rhythmic warm-up; teacher may observe movement.",
+            "steps": [
+              {
+                "id": "G6-PEH-M3-CP2-A1",
+                "type": "sequence",
+                "prompt": "Trail Planner: tap the outdoor walking event steps in safe sequence.",
+                "context": "",
+                "items": [
+                  "Check weather, route conditions and safety rules",
+                  "Lead a gentle warm-up with safe personal spacing",
+                  "Walk along designated marked paths and stay hydrated",
+                  "Dispose of all litter in proper trash bins"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Safe outdoor recreation and stewardship achieved!"
+              },
+              {
+                "id": "G6-PEH-M3-CP2-A2",
+                "type": "choose",
+                "prompt": "Which activity is a primary example of active transportation?",
+                "context": "",
+                "items": [
+                  "Riding in a passenger vehicle",
+                  "Walking or cycling to school safely",
+                  "Watching a running video at home"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Active transportation builds daily physical fitness."
+              }
+            ]
+          },
+          "rewardName": "Green Activity Leaf",
+          "questions": [
+            {
+              "id": "G6-PEH-M3-CP2-Q01",
+              "skill": "PE: active transportation",
+              "text": "Which activity is an example of active transportation?",
+              "options": [
+                "Walking to a nearby safe destination",
+                "Riding in a parked car",
+                "Watching a video about running",
+                "Sitting during the whole trip"
+              ],
+              "correctIndex": 0,
+              "explanation": "Walking uses physical movement to travel.",
+              "feedback": "Walking uses physical movement to travel."
+            },
+            {
+              "id": "G6-PEH-M3-CP2-Q02",
+              "skill": "PE: outdoor safety",
+              "text": "Before an outdoor activity, what should a leader check?",
+              "options": [
+                "Only the team color",
+                "Only the score",
+                "Weather, route and safety conditions",
+                "Only the music volume"
+              ],
+              "correctIndex": 2,
+              "explanation": "Conditions affect safe participation outdoors.",
+              "feedback": "Conditions affect safe participation outdoors."
+            },
+            {
+              "id": "G6-PEH-M3-CP2-Q03",
+              "skill": "PE: rhythmic movement",
+              "text": "What does following a rhythmic count help develop?",
+              "options": [
+                "Vehicle speed",
+                "Coordination and timing",
+                "Loudness only",
+                "Food preparation"
+              ],
+              "correctIndex": 1,
+              "explanation": "Rhythm improves the timing of coordinated movement.",
+              "feedback": "Rhythm improves the timing of coordinated movement."
+            },
+            {
+              "id": "G6-PEH-M3-CP2-Q04",
+              "skill": "PE: outdoor stewardship",
+              "text": "Which action respects the environment during a walk?",
+              "options": [
+                "Throwing litter into a stream",
+                "Pulling plants without reason",
+                "Leaving rubbish on the trail",
+                "Using bins and staying on safe marked paths"
+              ],
+              "correctIndex": 3,
+              "explanation": "Responsible recreation protects shared environments.",
+              "feedback": "Responsible recreation protects shared environments."
+            },
+            {
+              "id": "G6-PEH-M3-CP2-Q05",
+              "skill": "PE: leadership",
+              "text": "Which leader action best protects participants?",
+              "options": [
+                "Demonstrating moves clearly and checking safe spacing",
+                "Forcing painful movements",
+                "Ignoring fatigue",
+                "Blocking emergency exits"
+              ],
+              "correctIndex": 0,
+              "explanation": "Clear instruction and safe space support group activity.",
+              "feedback": "Clear instruction and safe space support group activity."
+            }
+          ]
+        },
+        {
+          "id": "G6-PEH-M3-CP3",
+          "index": 3,
+          "title": "Healthy Village Action Center",
+          "npcName": "Community Guide Niko",
+          "npcOpening": "Hello! Welcome to Healthy Village Action Center. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "A healthy community plan can combine sanitation, responsible animal care, environmental protection and active lifestyles. Claims should be based on evidence and appropriate public guidance. Children can report problems and contribute through safe, supervised activities.",
+          "miniGame": {
+            "name": "Community Puzzle",
+            "type": "quiz",
+            "instructions": "Match stagnant littered water, poor handwashing access and unsafe footpaths to appropriate community actions.",
+            "steps": [
+              {
+                "id": "G6-PEH-M3-CP3-A1",
+                "type": "sort",
+                "prompt": "Community Puzzle: sort these actions into One Health Action vs Harmful Practice.",
+                "context": "",
+                "items": [
+                  "Safe waste management and clean shared spaces",
+                  "Dumping plastic garbage into streams and rivers",
+                  "Responsible animal care and sanitation",
+                  "Ignoring handwashing supply shortages in school"
+                ],
+                "buckets": [
+                  "One Health Action",
+                  "Harmful Practice"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "One Health champion! Human, animal, and environmental wellness are linked."
+              }
+            ]
+          },
+          "rewardName": "Community Champion Badge",
+          "questions": [
+            {
+              "id": "G6-PEH-M3-CP3-Q01",
+              "skill": "Health: prevention plan",
+              "text": "A school notices that handwashing supplies are missing. What is a useful response?",
+              "options": [
+                "Ignore the problem",
+                "Replace handwashing with gossip",
+                "Report the shortage and improve access to supplies",
+                "Stop all learning permanently"
+              ],
+              "correctIndex": 2,
+              "explanation": "Supplies support appropriate hand hygiene.",
+              "feedback": "Supplies support appropriate hand hygiene."
+            },
+            {
+              "id": "G6-PEH-M3-CP3-Q02",
+              "skill": "Health: evaluating claims",
+              "text": "Why should community health decisions use evidence?",
+              "options": [
+                "Popularity always proves health claims",
+                "Evidence helps compare whether an action is appropriate",
+                "All rumors are equally correct",
+                "Evidence makes sanitation unnecessary"
+              ],
+              "correctIndex": 1,
+              "explanation": "Reliable information helps plan sound health responses.",
+              "feedback": "Reliable information helps plan sound health responses."
+            },
+            {
+              "id": "G6-PEH-M3-CP3-Q03",
+              "skill": "Health: community wellness",
+              "text": "Which group of actions reflects One Health?",
+              "options": [
+                "Caring only for human fitness and ignoring waste",
+                "Feeding animals without cleaning shared spaces",
+                "Removing all trees from a park",
+                "Safe waste management, responsible animal care and clean shared spaces"
+              ],
+              "correctIndex": 3,
+              "explanation": "These choices consider human, animal and environmental connections.",
+              "feedback": "These choices consider human, animal and environmental connections."
+            },
+            {
+              "id": "G6-PEH-M3-CP3-Q04",
+              "skill": "PE: outdoor activity safety",
+              "text": "A group plans a walking event in very hot weather. What is a safer choice?",
+              "options": [
+                "Adjust timing, offer water and observe participants",
+                "Ignore heat advice",
+                "Force everyone to sprint",
+                "Keep no safe rest location"
+              ],
+              "correctIndex": 0,
+              "explanation": "Appropriate heat precautions help reduce risk.",
+              "feedback": "Appropriate heat precautions help reduce risk."
+            },
+            {
+              "id": "G6-PEH-M3-CP3-Q05",
+              "skill": "Integrated: health and PE",
+              "text": "Which project combines health and PE most effectively?",
+              "options": [
+                "Remove sanitation signs and cancel safe exercise",
+                "Encourage littering during exercise",
+                "Organize a supervised clean-up and safe community walk",
+                "Share rumors about illness"
+              ],
+              "correctIndex": 2,
+              "explanation": "A safe clean-up and walk join environmental health and physical activity.",
+              "feedback": "A safe clean-up and walk join environmental health and physical activity."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

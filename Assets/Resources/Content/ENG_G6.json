@@ -1,0 +1,1372 @@
+{
+  "worldId": "ENG",
+  "grade": 6,
+  "missions": [
+    {
+      "id": "G6-ENG-M1",
+      "number": 1,
+      "title": "The Critical Reader Quest",
+      "story": "During a reading fair, Lian follows a map tied to her grandmother’s memory. Learners investigate story structure, sequence eight events and explain conclusions using evidence.",
+      "focus": "Literary structure, flashback, eight-event sequencing, inference, figurative meaning and conclusions.",
+      "finalChallenge": {
+        "title": "Reader’s Investigation",
+        "description": "Reader’s Investigation: arrange all eight story events and choose two pieces of evidence supporting why the book was preserved. Give a short written explanation.",
+        "rewardName": "Critical Reader Badge",
+        "steps": [
+          {
+            "id": "G6-ENG-M1-F1",
+            "type": "sequence",
+            "prompt": "Reader's Investigation: tap all eight story events in order.",
+            "context": "",
+            "items": [
+              "The reading fair was announced.",
+              "Lian found an old map.",
+              "She remembered her grandmother's story.",
+              "She asked Guide Mira for help.",
+              "They inspected the town-hall plaque.",
+              "The plaque directed them to the Word Library.",
+              "Lian found the protected book there.",
+              "She presented its history at the reading fair."
+            ],
+            "buckets": [],
+            "answers": [],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M1-F2",
+            "type": "choose",
+            "prompt": "Choose TWO pieces of evidence that explain why the book was preserved.",
+            "context": "",
+            "items": [
+              "It contained stories of how families helped one another during floods.",
+              "Lian's grandmother wanted the stories to be remembered.",
+              "Lian found the book in the Word Library.",
+              "The reading fair was announced."
+            ],
+            "buckets": [],
+            "answers": [
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M1-W1",
+            "type": "write",
+            "prompt": "In two or three sentences, explain why the book was preserved. Your teacher will read it.",
+            "context": "",
+            "items": [],
+            "buckets": [],
+            "answers": [],
+            "minChars": 40,
+            "success": ""
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-ENG-M1-CP1",
+          "index": 1,
+          "title": "Story Garden — The Map and the Memory",
+          "npcName": "Guide Mira",
+          "npcOpening": "",
+          "reading": "During Brightville’s reading fair, Lian found an old map beneath a bench. She remembered her grandmother saying, “Years ago, the town hid a special book to protect its stories.” Lian decided to investigate. She brought the map to Guide Mira, who noticed a symbol shaped like a small leaf.",
+          "lesson": "Story elements tell us who, where, and what problem moves the plot. A flashback refers to an earlier event. Details can suggest why a character chooses an action.",
+          "miniGame": {
+            "name": "Story Map Detective",
+            "type": "place",
+            "instructions": "Tap the present-day event, the remembered past event, and the symbol clue. Match each to its function in the story.",
+            "steps": [
+              {
+                "id": "G6-ENG-M1-CP1-A1",
+                "type": "sort",
+                "prompt": "Story Map Detective: what job does each detail do in the story?",
+                "context": "",
+                "items": [
+                  "Lian found an old map beneath a bench",
+                  "Lian brought the map to Guide Mira",
+                  "Her grandmother said the town hid a special book years ago",
+                  "A symbol shaped like a small leaf"
+                ],
+                "buckets": [
+                  "Present-day event",
+                  "Remembered past event",
+                  "Symbol clue"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "You separated the present, the flashback and the clue."
+              }
+            ]
+          },
+          "rewardName": "Leaf Symbol",
+          "questions": [
+            {
+              "id": "G6-ENG-M1-CP1-Q01",
+              "skill": "character",
+              "text": "Who found the old map during the reading fair?",
+              "options": [
+                "Guide Mira",
+                "Lian",
+                "The mayor",
+                "Lian’s grandmother"
+              ],
+              "correctIndex": 1,
+              "feedback": "Lian discovers the map beneath a bench."
+            },
+            {
+              "id": "G6-ENG-M1-CP1-Q02",
+              "skill": "setting",
+              "text": "Where did Lian find the map?",
+              "options": [
+                "Beneath a bench",
+                "At the beach",
+                "Inside a bus",
+                "Near a mountain cave"
+              ],
+              "correctIndex": 0,
+              "feedback": "The story says it was beneath a bench."
+            },
+            {
+              "id": "G6-ENG-M1-CP1-Q03",
+              "skill": "flashback",
+              "text": "Which part of the story refers to an earlier time?",
+              "options": [
+                "The reading fair begins",
+                "Guide Mira notices a leaf",
+                "Lian holds the map",
+                "Lian remembers her grandmother’s story from years ago"
+              ],
+              "correctIndex": 3,
+              "feedback": "The remembered statement describes the past."
+            },
+            {
+              "id": "G6-ENG-M1-CP1-Q04",
+              "skill": "motivation",
+              "text": "Why does Lian investigate the map?",
+              "options": [
+                "She wants to cancel the fair",
+                "She is collecting empty boxes",
+                "She wants to find the book mentioned by her grandmother",
+                "She is looking for a lost pet"
+              ],
+              "correctIndex": 2,
+              "feedback": "The map connects to her grandmother’s story about a hidden book."
+            },
+            {
+              "id": "G6-ENG-M1-CP1-Q05",
+              "skill": "key evidence",
+              "text": "Which detail is most likely an important clue?",
+              "options": [
+                "The shape of the bench",
+                "The leaf symbol on the map",
+                "The color of Lian’s shoes",
+                "The weather at lunchtime"
+              ],
+              "correctIndex": 1,
+              "feedback": "Guide Mira specifically identifies the unusual leaf symbol."
+            }
+          ]
+        },
+        {
+          "id": "G6-ENG-M1-CP2",
+          "index": 2,
+          "title": "Truth Hall — Eight Event Trail",
+          "npcName": "Historian Tomas",
+          "npcOpening": "",
+          "reading": "Lian’s event notes: 1. The reading fair was announced. 2. Lian found an old map. 3. She remembered her grandmother’s story. 4. She asked Guide Mira for help. 5. They inspected the town-hall plaque. 6. The plaque directed them to the Word Library. 7. Lian found the protected book there. 8. She presented its history at the reading fair.",
+          "lesson": "A complete sequence puts each event in order. Inferences use clues; figures of speech use expressive language, not always literal descriptions.",
+          "miniGame": {
+            "name": "Eight-Card Timeline",
+            "type": "sequence",
+            "instructions": "Drag all eight event cards into the correct order; highlight the clue that directs Lian toward the library.",
+            "steps": [
+              {
+                "id": "G6-ENG-M1-CP2-A1",
+                "type": "sequence",
+                "prompt": "Eight-Card Timeline: tap all eight events in order.",
+                "context": "",
+                "items": [
+                  "The reading fair was announced.",
+                  "Lian found an old map.",
+                  "She remembered her grandmother's story.",
+                  "She asked Guide Mira for help.",
+                  "They inspected the town-hall plaque.",
+                  "The plaque directed them to the Word Library.",
+                  "Lian found the protected book there.",
+                  "She presented its history at the reading fair."
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M1-CP2-A2",
+                "type": "choose",
+                "prompt": "Which clue directed Lian toward the library?",
+                "context": "",
+                "items": [
+                  "The reading fair announcement",
+                  "The old map",
+                  "The town-hall plaque",
+                  "Her grandmother's story"
+                ],
+                "buckets": [],
+                "answers": [
+                  2
+                ],
+                "minChars": 0,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Historical Plaque Piece",
+          "questions": [
+            {
+              "id": "G6-ENG-M1-CP2-Q01",
+              "skill": "sequence",
+              "text": "Which event happened immediately before Lian asked Guide Mira for help?",
+              "options": [
+                "She found the book",
+                "She presented at the fair",
+                "She remembered her grandmother’s story",
+                "She inspected the plaque"
+              ],
+              "correctIndex": 2,
+              "feedback": "Remembering her grandmother’s story is listed directly before visiting Guide Mira."
+            },
+            {
+              "id": "G6-ENG-M1-CP2-Q02",
+              "skill": "reading detail",
+              "text": "Where did the plaque direct Lian?",
+              "options": [
+                "To the Word Library",
+                "To the sea",
+                "To a stadium",
+                "To a farm"
+              ],
+              "correctIndex": 0,
+              "feedback": "The event notes say the plaque directed them to the library."
+            },
+            {
+              "id": "G6-ENG-M1-CP2-Q03",
+              "skill": "sequence",
+              "text": "Which event happened last?",
+              "options": [
+                "The reading fair was announced",
+                "The map was found",
+                "The plaque was inspected",
+                "Lian presented the book’s history"
+              ],
+              "correctIndex": 3,
+              "feedback": "Sharing the history at the fair completes the sequence."
+            },
+            {
+              "id": "G6-ENG-M1-CP2-Q04",
+              "skill": "cause and effect",
+              "text": "Why was the town-hall plaque important?",
+              "options": [
+                "It was colorful",
+                "It gave the next location clue",
+                "It was locked away",
+                "It showed a food menu"
+              ],
+              "correctIndex": 1,
+              "feedback": "The plaque led Lian toward the Word Library."
+            },
+            {
+              "id": "G6-ENG-M1-CP2-Q05",
+              "skill": "figurative language",
+              "text": "In the sentence “The library was a sea of stories,” what does the phrase suggest?",
+              "options": [
+                "The library was flooded",
+                "The library had no books",
+                "The library held many stories",
+                "The library was beside the ocean"
+              ],
+              "correctIndex": 2,
+              "feedback": "The figurative phrase suggests a very large collection of stories."
+            }
+          ]
+        },
+        {
+          "id": "G6-ENG-M1-CP3",
+          "index": 3,
+          "title": "Word Library — Evidence Room",
+          "npcName": "Librarian Nela",
+          "npcOpening": "",
+          "reading": "The protected book contained stories of how Brightville families helped one another during earlier floods. Lian realized her grandmother wanted the stories to be remembered, not forgotten. She told the class how the clues led her to the book and why the stories mattered.",
+          "lesson": "An inference or conclusion must be supported by details. A strong summary includes the important problem, discovery and outcome without adding unrelated information.",
+          "miniGame": {
+            "name": "Evidence and Summary Board",
+            "type": "match",
+            "instructions": "Match claims to sentence evidence, then choose the strongest short summary of Lian’s investigation.",
+            "steps": [
+              {
+                "id": "G6-ENG-M1-CP3-A1",
+                "type": "sort",
+                "prompt": "Evidence and Summary Board: which claim does each sentence support?",
+                "context": "",
+                "items": [
+                  "It contained stories of how families helped one another during floods.",
+                  "Lian realized her grandmother wanted the stories to be remembered.",
+                  "She told the class how the clues led her to the book."
+                ],
+                "buckets": [
+                  "The book mattered to Brightville",
+                  "Lian's grandmother valued the stories",
+                  "Lian shared what she learned"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M1-CP3-A2",
+                "type": "choose",
+                "prompt": "Choose the strongest short summary of Lian's investigation.",
+                "context": "",
+                "items": [
+                  "Lian followed clues from an old map to a protected book of flood stories and shared why the stories mattered.",
+                  "Lian likes maps and goes to the reading fair every year.",
+                  "Lian's grandmother lives in Brightville and tells many stories.",
+                  "There is a symbol shaped like a small leaf on a map."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Reader’s Compass",
+          "questions": [
+            {
+              "id": "G6-ENG-M1-CP3-Q01",
+              "skill": "literal comprehension",
+              "text": "What did the protected book contain?",
+              "options": [
+                "Recipes from the school canteen",
+                "Stories of families helping during floods",
+                "Maps of distant oceans",
+                "Only blank pages"
+              ],
+              "correctIndex": 1,
+              "feedback": "It preserved community accounts of mutual help during floods."
+            },
+            {
+              "id": "G6-ENG-M1-CP3-Q02",
+              "skill": "inference",
+              "text": "Why did Lian’s grandmother value the book?",
+              "options": [
+                "She wanted to sell it",
+                "She wanted the fair cancelled",
+                "She wanted Lian to keep a secret forever",
+                "She wanted the community stories remembered"
+              ],
+              "correctIndex": 3,
+              "feedback": "The passage explains the stories should not be forgotten."
+            },
+            {
+              "id": "G6-ENG-M1-CP3-Q03",
+              "skill": "supporting evidence",
+              "text": "What is the best evidence that the book mattered to the community?",
+              "options": [
+                "It recorded families helping during floods",
+                "It had a colorful cover",
+                "It was stored on a high shelf",
+                "It was old"
+              ],
+              "correctIndex": 0,
+              "feedback": "The recorded community experience gives the book significance."
+            },
+            {
+              "id": "G6-ENG-M1-CP3-Q04",
+              "skill": "conclusion",
+              "text": "Which conclusion follows from the passage?",
+              "options": [
+                "The map was never useful",
+                "The town hall was closed",
+                "Lian used clues to preserve and share local history",
+                "The reading fair had no visitors"
+              ],
+              "correctIndex": 2,
+              "feedback": "Lian followed evidence and shared what she found at the fair."
+            },
+            {
+              "id": "G6-ENG-M1-CP3-Q05",
+              "skill": "summary",
+              "text": "Which is the best summary?",
+              "options": [
+                "A map was bright and colorful",
+                "Lian followed clues to a book of community stories and shared its importance",
+                "Many schools have libraries",
+                "A storm stopped a parade"
+              ],
+              "correctIndex": 1,
+              "feedback": "This captures the investigation and its meaningful outcome."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6-ENG-M2",
+      "number": 2,
+      "title": "The Persuasion Investigator",
+      "story": "A village campaign needs fact-checking. Learners inspect messages, identify persuasive devices, and decide which claims are supported by evidence.",
+      "focus": "Persuasive texts; author’s purpose; claim and evidence; opinion vs fact; bandwagon, testimonial, and plain-folks techniques.",
+      "finalChallenge": {
+        "title": "Campaign Review",
+        "description": "Campaign Review: identify three propaganda techniques, choose two reliable pieces of evidence, and produce a respectful two-sentence recommendation for the river campaign.",
+        "rewardName": "Persuasion Investigator Badge",
+        "steps": [
+          {
+            "id": "G6-ENG-M2-F1",
+            "type": "sort",
+            "prompt": "Campaign Review: identify the technique used in each message.",
+            "context": "",
+            "items": [
+              "Everyone in Brightville is joining the clean-up, so you should too!",
+              "Mayor Luis says this plan is the best.",
+              "I am just a regular neighbor who picks up litter every weekend."
+            ],
+            "buckets": [
+              "Bandwagon",
+              "Testimonial",
+              "Plain Folks"
+            ],
+            "answers": [
+              0,
+              1,
+              2
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M2-F2",
+            "type": "choose",
+            "prompt": "Choose TWO reliable pieces of evidence for the river campaign.",
+            "context": "",
+            "items": [
+              "A local audit recorded repeated littering around entrances.",
+              "Last month, volunteers collected 25 bags of litter, according to the local clean-up record.",
+              "Everyone says the plan is great.",
+              "Only foolish people disagree."
+            ],
+            "buckets": [],
+            "answers": [
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M2-W1",
+            "type": "write",
+            "prompt": "Write a respectful two-sentence recommendation for the river campaign. Your teacher will read it.",
+            "context": "",
+            "items": [],
+            "buckets": [],
+            "answers": [],
+            "minChars": 40,
+            "success": ""
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-ENG-M2-CP1",
+          "index": 1,
+          "title": "Story Garden — The Campaign Booth",
+          "npcName": "Campaign Guide Ana",
+          "npcOpening": "",
+          "reading": "Poster A: “Keep Brightville River clean! Join the Saturday clean-up.” Poster B: “Everyone is joining, so you should too!” Poster C: “Last month, volunteers collected 25 bags of litter,” according to the local clean-up record.",
+          "lesson": "Persuasion seeks to influence ideas or actions. A claim needs supporting evidence, while a fact can be checked using reliable records.",
+          "miniGame": {
+            "name": "Claim or Evidence?",
+            "type": "sort",
+            "instructions": "Sort message cards into Claim, Evidence, and Call to Action.",
+            "steps": [
+              {
+                "id": "G6-ENG-M2-CP1-A1",
+                "type": "sort",
+                "prompt": "Claim or Evidence? Sort each message card.",
+                "context": "",
+                "items": [
+                  "Brightville River needs to be protected.",
+                  "Litter harms the river.",
+                  "Last month, volunteers collected 25 bags of litter, according to the local clean-up record.",
+                  "A local audit recorded repeated littering around the river entrances.",
+                  "Join the Saturday clean-up."
+                ],
+                "buckets": [
+                  "Claim",
+                  "Evidence",
+                  "Call to Action"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "You can tell claims, evidence and calls to action apart."
+              }
+            ]
+          },
+          "rewardName": "Campaign Ribbon",
+          "questions": [
+            {
+              "id": "G6-ENG-M2-CP1-Q01",
+              "skill": "author purpose",
+              "text": "What is the main goal of Poster A?",
+              "options": [
+                "To entertain with a fairy tale",
+                "To explain how a river forms",
+                "To encourage people to join a clean-up",
+                "To sell a bicycle"
+              ],
+              "correctIndex": 2,
+              "feedback": "The poster calls on residents to participate."
+            },
+            {
+              "id": "G6-ENG-M2-CP1-Q02",
+              "skill": "factual evidence",
+              "text": "Which statement provides a checkable detail?",
+              "options": [
+                "The river is the prettiest place",
+                "Volunteers collected 25 bags of litter last month",
+                "Everybody loves cleaning",
+                "The clean-up is the best event"
+              ],
+              "correctIndex": 1,
+              "feedback": "The number can be checked against the cited record."
+            },
+            {
+              "id": "G6-ENG-M2-CP1-Q03",
+              "skill": "call to action",
+              "text": "Which sentence is the clearest call to action?",
+              "options": [
+                "Join the Saturday clean-up",
+                "The river is beside town",
+                "Rivers contain water",
+                "This poster is green"
+              ],
+              "correctIndex": 0,
+              "feedback": "It directly invites the reader to do something."
+            },
+            {
+              "id": "G6-ENG-M2-CP1-Q04",
+              "skill": "fact vs opinion",
+              "text": "Which statement expresses an opinion?",
+              "options": [
+                "The record lists 25 bags",
+                "The clean-up happened last month",
+                "The river runs through town",
+                "The clean-up is the best activity of all"
+              ],
+              "correctIndex": 3,
+              "feedback": "“Best” is a personal judgment rather than a verifiable measurement."
+            },
+            {
+              "id": "G6-ENG-M2-CP1-Q05",
+              "skill": "source evaluation",
+              "text": "What evidence would best support that volunteers collected 25 bags?",
+              "options": [
+                "A random joke",
+                "A drawing of a bird",
+                "A dated clean-up record",
+                "An unrelated advertisement"
+              ],
+              "correctIndex": 2,
+              "feedback": "A dated record can verify the stated quantity."
+            }
+          ]
+        },
+        {
+          "id": "G6-ENG-M2-CP2",
+          "index": 2,
+          "title": "Truth Hall — Persuasion Detectives",
+          "npcName": "Guide Ramon",
+          "npcOpening": "",
+          "reading": "Message 1: “All your classmates are buying this notebook—join them!” Message 2: “Local teacher Ms. Reyes says this notebook is helpful.” Message 3: “I am an ordinary learner who uses this notebook every day.”",
+          "lesson": "Bandwagon appeals to what many people supposedly do; testimonial uses a named person’s endorsement; plain folks suggests a speaker is an ordinary person like the audience. Endorsements are not automatically proof.",
+          "miniGame": {
+            "name": "Technique Match",
+            "type": "sort",
+            "instructions": "Drag each advertising message to Bandwagon, Testimonial or Plain Folks.",
+            "steps": [
+              {
+                "id": "G6-ENG-M2-CP2-A1",
+                "type": "sort",
+                "prompt": "Technique Match: which technique does each message use?",
+                "context": "",
+                "items": [
+                  "All your classmates are buying this notebook. Join them!",
+                  "Everyone in Grade 6 already uses this bag. Get yours today!",
+                  "Local teacher Ms. Reyes says this notebook is helpful.",
+                  "Coach Dana says these shoes are the best.",
+                  "I am an ordinary learner who uses this notebook every day."
+                ],
+                "buckets": [
+                  "Bandwagon",
+                  "Testimonial",
+                  "Plain Folks"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "Good eye for persuasive techniques."
+              }
+            ]
+          },
+          "rewardName": "Technique Lens",
+          "questions": [
+            {
+              "id": "G6-ENG-M2-CP2-Q01",
+              "skill": "bandwagon",
+              "text": "Which technique is used in “All your classmates are buying this notebook”?",
+              "options": [
+                "Testimonial",
+                "Bandwagon",
+                "Plain folks",
+                "Comparison of statistics"
+              ],
+              "correctIndex": 1,
+              "feedback": "It persuades by claiming that many other people are doing it."
+            },
+            {
+              "id": "G6-ENG-M2-CP2-Q02",
+              "skill": "testimonial",
+              "text": "Which technique uses a teacher’s endorsement?",
+              "options": [
+                "Testimonial",
+                "Bandwagon",
+                "Plain folks",
+                "Definition"
+              ],
+              "correctIndex": 0,
+              "feedback": "A named person recommends the product."
+            },
+            {
+              "id": "G6-ENG-M2-CP2-Q03",
+              "skill": "plain folks",
+              "text": "Which message uses a plain-folks appeal?",
+              "options": [
+                "The notebook has 80 pages",
+                "The book weighs 200 grams",
+                "The store opens at eight",
+                "I am an ordinary learner who uses this notebook"
+              ],
+              "correctIndex": 3,
+              "feedback": "The speaker presents themself as an everyday person like the audience."
+            },
+            {
+              "id": "G6-ENG-M2-CP2-Q04",
+              "skill": "critical evaluation",
+              "text": "Why should a reader check an endorsement?",
+              "options": [
+                "All endorsements are false",
+                "Endorsements have no audience",
+                "An endorsement may not be enough evidence of a claim",
+                "A named person cannot speak"
+              ],
+              "correctIndex": 2,
+              "feedback": "An opinion or endorsement is not necessarily independent evidence."
+            },
+            {
+              "id": "G6-ENG-M2-CP2-Q05",
+              "skill": "strength of evidence",
+              "text": "Which evidence is strongest for comparing notebook durability?",
+              "options": [
+                "A slogan saying “everyone agrees”",
+                "A fair test comparing notebooks under the same conditions",
+                "A celebrity picture",
+                "A bright product color"
+              ],
+              "correctIndex": 1,
+              "feedback": "A consistent comparative test provides evidence about durability."
+            }
+          ]
+        },
+        {
+          "id": "G6-ENG-M2-CP3",
+          "index": 3,
+          "title": "Word Library — Judge the Message",
+          "npcName": "Librarian Bea",
+          "npcOpening": "",
+          "reading": "Campaign draft: “Brightville should install more waste bins near the river. A local audit recorded repeated littering around entrances. More clearly labeled bins, along with reminders, may help residents dispose of waste properly.” Another draft says, “Only foolish people disagree with this plan.”",
+          "lesson": "A credible persuasive message uses a clear claim, relevant reasons, respectful language and checkable evidence; insults are not good arguments.",
+          "miniGame": {
+            "name": "Fix the Campaign",
+            "type": "choose",
+            "instructions": "Select a claim, pair it with the best supporting evidence, and replace insulting text with respectful language.",
+            "steps": [
+              {
+                "id": "G6-ENG-M2-CP3-A1",
+                "type": "choose",
+                "prompt": "Fix the Campaign, step 1: select the claim.",
+                "context": "",
+                "items": [
+                  "Brightville should install more waste bins near the river.",
+                  "Only foolish people disagree with this plan.",
+                  "A local audit recorded repeated littering around entrances.",
+                  "Waste bins are usually round."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M2-CP3-A2",
+                "type": "choose",
+                "prompt": "Step 2: pick the best supporting evidence for that claim.",
+                "context": "",
+                "items": [
+                  "A local audit recorded repeated littering around entrances.",
+                  "Everyone knows bins are good.",
+                  "Some people like rivers.",
+                  "My cousin thinks the plan is nice."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M2-CP3-A3",
+                "type": "choose",
+                "prompt": "Step 3: replace “Only foolish people disagree with this plan.” with respectful language.",
+                "context": "",
+                "items": [
+                  "Please read the evidence and share your ideas respectfully.",
+                  "Anyone who disagrees is silly.",
+                  "Do not bother disagreeing.",
+                  "Disagreeing is not allowed."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Evidence Badge",
+          "questions": [
+            {
+              "id": "G6-ENG-M2-CP3-Q01",
+              "skill": "claim identification",
+              "text": "What is the main claim in the campaign draft?",
+              "options": [
+                "Rivers cannot be cleaned",
+                "Littering is imaginary",
+                "More waste bins should be installed near the river",
+                "All roads should close"
+              ],
+              "correctIndex": 2,
+              "feedback": "The draft proposes adding waste bins."
+            },
+            {
+              "id": "G6-ENG-M2-CP3-Q02",
+              "skill": "supporting evidence",
+              "text": "Which detail supports the claim?",
+              "options": [
+                "A local audit found littering near entrances",
+                "A child likes blue bins",
+                "The river has fish",
+                "Some people own umbrellas"
+              ],
+              "correctIndex": 0,
+              "feedback": "The audit addresses the problem the proposal is trying to solve."
+            },
+            {
+              "id": "G6-ENG-M2-CP3-Q03",
+              "skill": "argument evaluation",
+              "text": "Why is “Only foolish people disagree” a weak argument?",
+              "options": [
+                "It names a date",
+                "It insults people instead of giving evidence",
+                "It uses a complete sentence",
+                "It mentions agreement"
+              ],
+              "correctIndex": 1,
+              "feedback": "Personal insults do not support the proposal."
+            },
+            {
+              "id": "G6-ENG-M2-CP3-Q04",
+              "skill": "tone and audience",
+              "text": "Which revision is most respectful?",
+              "options": [
+                "Anyone who disagrees is silly",
+                "Every resident must be punished",
+                "Do not ask questions",
+                "Let us discuss how bins could help keep the river clean"
+              ],
+              "correctIndex": 3,
+              "feedback": "It invites discussion without insulting anyone."
+            },
+            {
+              "id": "G6-ENG-M2-CP3-Q05",
+              "skill": "evidence-based persuasion",
+              "text": "What would improve the campaign most?",
+              "options": [
+                "Add unrelated music",
+                "Remove the audit",
+                "Cite the audit clearly and explain how bins may help",
+                "Use only large decorative letters"
+              ],
+              "correctIndex": 2,
+              "feedback": "Credible evidence and reasoning strengthen the message."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6-ENG-M3",
+      "number": 3,
+      "title": "The Evidence-Based Communicator",
+      "story": "Learners help the village plan a school reading campaign using survey findings, a clear message, and effective visuals.",
+      "focus": "Informational and persuasive organization; survey interpretation; claims and evidence; visual and multimedia communication.",
+      "finalChallenge": {
+        "title": "Publish the Reading Corner Plan",
+        "description": "Publish the Reading Corner Plan: select a fair survey finding, arrange a short persuasive paragraph, and assemble a two-element flyer (heading + relevant image) with a truthful evidence statement.",
+        "rewardName": "Evidence-Based Communicator Badge",
+        "steps": [
+          {
+            "id": "G6-ENG-M3-F1",
+            "type": "choose",
+            "prompt": "Publish the Reading Corner Plan: select the fair survey finding.",
+            "context": "",
+            "items": [
+              "Thirty of forty surveyed learners supported a shaded reading space.",
+              "Everyone wants the reading space.",
+              "Nobody likes the old library.",
+              "Forty learners agreed on everything."
+            ],
+            "buckets": [],
+            "answers": [
+              0
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M3-F2",
+            "type": "sequence",
+            "prompt": "Arrange the persuasive paragraph.",
+            "context": "",
+            "items": [
+              "Our school should create a shaded reading corner.",
+              "Thirty out of forty surveyed learners supported it.",
+              "A quiet and comfortable space could help learners enjoy reading.",
+              "We can start with available benches and ask the school for feedback."
+            ],
+            "buckets": [],
+            "answers": [],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M3-F3",
+            "type": "choose",
+            "prompt": "Build the flyer: choose the heading.",
+            "context": "",
+            "items": [
+              "READ TOGETHER! Help us create a shaded reading corner.",
+              "EVERYONE MUST READ NOW!!!",
+              "Boring flyer"
+            ],
+            "buckets": [],
+            "answers": [
+              0
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M3-F4",
+            "type": "choose",
+            "prompt": "Choose the relevant image.",
+            "context": "",
+            "items": [
+              "A book and a shaded bench",
+              "A soccer ball",
+              "A traffic light"
+            ],
+            "buckets": [],
+            "answers": [
+              0
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G6-ENG-M3-F5",
+            "type": "choose",
+            "prompt": "Choose a truthful evidence statement for the flyer.",
+            "context": "",
+            "items": [
+              "Survey: 30 of 40 learners supported the idea.",
+              "All learners in the world agree.",
+              "Nobody disagreed with us."
+            ],
+            "buckets": [],
+            "answers": [
+              0
+            ],
+            "minChars": 0,
+            "success": ""
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-ENG-M3-CP1",
+          "index": 1,
+          "title": "Story Garden — Reading Survey",
+          "npcName": "Student Reporter Iris",
+          "npcOpening": "",
+          "reading": "Forty learners answered a school reading-corner survey. Thirty supported adding a shaded reading space. Twenty-four preferred story-reading sessions after class. The report lists these counts without claiming that everyone agreed.",
+          "lesson": "A survey asks a clear and fair question. Results should be reported accurately, including who answered and what the numbers show.",
+          "miniGame": {
+            "name": "Survey Sorter",
+            "type": "sort",
+            "instructions": "Match each statement to Supported, Not Supported or Needs More Evidence; pick a neutral survey question.",
+            "steps": [
+              {
+                "id": "G6-ENG-M3-CP1-A1",
+                "type": "sort",
+                "prompt": "Survey Sorter: does the survey support each statement?",
+                "context": "Survey: Forty learners answered. Thirty supported adding a shaded reading space. Twenty-four preferred story-reading sessions after class.",
+                "items": [
+                  "Thirty of the forty learners supported a shaded reading space.",
+                  "Twenty-four learners preferred story-reading sessions after class.",
+                  "All learners agreed to the plan.",
+                  "Everyone in the school wants a shaded reading space.",
+                  "Most learners prefer reading outdoors."
+                ],
+                "buckets": [
+                  "Supported",
+                  "Not supported",
+                  "Needs more evidence"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "You read the survey results accurately."
+              },
+              {
+                "id": "G6-ENG-M3-CP1-A2",
+                "type": "choose",
+                "prompt": "Which survey question is neutral and fair?",
+                "context": "",
+                "items": [
+                  "Do you support adding a shaded reading space at school: yes, no or not sure?",
+                  "Don't you agree that a shaded reading space is a great idea?",
+                  "Wouldn't everyone love a new reading space?",
+                  "You want the reading space, right?"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Survey Token",
+          "questions": [
+            {
+              "id": "G6-ENG-M3-CP1-Q01",
+              "skill": "data reading",
+              "text": "How many learners answered the survey?",
+              "options": [
+                "24",
+                "30",
+                "40",
+                "50"
+              ],
+              "correctIndex": 2,
+              "feedback": "The passage says 40 learners responded."
+            },
+            {
+              "id": "G6-ENG-M3-CP1-Q02",
+              "skill": "data reading",
+              "text": "How many supported a shaded reading space?",
+              "options": [
+                "30",
+                "24",
+                "10",
+                "40"
+              ],
+              "correctIndex": 0,
+              "feedback": "Thirty learners supported that idea."
+            },
+            {
+              "id": "G6-ENG-M3-CP1-Q03",
+              "skill": "accurate claim",
+              "text": "Which statement is supported by the survey?",
+              "options": [
+                "Every learner wants a shaded space",
+                "No learner wants to read",
+                "All learners prefer weekends",
+                "Most surveyed learners supported a shaded reading space"
+              ],
+              "correctIndex": 3,
+              "feedback": "Thirty out of 40 is more than half, but not everyone."
+            },
+            {
+              "id": "G6-ENG-M3-CP1-Q04",
+              "skill": "fair survey question",
+              "text": "Which survey question is least leading?",
+              "options": [
+                "You agree our wonderful reading corner is perfect, right?",
+                "Would you use a shaded reading corner at school?",
+                "Don’t you dislike reading indoors?",
+                "Why do you hate boring books?"
+              ],
+              "correctIndex": 1,
+              "feedback": "It asks neutrally without suggesting the preferred answer."
+            },
+            {
+              "id": "G6-ENG-M3-CP1-Q05",
+              "skill": "limits of evidence",
+              "text": "Which claim would need extra evidence?",
+              "options": [
+                "40 students answered",
+                "30 supported shade",
+                "All students in the school want the same thing",
+                "24 prefer after-class sessions"
+              ],
+              "correctIndex": 2,
+              "feedback": "The sample does not establish what all students in the school want."
+            }
+          ]
+        },
+        {
+          "id": "G6-ENG-M3-CP2",
+          "index": 2,
+          "title": "Truth Hall — Build the Argument",
+          "npcName": "Writer Marco",
+          "npcOpening": "",
+          "reading": "Draft: “Our school should create a shaded reading corner. Thirty out of forty surveyed learners supported it. A quiet and comfortable space could help learners enjoy reading. We can start with available benches and ask the school for feedback.”",
+          "lesson": "A persuasive paragraph begins with a claim, supports it with relevant evidence, and ends with a practical recommendation or call to action.",
+          "miniGame": {
+            "name": "Paragraph Sequencer",
+            "type": "sequence",
+            "instructions": "Arrange Claim → Evidence → Explanation → Recommendation. Identify an unsupported claim and replace it.",
+            "steps": [
+              {
+                "id": "G6-ENG-M3-CP2-A1",
+                "type": "sequence",
+                "prompt": "Paragraph Sequencer: arrange Claim, Evidence, Explanation, Recommendation.",
+                "context": "",
+                "items": [
+                  "Our school should create a shaded reading corner.",
+                  "Thirty out of forty surveyed learners supported it.",
+                  "A quiet and comfortable space could help learners enjoy reading.",
+                  "We can start with available benches and ask the school for feedback."
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M3-CP2-A2",
+                "type": "choose",
+                "prompt": "Which sentence is an unsupported claim?",
+                "context": "",
+                "items": [
+                  "Every learner in the world loves reading outside.",
+                  "Thirty out of forty surveyed learners supported it.",
+                  "We can start with available benches.",
+                  "Forty learners answered the survey."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M3-CP2-A3",
+                "type": "choose",
+                "prompt": "Which sentence replaces it best, using evidence?",
+                "context": "",
+                "items": [
+                  "Thirty out of forty surveyed learners supported a shaded reading space.",
+                  "Reading outside is the best thing ever.",
+                  "Nobody likes reading indoors.",
+                  "Everybody agrees with us."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Argument Page",
+          "questions": [
+            {
+              "id": "G6-ENG-M3-CP2-Q01",
+              "skill": "claim",
+              "text": "Which sentence states the central claim?",
+              "options": [
+                "Our school should create a shaded reading corner",
+                "Thirty learners joined the survey",
+                "Some benches are wooden",
+                "The survey was on Monday"
+              ],
+              "correctIndex": 0,
+              "feedback": "It is the recommendation the paragraph seeks to support."
+            },
+            {
+              "id": "G6-ENG-M3-CP2-Q02",
+              "skill": "supporting evidence",
+              "text": "Which sentence gives numerical evidence?",
+              "options": [
+                "Reading is always fun",
+                "Thirty out of forty surveyed learners supported it",
+                "Everyone likes benches",
+                "Books are colorful"
+              ],
+              "correctIndex": 1,
+              "feedback": "The survey result offers checkable support."
+            },
+            {
+              "id": "G6-ENG-M3-CP2-Q03",
+              "skill": "organization",
+              "text": "Which order is clearest for the persuasive paragraph?",
+              "options": [
+                "Example → unrelated joke → title",
+                "Opinion → insult → image",
+                "Evidence → surprise ending → greeting",
+                "Claim → evidence → explanation → recommendation"
+              ],
+              "correctIndex": 3,
+              "feedback": "This order introduces an argument and develops it logically."
+            },
+            {
+              "id": "G6-ENG-M3-CP2-Q04",
+              "skill": "overgeneralization",
+              "text": "Which statement is too strong for the given evidence?",
+              "options": [
+                "Many surveyed learners support the proposal",
+                "Some surveyed learners have different preferences",
+                "Every student at school supports the proposal",
+                "A reading corner could be considered"
+              ],
+              "correctIndex": 2,
+              "feedback": "A 40-learner survey does not prove unanimous schoolwide support."
+            },
+            {
+              "id": "G6-ENG-M3-CP2-Q05",
+              "skill": "closing statement",
+              "text": "What is the best closing sentence?",
+              "options": [
+                "Yesterday the sky was cloudy",
+                "Please consider trying the shaded reading corner and collecting feedback",
+                "All other school projects must stop",
+                "The canteen sells rice"
+              ],
+              "correctIndex": 1,
+              "feedback": "It proposes a sensible next step related to the claim."
+            }
+          ]
+        },
+        {
+          "id": "G6-ENG-M3-CP3",
+          "index": 3,
+          "title": "Word Library — Design the Message",
+          "npcName": "Media Guide Noel",
+          "npcOpening": "",
+          "reading": "Campaign flyer draft: “READ TOGETHER! Help us create a shaded reading corner. Survey: 30 of 40 learners supported the idea. Share your suggestions with the class teacher.” The flyer contains a simple book icon and an illustration of a shaded bench.",
+          "lesson": "Visuals should strengthen the message, remain readable and fairly represent the evidence. An audience-appropriate design uses clear headings, accurate facts and relevant images.",
+          "miniGame": {
+            "name": "Flyer Designer",
+            "type": "choose",
+            "instructions": "Choose the correct heading, supportive book/bench icon and evidence statement, then write a short campaign caption.",
+            "steps": [
+              {
+                "id": "G6-ENG-M3-CP3-A1",
+                "type": "choose",
+                "prompt": "Flyer Designer: choose the correct heading.",
+                "context": "",
+                "items": [
+                  "READ TOGETHER! Help us create a shaded reading corner.",
+                  "EVERYONE MUST READ NOW!!!",
+                  "Boring flyer",
+                  "Things and stuff"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M3-CP3-A2",
+                "type": "choose",
+                "prompt": "Choose the icon that supports the message.",
+                "context": "",
+                "items": [
+                  "A book and a shaded bench",
+                  "A soccer ball",
+                  "A traffic light",
+                  "A birthday balloon"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M3-CP3-A3",
+                "type": "choose",
+                "prompt": "Choose the truthful evidence statement.",
+                "context": "",
+                "items": [
+                  "Survey: 30 of 40 learners supported the idea.",
+                  "All learners in the world agree.",
+                  "Nobody disagreed with us.",
+                  "Reading makes you rich."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G6-ENG-M3-CP3-W1",
+                "type": "write",
+                "prompt": "Write a short caption for your flyer.",
+                "context": "",
+                "items": [],
+                "buckets": [],
+                "answers": [],
+                "minChars": 10,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Communicator Badge Piece",
+          "questions": [
+            {
+              "id": "G6-ENG-M3-CP3-Q01",
+              "skill": "message purpose",
+              "text": "What is the flyer asking people to support?",
+              "options": [
+                "A new sports tournament",
+                "A shaded reading corner",
+                "A town parade",
+                "A shopping sale"
+              ],
+              "correctIndex": 1,
+              "feedback": "The flyer clearly asks for a reading corner."
+            },
+            {
+              "id": "G6-ENG-M3-CP3-Q02",
+              "skill": "visual appropriateness",
+              "text": "Which image best fits the flyer?",
+              "options": [
+                "A racing car",
+                "A volcano",
+                "A book beside a shaded bench",
+                "A broken traffic light"
+              ],
+              "correctIndex": 2,
+              "feedback": "The image directly shows the proposed reading space."
+            },
+            {
+              "id": "G6-ENG-M3-CP3-Q03",
+              "skill": "visual accuracy",
+              "text": "Which sentence reports the survey accurately?",
+              "options": [
+                "30 of 40 surveyed learners supported the idea",
+                "All schoolchildren supported the idea",
+                "Only one learner was asked",
+                "Nobody wanted a reading corner"
+              ],
+              "correctIndex": 0,
+              "feedback": "The numbers match the survey data."
+            },
+            {
+              "id": "G6-ENG-M3-CP3-Q04",
+              "skill": "intended audience",
+              "text": "Who should the flyer address?",
+              "options": [
+                "Only university scientists",
+                "Only distant tourists",
+                "Only online shop owners",
+                "Students, teachers and the school community"
+              ],
+              "correctIndex": 3,
+              "feedback": "These groups can consider and respond to a school proposal."
+            },
+            {
+              "id": "G6-ENG-M3-CP3-Q05",
+              "skill": "media design",
+              "text": "Which design choice makes the message clearest?",
+              "options": [
+                "Very tiny text and unrelated icons",
+                "A readable heading, brief facts and matching visuals",
+                "Many unrelated animations",
+                "No explanation of the survey"
+              ],
+              "correctIndex": 1,
+              "feedback": "The heading, concise facts and relevant images reinforce each other."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

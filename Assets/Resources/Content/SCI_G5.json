@@ -1,0 +1,1280 @@
+{
+  "worldId": "SCI",
+  "grade": 5,
+  "missions": [
+    {
+      "id": "G5-SCI-M1",
+      "number": 1,
+      "title": "The Missing Matter Museum",
+      "story": "Professor Nova needs help restoring a village science museum. Objects have lost their labels, an experiment station has been mixed up, and the nature exhibit needs correct classifications.",
+      "focus": "Matter and its states; physical properties and heat; basic investigation; classifying organisms and plant adaptations.",
+      "finalChallenge": {
+        "title": "Restock the Museum",
+        "description": "Restock the museum: correctly sort three matter samples, select one fair experimental procedure, and classify three garden specimens using evidence.",
+        "rewardName": "Museum Research Badge",
+        "steps": [
+          {
+            "id": "G5-SCI-M1-F1",
+            "type": "sort",
+            "prompt": "Restock the Museum: classify the matter samples by state.",
+            "context": "",
+            "items": [
+              "Granite rock specimen",
+              "Pure mineral oil",
+              "Oxygen gas container",
+              "Iron chisel tool"
+            ],
+            "buckets": [
+              "Solid",
+              "Liquid",
+              "Gas"
+            ],
+            "answers": [
+              0,
+              1,
+              2,
+              0
+            ],
+            "minChars": 0,
+            "success": "Matter specimens properly labeled!"
+          },
+          {
+            "id": "G5-SCI-M1-F2",
+            "type": "choose",
+            "prompt": "To conduct a fair test on how temperature affects ice melting rate, what variable must you change?",
+            "context": "",
+            "items": [
+              "The size of the ice cube in each trial",
+              "The temperature of the environment (e.g. sunlight vs shade)",
+              "The type of liquid used"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 1 complete! You earned the Museum Research Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-SCI-M1-CP1",
+          "index": 1,
+          "title": "Matter Storage Room",
+          "npcName": "Professor Nova",
+          "npcOpening": "Welcome to Matter Storage Room! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Matter has mass and takes up space. A solid generally keeps its own shape and volume. A liquid keeps its volume but takes the shape of its container. A gas has neither a fixed shape nor a fixed volume and spreads to fill an available container. Air is matter even though we cannot usually see it.",
+          "miniGame": {
+            "name": "Sorting Crates",
+            "type": "quiz",
+            "instructions": "Put rock and pencil in SOLID, water and juice in LIQUID, air and water vapor in GAS.",
+            "steps": [
+              {
+                "id": "G5-SCI-M1-CP1-A1",
+                "type": "sort",
+                "prompt": "Sorting Crates: classify the samples into their correct state of matter.",
+                "context": "",
+                "items": [
+                  "Rock",
+                  "Clean Water",
+                  "Air inside a balloon",
+                  "Wooden pencil",
+                  "Fresh fruit juice",
+                  "Water vapor"
+                ],
+                "buckets": [
+                  "Solid",
+                  "Liquid",
+                  "Gas"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2,
+                  0,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "Terrific! Solids keep their shape, liquids flow, and gases expand to fill spaces."
+              }
+            ]
+          },
+          "rewardName": "Matter Label 1",
+          "questions": [
+            {
+              "id": "G5-SCI-M1-CP1-Q01",
+              "skill": "definition",
+              "text": "Which statement best defines matter?",
+              "options": [
+                "Anything that is colorful",
+                "Anything that has mass and occupies space",
+                "Only objects people can hold",
+                "Only things that are living"
+              ],
+              "correctIndex": 1,
+              "explanation": "Matter is identified by mass and the space it occupies.",
+              "feedback": "Matter is identified by mass and the space it occupies."
+            },
+            {
+              "id": "G5-SCI-M1-CP1-Q02",
+              "skill": "solid",
+              "text": "Which is an example of a solid?",
+              "options": [
+                "Cooking oil",
+                "Water vapor",
+                "Wooden block",
+                "Air in a tire"
+              ],
+              "correctIndex": 2,
+              "explanation": "A wooden block keeps a definite shape and volume.",
+              "feedback": "A wooden block keeps a definite shape and volume."
+            },
+            {
+              "id": "G5-SCI-M1-CP1-Q03",
+              "skill": "liquid",
+              "text": "What happens to the shape of clean water when it is poured from a glass into a bowl?",
+              "options": [
+                "It takes the shape of the bowl",
+                "It becomes solid immediately",
+                "It always keeps the glass shape",
+                "It loses all of its volume"
+              ],
+              "correctIndex": 0,
+              "explanation": "Water is liquid and takes its container’s shape.",
+              "feedback": "Water is liquid and takes its container’s shape."
+            },
+            {
+              "id": "G5-SCI-M1-CP1-Q04",
+              "skill": "gas",
+              "text": "Which description fits a gas in a closed container?",
+              "options": [
+                "It keeps a fixed shape",
+                "It always stays at the bottom",
+                "It has a fixed shape and fixed volume",
+                "It spreads to fill the available container"
+              ],
+              "correctIndex": 3,
+              "explanation": "A gas expands to the available space of its container.",
+              "feedback": "A gas expands to the available space of its container."
+            },
+            {
+              "id": "G5-SCI-M1-CP1-Q05",
+              "skill": "evidence",
+              "text": "Why is the air inside a balloon considered matter?",
+              "options": [
+                "It makes the balloon red",
+                "It has mass and occupies space",
+                "It is always hot",
+                "It can be seen as a solid"
+              ],
+              "correctIndex": 1,
+              "explanation": "Air occupies space and has mass, even when invisible.",
+              "feedback": "Air occupies space and has mass, even when invisible."
+            }
+          ]
+        },
+        {
+          "id": "G5-SCI-M1-CP2",
+          "index": 2,
+          "title": "Experiment Workshop",
+          "npcName": "Scientist Lily",
+          "npcOpening": "Welcome to Experiment Workshop! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Heating or cooling can change the state of a material. Ice melts to liquid water when it gains heat; water freezes when it loses heat. A measuring cylinder helps measure liquid volume, commonly in milliliters (mL). An investigation should ask a testable question, follow steps and record observations.",
+          "miniGame": {
+            "name": "Heat & Measure",
+            "type": "quiz",
+            "instructions": "Arrange ICE → WATER → WATER VAPOR for heating, then select the correct tool and measurement unit.",
+            "steps": [
+              {
+                "id": "G5-SCI-M1-CP2-A1",
+                "type": "sequence",
+                "prompt": "Heat & Measure: arrange the states of water as heat is added.",
+                "context": "",
+                "items": [
+                  "Solid Ice (Coldest)",
+                  "Liquid Water (Warming)",
+                  "Water Vapor (Boiling)"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Correct sequence! Ice melts to liquid, then evaporates to vapor."
+              },
+              {
+                "id": "G5-SCI-M1-CP2-A2",
+                "type": "choose",
+                "prompt": "Which laboratory tool is most suitable for measuring 80 mL of liquid water?",
+                "context": "",
+                "items": [
+                  "Graduated Measuring Cylinder",
+                  "Ruler",
+                  "Thermometer",
+                  "Magnifying Glass"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": "Spot on! Measuring cylinders measure liquid volume in milliliters."
+              }
+            ]
+          },
+          "rewardName": "Research Note 2",
+          "questions": [
+            {
+              "id": "G5-SCI-M1-CP2-Q01",
+              "skill": "state change",
+              "text": "What change occurs when an ice cube becomes liquid water?",
+              "options": [
+                "Freezing",
+                "Melting",
+                "Condensation",
+                "Deposition"
+              ],
+              "correctIndex": 1,
+              "explanation": "Melting changes a solid into a liquid.",
+              "feedback": "Melting changes a solid into a liquid."
+            },
+            {
+              "id": "G5-SCI-M1-CP2-Q02",
+              "skill": "heat",
+              "text": "What must water usually lose to freeze into ice?",
+              "options": [
+                "Color",
+                "Mass completely",
+                "Heat energy",
+                "Its container"
+              ],
+              "correctIndex": 2,
+              "explanation": "Cooling removes heat and can cause liquid water to freeze.",
+              "feedback": "Cooling removes heat and can cause liquid water to freeze."
+            },
+            {
+              "id": "G5-SCI-M1-CP2-Q03",
+              "skill": "measurement",
+              "text": "Which tool is most suitable for measuring 80 mL of water?",
+              "options": [
+                "Measuring cylinder",
+                "Ruler",
+                "Thermometer",
+                "Magnifying glass"
+              ],
+              "correctIndex": 0,
+              "explanation": "A measuring cylinder is designed to measure liquid volume.",
+              "feedback": "A measuring cylinder is designed to measure liquid volume."
+            },
+            {
+              "id": "G5-SCI-M1-CP2-Q04",
+              "skill": "units",
+              "text": "Which is an appropriate unit for the volume of water in a glass?",
+              "options": [
+                "Kilograms",
+                "Degrees Celsius",
+                "Meters",
+                "Milliliters"
+              ],
+              "correctIndex": 3,
+              "explanation": "Milliliters are units of liquid volume.",
+              "feedback": "Milliliters are units of liquid volume."
+            },
+            {
+              "id": "G5-SCI-M1-CP2-Q05",
+              "skill": "fair test",
+              "text": "Two identical ice cubes are placed in different locations. To test the effect of sunlight on melting, what should be changed?",
+              "options": [
+                "Both the ice size and container",
+                "Whether the location has direct sunlight",
+                "The starting ice amount and weather record",
+                "The melting observation method"
+              ],
+              "correctIndex": 1,
+              "explanation": "Changing sunlight while keeping other conditions similar creates a fairer comparison.",
+              "feedback": "Changing sunlight while keeping other conditions similar creates a fairer comparison."
+            }
+          ]
+        },
+        {
+          "id": "G5-SCI-M1-CP3",
+          "index": 3,
+          "title": "Nature Exhibit",
+          "npcName": "Ranger Bea",
+          "npcOpening": "Welcome to Nature Exhibit! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Living things may be grouped as plants, animals or microorganisms based on observable characteristics. Plants make food using light. Animals feed on other organisms. Some organisms such as fungi and microscopic microbes have different roles. Plant roots absorb water; specialized structures such as cactus spines help some plants survive dry areas.",
+          "miniGame": {
+            "name": "Nature Sort",
+            "type": "quiz",
+            "instructions": "Classify mango tree, tilapia, fern and mushroom using the signs and examples given in the lesson.",
+            "steps": [
+              {
+                "id": "G5-SCI-M1-CP3-A1",
+                "type": "sort",
+                "prompt": "Nature Sort: classify each living organism into its biological group.",
+                "context": "",
+                "items": [
+                  "Mango tree",
+                  "Tilapia fish",
+                  "Mushroom fungus",
+                  "Fern plant",
+                  "Butterfly"
+                ],
+                "buckets": [
+                  "Plant",
+                  "Animal",
+                  "Fungi / Microbe"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Great classification! Observing shared characteristics helps group organisms."
+              }
+            ]
+          },
+          "rewardName": "Nature Exhibit Pass",
+          "questions": [
+            {
+              "id": "G5-SCI-M1-CP3-Q01",
+              "skill": "classification",
+              "text": "Which organism belongs in the plant group?",
+              "options": [
+                "Tilapia",
+                "Dog",
+                "Mango tree",
+                "Butterfly"
+              ],
+              "correctIndex": 2,
+              "explanation": "A mango tree is a plant.",
+              "feedback": "A mango tree is a plant."
+            },
+            {
+              "id": "G5-SCI-M1-CP3-Q02",
+              "skill": "plant structure",
+              "text": "Which structure mainly absorbs water from soil?",
+              "options": [
+                "Flower",
+                "Roots",
+                "Fruit",
+                "Petal"
+              ],
+              "correctIndex": 1,
+              "explanation": "Roots help absorb water and minerals.",
+              "feedback": "Roots help absorb water and minerals."
+            },
+            {
+              "id": "G5-SCI-M1-CP3-Q03",
+              "skill": "adaptation",
+              "text": "Which is a common adaptation that reduces water loss in many cacti?",
+              "options": [
+                "Large thin leaves",
+                "Roots floating in air",
+                "Soft wet petals",
+                "Spines instead of broad leaves"
+              ],
+              "correctIndex": 3,
+              "explanation": "Spines reduce exposed leaf surface and help limit water loss.",
+              "feedback": "Spines reduce exposed leaf surface and help limit water loss."
+            },
+            {
+              "id": "G5-SCI-M1-CP3-Q04",
+              "skill": "classification evidence",
+              "text": "Which observation supports classifying a tilapia as an animal?",
+              "options": [
+                "It swims and feeds on other organisms",
+                "It makes food by photosynthesis",
+                "It is rooted in the ground",
+                "It has a woody trunk"
+              ],
+              "correctIndex": 0,
+              "explanation": "Tilapia is an animal that obtains food from other organisms.",
+              "feedback": "Tilapia is an animal that obtains food from other organisms."
+            },
+            {
+              "id": "G5-SCI-M1-CP3-Q05",
+              "skill": "purpose",
+              "text": "Why do scientists classify organisms?",
+              "options": [
+                "To change their color",
+                "To make every organism identical",
+                "To group organisms using shared characteristics",
+                "To remove organisms from ecosystems"
+              ],
+              "correctIndex": 2,
+              "explanation": "Classification organizes living things according to characteristics.",
+              "feedback": "Classification organizes living things according to characteristics."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5-SCI-M2",
+      "number": 2,
+      "title": "The Nature Rescue Expedition",
+      "story": "The village animal rescue center needs scientific help. Learners trace the journey of food and air, compare living things, and test safe ways to move supplies.",
+      "focus": "Animal body systems; life cycles; adaptations; contact forces, friction and gravity.",
+      "finalChallenge": {
+        "title": "Deliver Medicine Safely",
+        "description": "Deliver medicine safely: choose a correct body-system diagram, reconstruct a life cycle and select the safest cart route using friction evidence.",
+        "rewardName": "Nature Rescue Badge",
+        "steps": [
+          {
+            "id": "G5-SCI-M2-F1",
+            "type": "sequence",
+            "prompt": "Deliver Medicine Safely: reconstruct the flowering plant life cycle to harvest medicinal herbs.",
+            "context": "",
+            "items": [
+              "Seed planted in nutrient-rich soil",
+              "Germinating seedling with young roots and shoot",
+              "Mature flowering plant with blooms",
+              "Pollinated fruit producing viable seeds"
+            ],
+            "buckets": [],
+            "answers": [],
+            "minChars": 0,
+            "success": "Plant life cycle correctly sequenced!"
+          },
+          {
+            "id": "G5-SCI-M2-F2",
+            "type": "choose",
+            "prompt": "Which cart path offers the safest transport with the least slippery surface?",
+            "context": "",
+            "items": [
+              "Wet waxed marble floor with zero friction",
+              "Textured asphalt path with controlled rolling friction",
+              "Oiled metal ramp"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 2 complete! You earned the Nature Rescue Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-SCI-M2-CP1",
+          "index": 1,
+          "title": "Animal Rescue Clinic",
+          "npcName": "Veterinarian Mia",
+          "npcOpening": "Welcome to Animal Rescue Clinic! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "The digestive system breaks down food; nutrients are absorbed mainly in the small intestine. Air travels through passages such as the windpipe to the lungs, where gas exchange takes place. Reproductive systems allow organisms to produce offspring. Body systems work together to support survival, growth and reproduction.",
+          "miniGame": {
+            "name": "Body Map",
+            "type": "quiz",
+            "instructions": "Drag the labels mouth, stomach, small intestine, windpipe and lungs onto simplified diagrams.",
+            "steps": [
+              {
+                "id": "G5-SCI-M2-CP1-A1",
+                "type": "sequence",
+                "prompt": "Body Map: put the digestive system organs in the order food travels.",
+                "context": "",
+                "items": [
+                  "Mouth (Chewing & Saliva)",
+                  "Esophagus (Food pipe)",
+                  "Stomach (Acid & breakdown)",
+                  "Small Intestine (Nutrient absorption)",
+                  "Large Intestine (Water absorption)"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Accurate digestion path! Most nutrients are absorbed in the small intestine."
+              },
+              {
+                "id": "G5-SCI-M2-CP1-A2",
+                "type": "choose",
+                "prompt": "What is the primary role of the lungs in the body?",
+                "context": "",
+                "items": [
+                  "Pumping blood through blood vessels",
+                  "Exchanging oxygen and carbon dioxide",
+                  "Digesting complex carbohydrates"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Correct! Lungs enable vital gas exchange."
+              }
+            ]
+          },
+          "rewardName": "Clinic Badge",
+          "questions": [
+            {
+              "id": "G5-SCI-M2-CP1-Q01",
+              "skill": "digestion",
+              "text": "In which part of the digestive system are most nutrients absorbed?",
+              "options": [
+                "Mouth",
+                "Esophagus",
+                "Small intestine",
+                "Large intestine"
+              ],
+              "correctIndex": 2,
+              "explanation": "The small intestine absorbs most digested nutrients.",
+              "feedback": "The small intestine absorbs most digested nutrients."
+            },
+            {
+              "id": "G5-SCI-M2-CP1-Q02",
+              "skill": "digestion sequence",
+              "text": "Which sequence correctly shows the path of swallowed food?",
+              "options": [
+                "Mouth → esophagus → stomach",
+                "Stomach → mouth → esophagus",
+                "Lungs → stomach → mouth",
+                "Mouth → windpipe → lungs"
+              ],
+              "correctIndex": 0,
+              "explanation": "Food goes from the mouth through the esophagus to the stomach.",
+              "feedback": "Food goes from the mouth through the esophagus to the stomach."
+            },
+            {
+              "id": "G5-SCI-M2-CP1-Q03",
+              "skill": "respiration",
+              "text": "What is the main role of the lungs?",
+              "options": [
+                "Produce food",
+                "Digest carbohydrates",
+                "Pump blood",
+                "Allow exchange of oxygen and carbon dioxide"
+              ],
+              "correctIndex": 3,
+              "explanation": "The lungs carry out gas exchange.",
+              "feedback": "The lungs carry out gas exchange."
+            },
+            {
+              "id": "G5-SCI-M2-CP1-Q04",
+              "skill": "respiration structure",
+              "text": "Which structure carries air toward the lungs?",
+              "options": [
+                "Small intestine",
+                "Windpipe (trachea)",
+                "Stomach",
+                "Large intestine"
+              ],
+              "correctIndex": 1,
+              "explanation": "Air passes through the trachea toward the lungs.",
+              "feedback": "Air passes through the trachea toward the lungs."
+            },
+            {
+              "id": "G5-SCI-M2-CP1-Q05",
+              "skill": "body systems",
+              "text": "What is a main function of a reproductive system?",
+              "options": [
+                "Producing offspring",
+                "Breaking down food",
+                "Pumping blood",
+                "Filtering sunlight"
+              ],
+              "correctIndex": 0,
+              "explanation": "Reproductive organs support reproduction.",
+              "feedback": "Reproductive organs support reproduction."
+            }
+          ]
+        },
+        {
+          "id": "G5-SCI-M2-CP2",
+          "index": 2,
+          "title": "Life Cycle Garden",
+          "npcName": "Ranger Bea",
+          "npcOpening": "Welcome to Life Cycle Garden! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "A life cycle follows the stages of growth and reproduction. Many flowering plants grow from seed to seedling to mature plant. A frog develops from egg to tadpole to adult. Adaptations such as webbed feet or protective body coverings can help organisms live in their habitats.",
+          "miniGame": {
+            "name": "Cycle Cards",
+            "type": "quiz",
+            "instructions": "Sequence a frog’s life stages and a plant’s growth stages.",
+            "steps": [
+              {
+                "id": "G5-SCI-M2-CP2-A1",
+                "type": "sequence",
+                "prompt": "Cycle Cards: arrange the stages of a frog's life cycle in order.",
+                "context": "",
+                "items": [
+                  "Egg in water",
+                  "Swimming Tadpole",
+                  "Froglet with tail",
+                  "Adult Frog"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Great life cycle sequencing! From egg to adult frog."
+              },
+              {
+                "id": "G5-SCI-M2-CP2-A2",
+                "type": "choose",
+                "prompt": "Which adaptation specifically helps ducks swim effectively in water?",
+                "context": "",
+                "items": [
+                  "Spines instead of feathers",
+                  "Webbed feet that push against water",
+                  "Dry scales on wings"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Webbed feet act like paddles to swim efficiently."
+              }
+            ]
+          },
+          "rewardName": "Life Cycle Card",
+          "questions": [
+            {
+              "id": "G5-SCI-M2-CP2-Q01",
+              "skill": "life cycle",
+              "text": "Which stage comes after a frog egg hatches?",
+              "options": [
+                "Adult frog",
+                "Tadpole",
+                "Seedling",
+                "Cocoon"
+              ],
+              "correctIndex": 1,
+              "explanation": "A tadpole is the early aquatic stage of a frog.",
+              "feedback": "A tadpole is the early aquatic stage of a frog."
+            },
+            {
+              "id": "G5-SCI-M2-CP2-Q02",
+              "skill": "life cycle sequence",
+              "text": "Which sequence represents a typical flowering plant life cycle?",
+              "options": [
+                "Flower → adult tree → seedling",
+                "Seedling → soil → rock",
+                "Seed → seedling → mature flowering plant",
+                "Root → animal → leaf"
+              ],
+              "correctIndex": 2,
+              "explanation": "A seed grows into a seedling then a mature plant.",
+              "feedback": "A seed grows into a seedling then a mature plant."
+            },
+            {
+              "id": "G5-SCI-M2-CP2-Q03",
+              "skill": "adaptation",
+              "text": "What is an example of an adaptation that helps many ducks swim?",
+              "options": [
+                "Webbed feet",
+                "Cactus spines",
+                "Sharp thorns",
+                "Dry scales"
+              ],
+              "correctIndex": 0,
+              "explanation": "Webbed feet help push against water.",
+              "feedback": "Webbed feet help push against water."
+            },
+            {
+              "id": "G5-SCI-M2-CP2-Q04",
+              "skill": "reproduction",
+              "text": "Why do plants produce seeds?",
+              "options": [
+                "To measure wind",
+                "To change into animals",
+                "To eliminate sunlight",
+                "To produce new plants"
+              ],
+              "correctIndex": 3,
+              "explanation": "Seeds can grow into new plants under suitable conditions.",
+              "feedback": "Seeds can grow into new plants under suitable conditions."
+            },
+            {
+              "id": "G5-SCI-M2-CP2-Q05",
+              "skill": "comparison",
+              "text": "Which statement about life cycles is most accurate?",
+              "options": [
+                "All animals start as eggs outside the body",
+                "Life cycles include stages of growth and reproduction",
+                "Every organism has exactly three stages",
+                "No organism changes as it grows"
+              ],
+              "correctIndex": 1,
+              "explanation": "Organisms undergo growth and reproduction, though their stages differ.",
+              "feedback": "Organisms undergo growth and reproduction, though their stages differ."
+            }
+          ]
+        },
+        {
+          "id": "G5-SCI-M2-CP3",
+          "index": 3,
+          "title": "Forces Testing Path",
+          "npcName": "Engineer Leo",
+          "npcOpening": "Welcome to Forces Testing Path! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "A contact force acts when objects touch, as when a person pushes a cart. Friction generally opposes sliding and can be stronger on rough surfaces. Gravity pulls objects toward Earth and acts without objects touching. A fair friction test keeps the cart, starting point and push as similar as possible while changing the surface.",
+          "miniGame": {
+            "name": "Cart Challenge",
+            "type": "quiz",
+            "instructions": "Compare the same toy cart moving on tile, cloth and sandpaper.",
+            "steps": [
+              {
+                "id": "G5-SCI-M2-CP3-A1",
+                "type": "sort",
+                "prompt": "Cart Challenge: sort the forces into Contact Force and Non-Contact Force.",
+                "context": "",
+                "items": [
+                  "Physically pushing a wooden cart forward",
+                  "Gravity pulling a falling apple to Earth",
+                  "Friction between shoe soles and the pavement",
+                  "A magnet attracting an iron nail without touching"
+                ],
+                "buckets": [
+                  "Contact Force",
+                  "Non-Contact Force"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Clear force distinction! Contact requires touching, gravity and magnetism act at a distance."
+              },
+              {
+                "id": "G5-SCI-M2-CP3-A2",
+                "type": "choose",
+                "prompt": "When sliding a toy cart, which surface creates the greatest friction and slows it fastest?",
+                "context": "",
+                "items": [
+                  "Smooth polished tile",
+                  "Rough coarse sandpaper",
+                  "Waxed wooden floor"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Rough surfaces generate higher sliding friction."
+              }
+            ]
+          },
+          "rewardName": "Force Explorer Seal",
+          "questions": [
+            {
+              "id": "G5-SCI-M2-CP3-Q01",
+              "skill": "contact force",
+              "text": "A learner pushes a crate forward. Which force is being applied?",
+              "options": [
+                "Magnetic force",
+                "Gravitational attraction only",
+                "Contact push",
+                "Light energy"
+              ],
+              "correctIndex": 2,
+              "explanation": "The learner physically pushes the crate by contact.",
+              "feedback": "The learner physically pushes the crate by contact."
+            },
+            {
+              "id": "G5-SCI-M2-CP3-Q02",
+              "skill": "friction",
+              "text": "What usually happens to a sliding toy on rough sandpaper compared with smooth tile?",
+              "options": [
+                "It experiences more friction",
+                "It loses all gravity",
+                "It experiences no contact",
+                "It becomes weightless"
+              ],
+              "correctIndex": 0,
+              "explanation": "A rougher surface often creates more sliding friction.",
+              "feedback": "A rougher surface often creates more sliding friction."
+            },
+            {
+              "id": "G5-SCI-M2-CP3-Q03",
+              "skill": "gravity",
+              "text": "Which force causes a dropped apple to fall toward the ground?",
+              "options": [
+                "Static electricity",
+                "Gravity",
+                "Friction from air only",
+                "Sound"
+              ],
+              "correctIndex": 1,
+              "explanation": "Gravity pulls the apple toward Earth.",
+              "feedback": "Gravity pulls the apple toward Earth."
+            },
+            {
+              "id": "G5-SCI-M2-CP3-Q04",
+              "skill": "fair testing",
+              "text": "To test how surface material affects travel distance, what should be kept the same?",
+              "options": [
+                "The surface material",
+                "The surface color",
+                "The surface texture",
+                "The starting push and toy cart"
+              ],
+              "correctIndex": 3,
+              "explanation": "The tested surface should change; the cart and push should be controlled.",
+              "feedback": "The tested surface should change; the cart and push should be controlled."
+            },
+            {
+              "id": "G5-SCI-M2-CP3-Q05",
+              "skill": "application",
+              "text": "Why do shoes with textured soles often help prevent slipping?",
+              "options": [
+                "They remove gravity",
+                "They make floors disappear",
+                "They can increase friction with the ground",
+                "They stop all motion"
+              ],
+              "correctIndex": 2,
+              "explanation": "Additional grip from friction can reduce slipping.",
+              "feedback": "Additional grip from friction can reduce slipping."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5-SCI-M3",
+      "number": 3,
+      "title": "The Power of Earth and Sky",
+      "story": "An unusual storm has affected the village power station. Learners repair a simple circuit, investigate land and water changes, and help the town prepare for weather.",
+      "focus": "Static electricity, conductors and circuits; rocks, erosion, water cycle, weather warnings, solar system and Moon phases.",
+      "finalChallenge": {
+        "title": "Village Safety Plan",
+        "description": "Village safety plan: repair a simple circuit, protect an eroding hillside and select an appropriate weather response plus a correct Earth-Moon model.",
+        "rewardName": "Earth & Sky Badge",
+        "steps": [
+          {
+            "id": "G5-SCI-M3-F1",
+            "type": "sort",
+            "prompt": "Village Safety Plan: sort the electrical materials for repairing the workshop generator.",
+            "context": "",
+            "items": [
+              "Bare copper wiring",
+              "Protective rubber coating",
+              "Brass contact switch",
+              "Plastic insulating casing"
+            ],
+            "buckets": [
+              "Conductor (Transfers Current)",
+              "Insulator (Protects User)"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Circuit safely designed!"
+          },
+          {
+            "id": "G5-SCI-M3-F2",
+            "type": "choose",
+            "prompt": "Why does the Moon appear to change phases in the night sky over a month?",
+            "context": "",
+            "items": [
+              "The Moon physically grows and shrinks in outer space",
+              "As the Moon orbits Earth, we see different portions of its sunlit half",
+              "Clouds permanently block half of the Moon"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 3 complete! You earned the Earth & Sky Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-SCI-M3-CP1",
+          "index": 1,
+          "title": "Village Power Station",
+          "npcName": "Engineer Leo",
+          "npcOpening": "Welcome to Village Power Station! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Rubbing certain objects can create effects of static electric charge. A closed electric circuit has a complete path; an open circuit has a break. Metals such as copper are generally good electrical conductors, while rubber and plastic are usually insulators. Electricity can also produce a magnetic effect in an electromagnet.",
+          "miniGame": {
+            "name": "Fix the Lamp",
+            "type": "quiz",
+            "instructions": "Connect battery, wire, switch and bulb into a closed circuit; then sort conductors and insulators.",
+            "steps": [
+              {
+                "id": "G5-SCI-M3-CP1-A1",
+                "type": "sort",
+                "prompt": "Fix the Lamp: sort the materials into Electrical Conductors and Electrical Insulators.",
+                "context": "",
+                "items": [
+                  "Copper wire",
+                  "Rubber band",
+                  "Iron nail",
+                  "Plastic spoon",
+                  "Aluminum foil",
+                  "Dry wooden ruler"
+                ],
+                "buckets": [
+                  "Electrical Conductor",
+                  "Electrical Insulator"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Circuit complete! Metals conduct electric current; rubber and plastics insulate."
+              },
+              {
+                "id": "G5-SCI-M3-CP1-A2",
+                "type": "choose",
+                "prompt": "What is required for a simple battery-powered light bulb to illuminate?",
+                "context": "",
+                "items": [
+                  "An open circuit with a gap in the wire",
+                  "A complete, closed path from the power source through the bulb",
+                  "A plastic barrier between connections"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Current requires an unbroken, closed loop to flow."
+              }
+            ]
+          },
+          "rewardName": "Energy Core",
+          "questions": [
+            {
+              "id": "G5-SCI-M3-CP1-Q01",
+              "skill": "static electricity",
+              "text": "What happened when a rubbed plastic comb attracted tiny paper pieces?",
+              "options": [
+                "The paper turned into metal",
+                "The comb caused a static-electric effect",
+                "Gravity disappeared",
+                "The comb became liquid"
+              ],
+              "correctIndex": 1,
+              "explanation": "A charged comb can attract lightweight paper.",
+              "feedback": "A charged comb can attract lightweight paper."
+            },
+            {
+              "id": "G5-SCI-M3-CP1-Q02",
+              "skill": "circuits",
+              "text": "What is required for a simple battery-powered light bulb to work?",
+              "options": [
+                "An open circuit",
+                "A wire that touches nothing",
+                "A closed path from the power source through the bulb",
+                "A plastic gap in the circuit"
+              ],
+              "correctIndex": 2,
+              "explanation": "Current needs a complete closed path.",
+              "feedback": "Current needs a complete closed path."
+            },
+            {
+              "id": "G5-SCI-M3-CP1-Q03",
+              "skill": "conductors",
+              "text": "Which material usually conducts electric current well?",
+              "options": [
+                "Copper wire",
+                "Rubber band",
+                "Dry wooden ruler",
+                "Plastic spoon"
+              ],
+              "correctIndex": 0,
+              "explanation": "Copper is a commonly used conductor.",
+              "feedback": "Copper is a commonly used conductor."
+            },
+            {
+              "id": "G5-SCI-M3-CP1-Q04",
+              "skill": "insulators",
+              "text": "Which material is suitable for covering a wire to help prevent accidental contact?",
+              "options": [
+                "Bare copper",
+                "Aluminum foil",
+                "Iron nail",
+                "Rubber"
+              ],
+              "correctIndex": 3,
+              "explanation": "Rubber is commonly used as an insulating covering.",
+              "feedback": "Rubber is commonly used as an insulating covering."
+            },
+            {
+              "id": "G5-SCI-M3-CP1-Q05",
+              "skill": "electromagnet",
+              "text": "What creates the magnetic effect in a basic electromagnet?",
+              "options": [
+                "A painted paper tube",
+                "Electric current through a coil of wire",
+                "Sunlight hitting plastic",
+                "Water cooling a stone"
+              ],
+              "correctIndex": 1,
+              "explanation": "Current flowing in a coil produces a magnetic field.",
+              "feedback": "Current flowing in a coil produces a magnetic field."
+            }
+          ]
+        },
+        {
+          "id": "G5-SCI-M3-CP2",
+          "index": 2,
+          "title": "River and Earth Trail",
+          "npcName": "Geologist Nia",
+          "npcOpening": "Welcome to River and Earth Trail! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Rocks can break apart through weathering. Erosion moves loose soil and rock using water or wind. Plants can help hold soil with roots. In the water cycle, water evaporates, cools and condenses into clouds, then falls as precipitation. Runoff can transport sediment and affect landforms.",
+          "miniGame": {
+            "name": "Water Trail",
+            "type": "quiz",
+            "instructions": "Arrange evaporation → condensation → precipitation → collection, and place plants on an eroding slope.",
+            "steps": [
+              {
+                "id": "G5-SCI-M3-CP2-A1",
+                "type": "sequence",
+                "prompt": "Water Trail: arrange the continuous stages of the Water Cycle in order.",
+                "context": "",
+                "items": [
+                  "Evaporation (Water gains heat and rises as vapor)",
+                  "Condensation (Vapor cools and forms cloud droplets)",
+                  "Precipitation (Water falls as rain)",
+                  "Collection & Runoff (Water gathers into rivers and soil)"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "The Water Cycle in motion! Sun powers evaporation, cooling causes condensation."
+              },
+              {
+                "id": "G5-SCI-M3-CP2-A2",
+                "type": "choose",
+                "prompt": "How does planting grass on a bare hillside help reduce soil erosion?",
+                "context": "",
+                "items": [
+                  "Roots hold the soil particles firmly in place",
+                  "Grass causes the slope to flatten automatically",
+                  "Leaves prevent all gravity on the hill"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": "Root systems anchor topsoil and significantly reduce erosion."
+              }
+            ]
+          },
+          "rewardName": "Earth Explorer Token",
+          "questions": [
+            {
+              "id": "G5-SCI-M3-CP2-Q01",
+              "skill": "weathering",
+              "text": "Which process breaks rock into smaller pieces without necessarily moving them elsewhere?",
+              "options": [
+                "Weathering",
+                "Erosion",
+                "Precipitation",
+                "Freezing water into glass"
+              ],
+              "correctIndex": 0,
+              "explanation": "Weathering breaks down rock at its location.",
+              "feedback": "Weathering breaks down rock at its location."
+            },
+            {
+              "id": "G5-SCI-M3-CP2-Q02",
+              "skill": "erosion",
+              "text": "What is erosion?",
+              "options": [
+                "Turning gas into liquid",
+                "Creating sunlight",
+                "Moving soil or rock by water, wind or other agents",
+                "Keeping soil permanently still"
+              ],
+              "correctIndex": 2,
+              "explanation": "Erosion is transport of weathered material.",
+              "feedback": "Erosion is transport of weathered material."
+            },
+            {
+              "id": "G5-SCI-M3-CP2-Q03",
+              "skill": "water cycle",
+              "text": "What is the name of the process when liquid water becomes water vapor?",
+              "options": [
+                "Condensation",
+                "Evaporation",
+                "Precipitation",
+                "Collection"
+              ],
+              "correctIndex": 1,
+              "explanation": "Evaporation changes liquid water into vapor.",
+              "feedback": "Evaporation changes liquid water into vapor."
+            },
+            {
+              "id": "G5-SCI-M3-CP2-Q04",
+              "skill": "environment solution",
+              "text": "How can planting grass help reduce erosion on a bare slope?",
+              "options": [
+                "Leaves cause extra heavy rain",
+                "Grass stops gravity",
+                "Grass changes rocks into metal",
+                "Roots help hold soil in place"
+              ],
+              "correctIndex": 3,
+              "explanation": "Roots help stabilize soil.",
+              "feedback": "Roots help stabilize soil."
+            },
+            {
+              "id": "G5-SCI-M3-CP2-Q05",
+              "skill": "water cycle",
+              "text": "Which process forms many cloud droplets as water vapor cools?",
+              "options": [
+                "Condensation",
+                "Erosion",
+                "Melting sand",
+                "Sedimentation only"
+              ],
+              "correctIndex": 0,
+              "explanation": "Condensation changes water vapor into droplets.",
+              "feedback": "Condensation changes water vapor into droplets."
+            }
+          ]
+        },
+        {
+          "id": "G5-SCI-M3-CP3",
+          "index": 3,
+          "title": "Weather and Space Watchtower",
+          "npcName": "Weather Guide Pia",
+          "npcOpening": "Welcome to Weather and Space Watchtower! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Weather observations and official PAGASA information help communities prepare for disturbances. Safety advice must follow current official guidance. The Sun is at the center of the solar system. Earth rotates, causing day and night; the Moon changes its visible phase as the Sun-Earth-Moon viewing geometry changes over a lunar cycle.",
+          "miniGame": {
+            "name": "Forecast Board",
+            "type": "quiz",
+            "instructions": "Choose a reliable official weather bulletin and arrange Moon phase pictures.",
+            "steps": [
+              {
+                "id": "G5-SCI-M3-CP3-A1",
+                "type": "choose",
+                "prompt": "Which agency publishes official tropical cyclone warnings and weather advisories in the Philippines?",
+                "context": "",
+                "items": [
+                  "PAGASA",
+                  "PHIVOLCS",
+                  "National Library"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": "PAGASA monitors weather and tropical storms in the Philippine Area of Responsibility."
+              },
+              {
+                "id": "G5-SCI-M3-CP3-A2",
+                "type": "choose",
+                "prompt": "Which motion of Earth causes the daily cycle of day and night?",
+                "context": "",
+                "items": [
+                  "Earth revolving in an orbit around the Sun",
+                  "Earth rotating on its axis once every 24 hours",
+                  "The Moon revolving around Earth"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Earth's rotation alternately turns regions into sunlight and shadow."
+              }
+            ]
+          },
+          "rewardName": "Sky Watch Badge",
+          "questions": [
+            {
+              "id": "G5-SCI-M3-CP3-Q01",
+              "skill": "weather information",
+              "text": "Which source is most appropriate for official tropical cyclone warnings in the Philippines?",
+              "options": [
+                "A random game comment",
+                "PAGASA advisories",
+                "An undated poster",
+                "A fictional storybook"
+              ],
+              "correctIndex": 1,
+              "explanation": "PAGASA publishes official weather advisories for the Philippines.",
+              "feedback": "PAGASA publishes official weather advisories for the Philippines."
+            },
+            {
+              "id": "G5-SCI-M3-CP3-Q02",
+              "skill": "storm safety",
+              "text": "When a severe storm warning affects the community, which response is safest?",
+              "options": [
+                "Ignore local alerts",
+                "Stand under tall isolated trees",
+                "Follow official warnings and family emergency plans",
+                "Swim in a flooded street"
+              ],
+              "correctIndex": 2,
+              "explanation": "Official guidance and preparedness help reduce risk.",
+              "feedback": "Official guidance and preparedness help reduce risk."
+            },
+            {
+              "id": "G5-SCI-M3-CP3-Q03",
+              "skill": "earth rotation",
+              "text": "Which movement of Earth causes day and night?",
+              "options": [
+                "Rotation on its axis",
+                "The Moon rotating around Earth",
+                "Earth stopping in space",
+                "Water evaporating"
+              ],
+              "correctIndex": 0,
+              "explanation": "Earth’s daily rotation alternately turns places toward and away from sunlight.",
+              "feedback": "Earth’s daily rotation alternately turns places toward and away from sunlight."
+            },
+            {
+              "id": "G5-SCI-M3-CP3-Q04",
+              "skill": "solar system",
+              "text": "Which object is at the center of our solar system?",
+              "options": [
+                "Earth",
+                "Moon",
+                "Jupiter",
+                "Sun"
+              ],
+              "correctIndex": 3,
+              "explanation": "The Sun is the central star of the solar system.",
+              "feedback": "The Sun is the central star of the solar system."
+            },
+            {
+              "id": "G5-SCI-M3-CP3-Q05",
+              "skill": "moon phases",
+              "text": "Why does the Moon appear to have changing phases when viewed from Earth?",
+              "options": [
+                "It produces different amounts of sunlight",
+                "We see different portions of its sunlit half",
+                "It regularly changes into other planets",
+                "Clouds permanently cover its surface"
+              ],
+              "correctIndex": 1,
+              "explanation": "The Moon’s phases depend on its position relative to the Sun and Earth.",
+              "feedback": "The Moon’s phases depend on its position relative to the Sun and Earth."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

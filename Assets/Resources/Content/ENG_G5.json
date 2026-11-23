@@ -1,0 +1,1273 @@
+{
+  "worldId": "ENG",
+  "grade": 5,
+  "missions": [
+    {
+      "id": "G5-ENG-M1",
+      "number": 1,
+      "title": "The Golden Lantern Adventure",
+      "story": "Maya investigates a missing festival lantern. Learners collect three clue cards by reading a continuing story and using evidence to solve the mystery.",
+      "focus": "Literary comprehension, story grammar, story sequencing, context clues, inference, prediction and summarizing.",
+      "finalChallenge": {
+        "title": "Restore the Festival",
+        "description": "Restore the Festival: arrange these seven story events in order: lantern missing; Maya volunteers; Lola Rosa mentions ribbon; Maya finds ribbon and footprints; Maya follows footprints; Librarian Nela explains; Maya returns lantern. Then choose or compose a 1–2 sentence summary.",
+        "rewardName": "Golden Lantern Badge",
+        "steps": [
+          {
+            "id": "G5-ENG-M1-F1",
+            "type": "sequence",
+            "prompt": "Restore the Festival: tap the seven story events in the order they happened.",
+            "context": "",
+            "items": [
+              "The Golden Lantern is missing",
+              "Maya volunteers to find it",
+              "Lola Rosa mentions a red ribbon",
+              "Maya finds the ribbon and footprints",
+              "Maya follows the footprints",
+              "Librarian Nela explains what happened",
+              "Maya returns the lantern"
+            ],
+            "buckets": [],
+            "answers": [],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G5-ENG-M1-F2",
+            "type": "choose",
+            "prompt": "Now choose the best summary of the story.",
+            "context": "",
+            "items": [
+              "Maya loves festivals and parades.",
+              "The Golden Lantern went missing, Maya followed clues to the library, and Librarian Nela had moved it to keep it safe, so Maya returned it.",
+              "Lola Rosa sells ribbons at the market near the garden.",
+              "Mayor Luis was angry about the festival."
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": ""
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-ENG-M1-CP1",
+          "index": 1,
+          "title": "Story Garden — The Missing Lantern",
+          "npcName": "Guide Liza",
+          "npcOpening": "",
+          "reading": "On the morning of Brightville's festival, Mayor Luis discovered that the Golden Lantern was missing from its display at the town hall. The lantern was important because it would be carried during the opening parade. Maya, a curious and helpful learner, volunteered to find it.",
+          "lesson": "A story has characters (who), a setting (where and when), and a problem (what needs to be solved). We can identify a character's traits from their actions.",
+          "miniGame": {
+            "name": "Story Detective",
+            "type": "place",
+            "instructions": "Tap the character, place, and missing object shown on the scene; then match the labels Character, Setting and Problem.",
+            "steps": [
+              {
+                "id": "G5-ENG-M1-CP1-A1",
+                "type": "sort",
+                "prompt": "Story Detective: tap a card, then tap the label that matches it.",
+                "context": "",
+                "items": [
+                  "Maya",
+                  "Mayor Luis",
+                  "The town hall",
+                  "The morning of Brightville's festival",
+                  "The Golden Lantern is missing"
+                ],
+                "buckets": [
+                  "Character",
+                  "Setting",
+                  "Problem"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "Great detective work! You found the character, setting and problem."
+              }
+            ]
+          },
+          "rewardName": "Garden Clue Card",
+          "questions": [
+            {
+              "id": "G5-ENG-M1-CP1-Q01",
+              "skill": "story elements",
+              "text": "Who is the main character in the story?",
+              "options": [
+                "Mayor Luis",
+                "Maya",
+                "Lola Rosa",
+                "Librarian Nela"
+              ],
+              "correctIndex": 1,
+              "feedback": "Maya is the central character who volunteers to solve the problem."
+            },
+            {
+              "id": "G5-ENG-M1-CP1-Q02",
+              "skill": "setting",
+              "text": "Where was the Golden Lantern displayed before it went missing?",
+              "options": [
+                "At the market",
+                "In the garden",
+                "At the town hall",
+                "In the library"
+              ],
+              "correctIndex": 2,
+              "feedback": "The story says the lantern was displayed at the town hall."
+            },
+            {
+              "id": "G5-ENG-M1-CP1-Q03",
+              "skill": "story problem",
+              "text": "What problem begins the story?",
+              "options": [
+                "The Golden Lantern is missing",
+                "Maya loses her schoolbag",
+                "The market is closed",
+                "The library has no books"
+              ],
+              "correctIndex": 0,
+              "feedback": "Mayor Luis discovers that the Golden Lantern is missing."
+            },
+            {
+              "id": "G5-ENG-M1-CP1-Q04",
+              "skill": "character traits",
+              "text": "Which action best shows that Maya is helpful?",
+              "options": [
+                "She watches the parade",
+                "She visits the market for food",
+                "She waits for someone else",
+                "She volunteers to find the lantern"
+              ],
+              "correctIndex": 3,
+              "feedback": "Maya offers to help solve the town’s problem."
+            },
+            {
+              "id": "G5-ENG-M1-CP1-Q05",
+              "skill": "story details",
+              "text": "Why is finding the lantern important to the town?",
+              "options": [
+                "It belongs to the school",
+                "It will be used in the opening parade",
+                "It is a prize for a quiz",
+                "It lights the library every night"
+              ],
+              "correctIndex": 1,
+              "feedback": "The lantern is needed for the festival’s opening parade."
+            }
+          ]
+        },
+        {
+          "id": "G5-ENG-M1-CP2",
+          "index": 2,
+          "title": "Truth Hall — Follow the Clues",
+          "npcName": "Guide Ramon",
+          "npcOpening": "",
+          "reading": "At the market, vendor Lola Rosa remembered seeing a red ribbon near the Story Garden. Maya searched the garden and found a red ribbon on a bench beside muddy footprints. She followed the footprints along a narrow path, just wide enough for one person, to the Word Library.",
+          "lesson": "Sequence means putting events in the order they happened. Words like first, next, and finally help us understand order. Context clues in nearby words can explain an unfamiliar word. A prediction should use evidence from the story.",
+          "miniGame": {
+            "name": "Clue Path",
+            "type": "sequence",
+            "instructions": "Arrange these five action cards: discover missing lantern → volunteer → ask vendor → find ribbon and footprints → follow footprints to library.",
+            "steps": [
+              {
+                "id": "G5-ENG-M1-CP2-A1",
+                "type": "sequence",
+                "prompt": "Clue Path: tap the action cards in the order they happened.",
+                "context": "",
+                "items": [
+                  "Maya discovers the lantern is missing",
+                  "Maya volunteers to find it",
+                  "Maya asks the vendor",
+                  "Maya finds the ribbon and footprints",
+                  "Maya follows the footprints to the library"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "You followed the clue path in the right order!"
+              }
+            ]
+          },
+          "rewardName": "Footprint Clue Card",
+          "questions": [
+            {
+              "id": "G5-ENG-M1-CP2-Q01",
+              "skill": "story details",
+              "text": "Who told Maya about a red ribbon near the Story Garden?",
+              "options": [
+                "Librarian Nela",
+                "Mayor Luis",
+                "Vendor Lola Rosa",
+                "A visiting tourist"
+              ],
+              "correctIndex": 2,
+              "feedback": "Lola Rosa remembered seeing the ribbon near the garden."
+            },
+            {
+              "id": "G5-ENG-M1-CP2-Q02",
+              "skill": "details/evidence",
+              "text": "What did Maya see beside the ribbon on the bench?",
+              "options": [
+                "Muddy footprints",
+                "A broken lantern",
+                "A festival ticket",
+                "A blue notebook"
+              ],
+              "correctIndex": 0,
+              "feedback": "The ribbon was beside muddy footprints, which gave Maya another clue."
+            },
+            {
+              "id": "G5-ENG-M1-CP2-Q03",
+              "skill": "sequence",
+              "text": "Which event happened immediately after Maya found the ribbon and footprints?",
+              "options": [
+                "She thanked the mayor",
+                "She started the parade",
+                "She went home",
+                "She followed the footprints to the library"
+              ],
+              "correctIndex": 3,
+              "feedback": "Maya followed the footprints along a path to the Word Library."
+            },
+            {
+              "id": "G5-ENG-M1-CP2-Q04",
+              "skill": "context clues",
+              "text": "The path was 'narrow, just wide enough for one person.' What does narrow mean?",
+              "options": [
+                "Very long",
+                "Not wide",
+                "Slippery",
+                "Full of plants"
+              ],
+              "correctIndex": 1,
+              "feedback": "The phrase “just wide enough for one person” tells us the path was not wide."
+            },
+            {
+              "id": "G5-ENG-M1-CP2-Q05",
+              "skill": "prediction",
+              "text": "Before entering the library, what is Maya most likely to do next based on the footprints?",
+              "options": [
+                "Look for more clues inside the library",
+                "Stop looking for the lantern",
+                "Go straight to the festival",
+                "Ask everyone to leave town"
+              ],
+              "correctIndex": 0,
+              "feedback": "The footprints lead toward the library, so searching there is a reasonable prediction."
+            }
+          ]
+        },
+        {
+          "id": "G5-ENG-M1-CP3",
+          "index": 3,
+          "title": "Word Library — Solve the Mystery",
+          "npcName": "Librarian Nela",
+          "npcOpening": "",
+          "reading": "Inside the Word Library, Librarian Nela explained that she had moved the lantern behind a tall bookcase to protect it from the storm the night before. She had forgotten to inform the mayor. Maya felt relieved and carried the lantern back to the town hall. Mayor Luis thanked her, and the festival began on time.",
+          "lesson": "To infer, use clues in the story to understand feelings or meaning that may not be stated directly. A conclusion is an idea supported by evidence. A good summary includes the important problem, actions, and solution without adding unrelated details.",
+          "miniGame": {
+            "name": "Evidence Board",
+            "type": "match",
+            "instructions": "Match these claims to evidence cards: Maya is helpful → volunteered / returned lantern; lantern was protected → Nela moved it before storm; mystery was solved → festival began on time.",
+            "steps": [
+              {
+                "id": "G5-ENG-M1-CP3-A1",
+                "type": "sort",
+                "prompt": "Evidence Board: which claim does each evidence card support?",
+                "context": "",
+                "items": [
+                  "Maya volunteered to find the lantern",
+                  "Maya returned the lantern to the town hall",
+                  "Librarian Nela moved the lantern before the storm",
+                  "The festival began on time"
+                ],
+                "buckets": [
+                  "Maya is helpful",
+                  "The lantern was protected",
+                  "The mystery was solved"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "Every claim needs evidence, and you matched them well."
+              }
+            ]
+          },
+          "rewardName": "Lantern Location Card",
+          "questions": [
+            {
+              "id": "G5-ENG-M1-CP3-Q01",
+              "skill": "cause/effect",
+              "text": "Why did Librarian Nela move the Golden Lantern?",
+              "options": [
+                "She wanted to keep it forever",
+                "She planned to sell it",
+                "She wanted to protect it from the storm",
+                "She wanted to cancel the festival"
+              ],
+              "correctIndex": 2,
+              "feedback": "Nela moved the lantern behind a bookcase for protection during the storm."
+            },
+            {
+              "id": "G5-ENG-M1-CP3-Q02",
+              "skill": "feelings",
+              "text": "How did Maya most likely feel when she learned where the lantern was?",
+              "options": [
+                "Relieved",
+                "Angry with the mayor",
+                "Bored",
+                "Jealous"
+              ],
+              "correctIndex": 0,
+              "feedback": "The story states Maya felt relieved because the lantern had been found."
+            },
+            {
+              "id": "G5-ENG-M1-CP3-Q03",
+              "skill": "drawing conclusions",
+              "text": "What conclusion is best supported by the story?",
+              "options": [
+                "The vendor took the lantern",
+                "The lantern had been moved for safekeeping",
+                "The lantern never existed",
+                "Maya forgot the lantern at home"
+              ],
+              "correctIndex": 1,
+              "feedback": "Nela explains that she moved it to protect it from rain, not to steal it."
+            },
+            {
+              "id": "G5-ENG-M1-CP3-Q04",
+              "skill": "summarizing",
+              "text": "Which is the best summary of the whole story?",
+              "options": [
+                "Maya enjoys the festival and buys a ribbon",
+                "A storm destroys the village library",
+                "Lola Rosa asks Maya to become a librarian",
+                "Maya follows clues to find a lantern that was moved for safekeeping and returns it"
+              ],
+              "correctIndex": 3,
+              "feedback": "This choice includes the problem, Maya’s investigation, and the solution."
+            },
+            {
+              "id": "G5-ENG-M1-CP3-Q05",
+              "skill": "drawing conclusions",
+              "text": "What lesson is best supported by Maya’s actions?",
+              "options": [
+                "People should avoid helping others",
+                "Missing items are always stolen",
+                "Investigating carefully helps solve problems",
+                "Festivals should never be held during the rainy season"
+              ],
+              "correctIndex": 2,
+              "feedback": "Maya asks questions, uses evidence, and learns the reason before making assumptions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5-ENG-M2",
+      "number": 2,
+      "title": "The Chronicles of Wisdom",
+      "story": "At the village learning fair, two friends see the same event differently. Learners explore different points of view, text purposes, and clear writing.",
+      "focus": "Point of view and character comparison; author’s purpose and types of texts; paragraph organization, grammar and writing.",
+      "finalChallenge": {
+        "title": "Publish the Community Page",
+        "description": "Publish the Community Page: place three sentence cards in order, identify one sentence with correct grammar, then compose a 2–3 sentence report about a classroom activity (record text for teacher review).",
+        "rewardName": "Wisdom Crystal",
+        "steps": [
+          {
+            "id": "G5-ENG-M2-F1",
+            "type": "sequence",
+            "prompt": "Publish the Community Page: tap the three sentences in the correct order.",
+            "context": "",
+            "items": [
+              "First, our class planned a reading hour.",
+              "Next, learners shared their favorite books.",
+              "Finally, everyone promised to read at home."
+            ],
+            "buckets": [],
+            "answers": [],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G5-ENG-M2-F2",
+            "type": "choose",
+            "prompt": "Which sentence has correct grammar?",
+            "context": "",
+            "items": [
+              "The learners shares their books.",
+              "The learners share their books.",
+              "The learner share their books.",
+              "The learners is sharing their books."
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G5-ENG-M2-W1",
+            "type": "write",
+            "prompt": "Write a short report (2 to 3 sentences) about a classroom activity. Your teacher will read it.",
+            "context": "",
+            "items": [],
+            "buckets": [],
+            "answers": [],
+            "minChars": 40,
+            "success": ""
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-ENG-M2-CP1",
+          "index": 1,
+          "title": "Mirror Hall — Two Perspectives",
+          "npcName": "Guide Anna",
+          "npcOpening": "",
+          "reading": "Anna and Ben attended the Brightville Festival. Anna said, “I loved watching the colorful parade. Music and dancing make me happy.” Ben said, “I enjoyed the history museum because I learned about our heroes.” Both attended the same festival, but each preferred a different activity.",
+          "lesson": "The first-person point of view uses words such as “I” and “we.” Compare characters by identifying similarities and differences, then infer what their words reveal.",
+          "miniGame": {
+            "name": "Perspective Match",
+            "type": "sort",
+            "instructions": "Drag each statement to Anna, Ben, or Both. Example: “Enjoys the parade” → Anna; “Attended the festival” → Both.",
+            "steps": [
+              {
+                "id": "G5-ENG-M2-CP1-A1",
+                "type": "sort",
+                "prompt": "Perspective Match: who does each statement describe?",
+                "context": "",
+                "items": [
+                  "Enjoys the parade",
+                  "Likes music and dancing",
+                  "Learned about heroes at the museum",
+                  "Enjoyed the history museum",
+                  "Attended the Brightville Festival"
+                ],
+                "buckets": [
+                  "Anna",
+                  "Ben",
+                  "Both"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "You compared the two points of view correctly."
+              }
+            ]
+          },
+          "rewardName": "Mirror Shard",
+          "questions": [
+            {
+              "id": "G5-ENG-M2-CP1-Q01",
+              "skill": "point of view",
+              "text": "Which pronoun in Anna’s words shows first-person point of view?",
+              "options": [
+                "She",
+                "They",
+                "I",
+                "Her"
+              ],
+              "correctIndex": 2,
+              "feedback": "The word “I” identifies the speaker’s own point of view."
+            },
+            {
+              "id": "G5-ENG-M2-CP1-Q02",
+              "skill": "literal comprehension",
+              "text": "Which activity did Anna enjoy most?",
+              "options": [
+                "The history museum",
+                "The parade",
+                "The library",
+                "The river clean-up"
+              ],
+              "correctIndex": 1,
+              "feedback": "Anna says she loved watching the parade."
+            },
+            {
+              "id": "G5-ENG-M2-CP1-Q03",
+              "skill": "supporting detail",
+              "text": "Why did Ben enjoy the museum?",
+              "options": [
+                "He learned about heroes",
+                "He heard loud music",
+                "He bought souvenirs",
+                "He joined a race"
+              ],
+              "correctIndex": 0,
+              "feedback": "Ben values the history facts he learned there."
+            },
+            {
+              "id": "G5-ENG-M2-CP1-Q04",
+              "skill": "compare and contrast",
+              "text": "What do Anna and Ben have in common?",
+              "options": [
+                "Both dislike history",
+                "Both are dancers",
+                "Both prefer the museum",
+                "Both attended the festival"
+              ],
+              "correctIndex": 3,
+              "feedback": "They share the festival experience although their interests differ."
+            },
+            {
+              "id": "G5-ENG-M2-CP1-Q05",
+              "skill": "summarizing",
+              "text": "Which sentence best summarizes the passage?",
+              "options": [
+                "The festival had no parade",
+                "Two friends attended the same festival but preferred different activities",
+                "Anna stayed home",
+                "Ben organized the festival"
+              ],
+              "correctIndex": 1,
+              "feedback": "This sentence captures the common event and different preferences."
+            }
+          ]
+        },
+        {
+          "id": "G5-ENG-M2-CP2",
+          "index": 2,
+          "title": "Book Maze — Find the Purpose",
+          "npcName": "Librarian Ella",
+          "npcOpening": "",
+          "reading": "Book A: “A puppy followed its owner through the busy market, but soon it lost its way. A kind vendor helped it return home.” Book B: “Rivers carry water from higher land to lower areas and may flow into lakes or seas.” Book C: “Help keep Brightville River clean! Put litter in bins and join our Saturday clean-up.”",
+          "lesson": "A narrative tells events; an informational text explains facts; a persuasive text encourages a decision or action. The author’s purpose guides word choice and organization.",
+          "miniGame": {
+            "name": "Three-Book Sorting",
+            "type": "sort",
+            "instructions": "Sort the three book cards into Narrative, Informational and Persuasive; identify evidence words before submitting.",
+            "steps": [
+              {
+                "id": "G5-ENG-M2-CP2-A1",
+                "type": "sort",
+                "prompt": "Three-Book Sorting: what kind of text is each book?",
+                "context": "",
+                "items": [
+                  "Book A: A puppy followed its owner through the busy market, but soon it lost its way. A kind vendor helped it return home.",
+                  "Book B: Rivers carry water from higher land to lower areas and may flow into lakes or seas.",
+                  "Book C: Help keep Brightville River clean! Put litter in bins and join our Saturday clean-up."
+                ],
+                "buckets": [
+                  "Narrative",
+                  "Informational",
+                  "Persuasive"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "You matched each book to the author's purpose."
+              },
+              {
+                "id": "G5-ENG-M2-CP2-A2",
+                "type": "choose",
+                "prompt": "Which words from Book C show that it is persuasive?",
+                "context": "",
+                "items": [
+                  "Put litter in bins and join our Saturday clean-up.",
+                  "Rivers carry water from higher land to lower areas.",
+                  "A kind vendor helped it return home.",
+                  "Soon it lost its way."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Wisdom Book Page",
+          "questions": [
+            {
+              "id": "G5-ENG-M2-CP2-Q01",
+              "skill": "text type",
+              "text": "What type of text is Book A about the lost puppy?",
+              "options": [
+                "Narrative",
+                "Informational",
+                "Persuasive",
+                "Instructional recipe"
+              ],
+              "correctIndex": 0,
+              "feedback": "Book A tells a sequence of story events."
+            },
+            {
+              "id": "G5-ENG-M2-CP2-Q02",
+              "skill": "author’s purpose",
+              "text": "What is the main purpose of Book B about rivers?",
+              "options": [
+                "To entertain with characters",
+                "To explain factual information",
+                "To ask for donations",
+                "To describe a festival"
+              ],
+              "correctIndex": 1,
+              "feedback": "Book B explains how rivers flow."
+            },
+            {
+              "id": "G5-ENG-M2-CP2-Q03",
+              "skill": "persuasion",
+              "text": "What does Book C want readers to do?",
+              "options": [
+                "Leave litter by the river",
+                "Visit a museum",
+                "Help clean the river",
+                "Buy a pet"
+              ],
+              "correctIndex": 2,
+              "feedback": "It uses a call to action to encourage river protection."
+            },
+            {
+              "id": "G5-ENG-M2-CP2-Q04",
+              "skill": "text evidence",
+              "text": "Which phrase is a clear call to action?",
+              "options": [
+                "“Rivers carry water”",
+                "“A puppy followed its owner”",
+                "“Higher land to lower areas”",
+                "“Join our Saturday clean-up”"
+              ],
+              "correctIndex": 3,
+              "feedback": "This phrase directly asks people to participate."
+            },
+            {
+              "id": "G5-ENG-M2-CP2-Q05",
+              "skill": "compare text types",
+              "text": "Which pairing is correct?",
+              "options": [
+                "Book A—persuasive; Book C—narrative",
+                "Book B—informational; Book C—persuasive",
+                "Book A—informational; Book B—persuasive",
+                "Book B—narrative; Book C—informational"
+              ],
+              "correctIndex": 1,
+              "feedback": "Book B gives facts and Book C encourages action."
+            }
+          ]
+        },
+        {
+          "id": "G5-ENG-M2-CP3",
+          "index": 3,
+          "title": "Writer’s Workshop — Community Report",
+          "npcName": "Writer Marco",
+          "npcOpening": "",
+          "reading": "Our class held a Community Day. First, we cleaned the school garden. Next, we planted flowers beside the walkway. Finally, our teacher thanked everyone for helping. The class felt proud of its work.",
+          "lesson": "A clear paragraph has a main idea and supporting details in logical order. Correct subject–verb agreement and punctuation help readers understand the message.",
+          "miniGame": {
+            "name": "Paragraph Builder",
+            "type": "sequence",
+            "instructions": "Arrange three sentence cards into beginning, middle and ending. Then choose correct grammar forms and write two sentences about a school activity.",
+            "steps": [
+              {
+                "id": "G5-ENG-M2-CP3-A1",
+                "type": "sequence",
+                "prompt": "Paragraph Builder: tap the sentences in the order of beginning, middle and ending.",
+                "context": "",
+                "items": [
+                  "First, we cleaned the school garden.",
+                  "Next, we planted flowers beside the walkway.",
+                  "Finally, our teacher thanked everyone for helping."
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G5-ENG-M2-CP3-A2",
+                "type": "choose",
+                "prompt": "Which sentence uses the correct verb?",
+                "context": "",
+                "items": [
+                  "The students plants flowers.",
+                  "The students plant flowers.",
+                  "The student plant flowers.",
+                  "The students is planting flowers."
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G5-ENG-M2-CP3-W1",
+                "type": "write",
+                "prompt": "Write two sentences about a school activity.",
+                "context": "",
+                "items": [],
+                "buckets": [],
+                "answers": [],
+                "minChars": 20,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Writer’s Seal",
+          "questions": [
+            {
+              "id": "G5-ENG-M2-CP3-Q01",
+              "skill": "topic sentence",
+              "text": "Which sentence is a clear topic sentence for the paragraph?",
+              "options": [
+                "Our class held a Community Day.",
+                "Flowers are always red.",
+                "The walkway was far away.",
+                "Our town has a museum."
+              ],
+              "correctIndex": 0,
+              "feedback": "It introduces the main event described by the paragraph."
+            },
+            {
+              "id": "G5-ENG-M2-CP3-Q02",
+              "skill": "sequencing",
+              "text": "Which happened immediately after the garden was cleaned?",
+              "options": [
+                "The teacher thanked everyone",
+                "The class went to the market",
+                "The class planted flowers",
+                "The students left school"
+              ],
+              "correctIndex": 2,
+              "feedback": "The paragraph uses “Next” before planting flowers."
+            },
+            {
+              "id": "G5-ENG-M2-CP3-Q03",
+              "skill": "grammar",
+              "text": "Which sentence uses correct subject–verb agreement?",
+              "options": [
+                "The students plants flowers.",
+                "The students plant flowers.",
+                "The students planting flowers.",
+                "The students is planting flowers."
+              ],
+              "correctIndex": 1,
+              "feedback": "Plural “students” agrees with “plant.”"
+            },
+            {
+              "id": "G5-ENG-M2-CP3-Q04",
+              "skill": "sentence completeness",
+              "text": "Which sentence is complete?",
+              "options": [
+                "After the community activity.",
+                "Because we planted flowers.",
+                "Beside the long walkway.",
+                "Our teacher thanked everyone."
+              ],
+              "correctIndex": 3,
+              "feedback": "This choice has a subject and a complete predicate."
+            },
+            {
+              "id": "G5-ENG-M2-CP3-Q05",
+              "skill": "paragraph conclusion",
+              "text": "Which sentence gives the best ending for the paragraph?",
+              "options": [
+                "The puppy was lost yesterday.",
+                "The river carries water.",
+                "Everyone felt proud of helping the school.",
+                "Birds have feathers."
+              ],
+              "correctIndex": 2,
+              "feedback": "The closing sentence summarizes the group’s positive experience."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5-ENG-M3",
+      "number": 3,
+      "title": "The Explorer’s Atlas",
+      "story": "The village museum needs a reliable information exhibit. Learners check sources, organize notes, and interpret posters before completing the Explorer’s Atlas.",
+      "focus": "Information literacy, main idea and evidence; sequencing and simple reports; visual/multimedia messages and audience.",
+      "finalChallenge": {
+        "title": "Complete the Explorer’s Atlas",
+        "description": "Complete the Explorer’s Atlas: choose two trustworthy facts for an exhibit, arrange Lina’s observations chronologically, and build a simple school-cleanliness poster with a heading and relevant image.",
+        "rewardName": "Explorer’s Atlas Badge",
+        "steps": [
+          {
+            "id": "G5-ENG-M3-F1",
+            "type": "choose",
+            "prompt": "Complete the Explorer's Atlas: choose TWO trustworthy facts for the exhibit.",
+            "context": "",
+            "items": [
+              "The Philippine Eagle is found only in the Philippines.",
+              "The Philippine Eagle lives only in deserts.",
+              "The Philippine Eagle is critically endangered.",
+              "The Philippine Eagle eats only fish."
+            ],
+            "buckets": [],
+            "answers": [
+              0,
+              2
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G5-ENG-M3-F2",
+            "type": "sequence",
+            "prompt": "Arrange Lina's observations in the order they happened.",
+            "context": "",
+            "items": [
+              "Our group hiked to Eagle Hill.",
+              "We watched birds and wrote notes about their behavior.",
+              "We returned to camp.",
+              "We shared our observations with the class."
+            ],
+            "buckets": [],
+            "answers": [],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G5-ENG-M3-F3",
+            "type": "choose",
+            "prompt": "Build the school-cleanliness poster. Choose the heading.",
+            "context": "",
+            "items": [
+              "KEEP OUR SCHOOL CLEAN!",
+              "Maybe clean, maybe not",
+              "Eagles are big",
+              "Go home early"
+            ],
+            "buckets": [],
+            "answers": [
+              0
+            ],
+            "minChars": 0,
+            "success": ""
+          },
+          {
+            "id": "G5-ENG-M3-F4",
+            "type": "choose",
+            "prompt": "Now choose the relevant image.",
+            "context": "",
+            "items": [
+              "Children putting waste in the correct bins",
+              "A mountain at night",
+              "A birthday cake",
+              "A broken chair"
+            ],
+            "buckets": [],
+            "answers": [
+              0
+            ],
+            "minChars": 0,
+            "success": ""
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-ENG-M3-CP1",
+          "index": 1,
+          "title": "Grand Library — Reliable Sources",
+          "npcName": "Archivist Bea",
+          "npcOpening": "",
+          "reading": "Source A (encyclopedia): The Philippine Eagle is a very large bird of prey found only in the Philippines. It is critically endangered. Source B (science reference): The Philippine Eagle lives in Philippine forests and hunts a variety of animals. Source C (anonymous note): “The Philippine Eagle lives only in deserts and eats only fish.”",
+          "lesson": "Reliable sources help support statements with evidence. Compare texts for consistent facts, find the main idea, and identify claims that do not match the evidence.",
+          "miniGame": {
+            "name": "Source Sorting",
+            "type": "sort",
+            "instructions": "Sort statement cards into “Supported by Sources A/B” and “Not supported.” Tap a source label to inspect the text.",
+            "steps": [
+              {
+                "id": "G5-ENG-M3-CP1-A1",
+                "type": "sort",
+                "prompt": "Source Sorting: is each statement supported by Sources A and B?",
+                "context": "Source A (encyclopedia): The Philippine Eagle is a very large bird of prey found only in the Philippines. It is critically endangered.\nSource B (science reference): The Philippine Eagle lives in Philippine forests and hunts a variety of animals.\nSource C (anonymous note): “The Philippine Eagle lives only in deserts and eats only fish.”",
+                "items": [
+                  "The Philippine Eagle is found only in the Philippines.",
+                  "The Philippine Eagle is critically endangered.",
+                  "The Philippine Eagle lives in forests.",
+                  "The Philippine Eagle lives only in deserts.",
+                  "The Philippine Eagle eats only fish."
+                ],
+                "buckets": [
+                  "Supported by Sources A and B",
+                  "Not supported"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Reliable sources agree with each other. Well sorted!"
+              }
+            ]
+          },
+          "rewardName": "Atlas Page 1",
+          "questions": [
+            {
+              "id": "G5-ENG-M3-CP1-Q01",
+              "skill": "topic identification",
+              "text": "What is the shared topic of Sources A and B?",
+              "options": [
+                "Different deserts",
+                "The Philippine Eagle",
+                "Ocean fish",
+                "School festivals"
+              ],
+              "correctIndex": 1,
+              "feedback": "Both references describe the Philippine Eagle."
+            },
+            {
+              "id": "G5-ENG-M3-CP1-Q02",
+              "skill": "text evidence",
+              "text": "Which statement is supported by Source A?",
+              "options": [
+                "It is found only in the Philippines",
+                "It lives only in deserts",
+                "It eats only fish",
+                "It is a type of fish"
+              ],
+              "correctIndex": 0,
+              "feedback": "Source A directly states the bird is found in the Philippines."
+            },
+            {
+              "id": "G5-ENG-M3-CP1-Q03",
+              "skill": "evaluate claim",
+              "text": "Which statement is NOT supported by Sources A and B?",
+              "options": [
+                "It lives in Philippine forests",
+                "It is a bird of prey",
+                "It is endangered",
+                "It lives only in deserts"
+              ],
+              "correctIndex": 3,
+              "feedback": "The references describe forest habitats, not deserts only."
+            },
+            {
+              "id": "G5-ENG-M3-CP1-Q04",
+              "skill": "source credibility",
+              "text": "Which source should be checked most carefully before being trusted?",
+              "options": [
+                "A science reference",
+                "An encyclopedia",
+                "An anonymous note without evidence",
+                "Two agreeing references"
+              ],
+              "correctIndex": 2,
+              "feedback": "An unsupported anonymous statement needs verification."
+            },
+            {
+              "id": "G5-ENG-M3-CP1-Q05",
+              "skill": "summary",
+              "text": "Which is the best summary of Sources A and B?",
+              "options": [
+                "All birds are endangered",
+                "The Philippine Eagle is a large endangered bird living in Philippine forests",
+                "The bird is found only in deserts",
+                "Every eagle eats fish"
+              ],
+              "correctIndex": 1,
+              "feedback": "This combines the key facts without adding unsupported information."
+            }
+          ]
+        },
+        {
+          "id": "G5-ENG-M3-CP2",
+          "index": 2,
+          "title": "Messenger’s Camp — Organize the Report",
+          "npcName": "Explorer Lina",
+          "npcOpening": "",
+          "reading": "Explorer Lina’s log: “First, our group hiked to Eagle Hill. Next, we watched birds and wrote notes about their behavior. Afterward, we returned to camp. Finally, we shared our observations with the class.”",
+          "lesson": "A short report organizes factual events in a logical sequence. Use first, next, afterward and finally to guide readers; include observations rather than unrelated opinions.",
+          "miniGame": {
+            "name": "Report Organizer",
+            "type": "sequence",
+            "instructions": "Arrange four event cards in order. Choose the best report heading and complete a two-sentence observation report.",
+            "steps": [
+              {
+                "id": "G5-ENG-M3-CP2-A1",
+                "type": "sequence",
+                "prompt": "Report Organizer: tap the four events in order.",
+                "context": "",
+                "items": [
+                  "Our group hiked to Eagle Hill.",
+                  "We watched birds and wrote notes about their behavior.",
+                  "We returned to camp.",
+                  "We shared our observations with the class."
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G5-ENG-M3-CP2-A2",
+                "type": "choose",
+                "prompt": "Which is the best heading for the report?",
+                "context": "",
+                "items": [
+                  "Observation Report: Birds at Eagle Hill",
+                  "My Favorite Day Ever",
+                  "Why Everyone Must Visit Eagle Hill",
+                  "A Scary Hike"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G5-ENG-M3-CP2-W1",
+                "type": "write",
+                "prompt": "Write a two-sentence observation report about the bird watching.",
+                "context": "",
+                "items": [],
+                "buckets": [],
+                "answers": [],
+                "minChars": 20,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Atlas Page 2",
+          "questions": [
+            {
+              "id": "G5-ENG-M3-CP2-Q01",
+              "skill": "sequence",
+              "text": "What did the group do first?",
+              "options": [
+                "Shared their report",
+                "Hiked to Eagle Hill",
+                "Returned to camp",
+                "Watched a festival"
+              ],
+              "correctIndex": 1,
+              "feedback": "The log begins with the hike to Eagle Hill."
+            },
+            {
+              "id": "G5-ENG-M3-CP2-Q02",
+              "skill": "sequence",
+              "text": "What happened immediately after the hike?",
+              "options": [
+                "They observed birds and took notes",
+                "They returned home",
+                "They opened the museum",
+                "They planted trees"
+              ],
+              "correctIndex": 0,
+              "feedback": "The word “Next” introduces the bird observations."
+            },
+            {
+              "id": "G5-ENG-M3-CP2-Q03",
+              "skill": "report title",
+              "text": "Which title best fits Lina’s report?",
+              "options": [
+                "A Festival Parade",
+                "How to Bake Bread",
+                "Observations from Eagle Hill",
+                "The Lost Lantern"
+              ],
+              "correctIndex": 2,
+              "feedback": "The report is about observing and recording birds at Eagle Hill."
+            },
+            {
+              "id": "G5-ENG-M3-CP2-Q04",
+              "skill": "factual reporting",
+              "text": "Which sentence reports a specific observation?",
+              "options": [
+                "Birds are the best animals ever.",
+                "Everyone must love birds.",
+                "Our school is more exciting.",
+                "We observed birds gathering near the trees."
+              ],
+              "correctIndex": 3,
+              "feedback": "The last sentence describes something the group could observe."
+            },
+            {
+              "id": "G5-ENG-M3-CP2-Q05",
+              "skill": "report organization",
+              "text": "Which is the best final step in preparing the report?",
+              "options": [
+                "Ignore the notes",
+                "Arrange findings clearly and share them",
+                "Add facts not observed",
+                "Remove all dates"
+              ],
+              "correctIndex": 1,
+              "feedback": "Organized findings make the report useful to readers."
+            }
+          ]
+        },
+        {
+          "id": "G5-ENG-M3-CP3",
+          "index": 3,
+          "title": "Gallery of Messages — Read the Poster",
+          "npcName": "Artist Noah",
+          "npcOpening": "",
+          "reading": "School poster: “KEEP OUR SCHOOL CLEAN! Put waste in the correct bins. Bring reusable containers. Join the Friday Clean-Up Drive.” The poster shows a green recycling symbol, a bin, and children helping each other.",
+          "lesson": "A visual message uses words, symbols and layout to communicate with an audience. Identify its purpose, intended audience and the evidence in the image and text.",
+          "miniGame": {
+            "name": "Poster Builder",
+            "type": "match",
+            "instructions": "Match poster symbols with meanings, then select a clear message and a relevant picture for a new school poster.",
+            "steps": [
+              {
+                "id": "G5-ENG-M3-CP3-A1",
+                "type": "sort",
+                "prompt": "Poster Builder: what does each poster symbol mean?",
+                "context": "",
+                "items": [
+                  "Green recycling symbol",
+                  "A bin",
+                  "Children helping each other"
+                ],
+                "buckets": [
+                  "Recycle and reuse",
+                  "Throw waste in the right place",
+                  "Work together"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2
+                ],
+                "minChars": 0,
+                "success": "You read the poster's symbols correctly."
+              },
+              {
+                "id": "G5-ENG-M3-CP3-A2",
+                "type": "choose",
+                "prompt": "Choose the clearest message for a new school poster.",
+                "context": "",
+                "items": [
+                  "Keep our school clean: use the bins!",
+                  "Clean is maybe good.",
+                  "Poster poster poster.",
+                  "Do whatever you want with waste."
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              },
+              {
+                "id": "G5-ENG-M3-CP3-A3",
+                "type": "choose",
+                "prompt": "Choose the picture that fits the message best.",
+                "context": "",
+                "items": [
+                  "Children putting litter in a bin",
+                  "A cat sleeping on a sofa",
+                  "A race car on a track",
+                  "A pile of litter on the floor"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": ""
+              }
+            ]
+          },
+          "rewardName": "Atlas Page 3",
+          "questions": [
+            {
+              "id": "G5-ENG-M3-CP3-Q01",
+              "skill": "visual purpose",
+              "text": "What is the main purpose of the poster?",
+              "options": [
+                "To tell a fantasy story",
+                "To describe a volcano",
+                "To encourage school cleanliness",
+                "To announce a sports tournament"
+              ],
+              "correctIndex": 2,
+              "feedback": "The poster asks the school community to keep the school clean."
+            },
+            {
+              "id": "G5-ENG-M3-CP3-Q02",
+              "skill": "intended audience",
+              "text": "Who is the poster mainly intended for?",
+              "options": [
+                "Only fishermen",
+                "The school community",
+                "Only museum visitors",
+                "Only tourists"
+              ],
+              "correctIndex": 1,
+              "feedback": "The message addresses people in the school."
+            },
+            {
+              "id": "G5-ENG-M3-CP3-Q03",
+              "skill": "visual support",
+              "text": "Which image best supports the poster?",
+              "options": [
+                "A student sorting litter into bins",
+                "A person painting a mountain",
+                "An empty bookshelf",
+                "A racing car"
+              ],
+              "correctIndex": 0,
+              "feedback": "The image directly reinforces the clean-up message."
+            },
+            {
+              "id": "G5-ENG-M3-CP3-Q04",
+              "skill": "persuasive language",
+              "text": "Which line is a call to action?",
+              "options": [
+                "The poster uses green.",
+                "Bins are often beside rooms.",
+                "Children can read posters.",
+                "Join the Friday Clean-Up Drive."
+              ],
+              "correctIndex": 3,
+              "feedback": "This sentence asks readers to take part in an activity."
+            },
+            {
+              "id": "G5-ENG-M3-CP3-Q05",
+              "skill": "media design",
+              "text": "Which combination best communicates the message?",
+              "options": [
+                "Tiny words with unrelated pictures",
+                "No words and no symbols",
+                "Clear short words with relevant recycling images",
+                "Pictures of a different event"
+              ],
+              "correctIndex": 2,
+              "feedback": "Short readable text and related symbols reinforce each other."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

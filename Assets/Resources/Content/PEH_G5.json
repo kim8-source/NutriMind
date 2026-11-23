@@ -1,0 +1,1259 @@
+{
+  "worldId": "PEH",
+  "grade": 5,
+  "missions": [
+    {
+      "id": "G5-PEH-M1",
+      "number": 1,
+      "title": "Strong Mind, Smart Moves",
+      "story": "The town is preparing for Friendly Games Day. The learners must help classmates manage worries, prepare a safe play area, and solve a team challenge using kindness and movement skills.",
+      "focus": "Healthy coping and assertiveness; Grade 5 striking/fielding movement concepts, positioning and fair play.",
+      "finalChallenge": {
+        "title": "Friendly Games Day Finale",
+        "description": "Friendly Games Day finale: inspect the play area, choose safe field positions and select a respectful response to a bullying scenario; demonstrate a basic skill with teacher observation when feasible.",
+        "rewardName": "Kindness and Movement Badge",
+        "steps": [
+          {
+            "id": "G5-PEH-M1-F1",
+            "type": "sort",
+            "prompt": "Friendly Games Day Finale: sort the field inspection items into Safe Play Area vs Hazard to Clear.",
+            "context": "",
+            "items": [
+              "Smooth open grass cleared of stones and glass",
+              "Fallen broken tree branch across the running lane",
+              "Well-placed safety boundary cones",
+              "Deep slippery puddle in the striking zone"
+            ],
+            "buckets": [
+              "Safe Play Area",
+              "Hazard to Clear"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Play area inspected and secured!"
+          },
+          {
+            "id": "G5-PEH-M1-F2",
+            "type": "choose",
+            "prompt": "Choose the most respectful and assertive response when resolving a game dispute:",
+            "context": "",
+            "items": [
+              "Refuse to continue and take the ball home",
+              "Speak calmly: 'Let's check the rules together and replay the point fairly.'",
+              "Insult the player who made a mistake"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 1 complete! You earned the Kindness and Movement Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-PEH-M1-CP1",
+          "index": 1,
+          "title": "Calm Garden",
+          "npcName": "Guide Mia",
+          "npcOpening": "Hello! Welcome to Calm Garden. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Stress may make a person feel nervous, worried or tense. Healthy responses include slow breathing, preparation, positive self-talk and asking a trusted adult for help. Assertive speech is clear and respectful rather than hurtful.",
+          "miniGame": {
+            "name": "Emotion Cards",
+            "type": "quiz",
+            "instructions": "Sort four scenario cards into helpful coping responses and unhelpful reactions.",
+            "steps": [
+              {
+                "id": "G5-PEH-M1-CP1-A1",
+                "type": "sort",
+                "prompt": "Emotion Cards: sort each response into Helpful Coping vs Unhelpful Reaction.",
+                "context": "",
+                "items": [
+                  "Taking slow deep breaths and reviewing notes",
+                  "Shouting at classmates in frustration",
+                  "Using positive self-talk: 'I can practice and improve'",
+                  "Hiding all materials and quitting"
+                ],
+                "buckets": [
+                  "Helpful Coping",
+                  "Unhelpful Reaction"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Great job! You know how to choose healthy coping responses."
+              }
+            ]
+          },
+          "rewardName": "Calm Leaf",
+          "questions": [
+            {
+              "id": "G5-PEH-M1-CP1-Q01",
+              "skill": "Health: coping",
+              "text": "A learner feels nervous before giving a report. Which is a healthy first step?",
+              "options": [
+                "Shout at classmates",
+                "Breathe slowly and review notes",
+                "Skip every report",
+                "Hide all materials"
+              ],
+              "correctIndex": 1,
+              "explanation": "Slow breathing and preparation can help manage nervousness.",
+              "feedback": "Slow breathing and preparation can help manage nervousness."
+            },
+            {
+              "id": "G5-PEH-M1-CP1-Q02",
+              "skill": "Health: signs of stress",
+              "text": "What is one possible sign of stress?",
+              "options": [
+                "Faster heartbeat",
+                "A change in eye color",
+                "An extra finger",
+                "A new shoe size"
+              ],
+              "correctIndex": 0,
+              "explanation": "Stress can temporarily increase heart rate.",
+              "feedback": "Stress can temporarily increase heart rate."
+            },
+            {
+              "id": "G5-PEH-M1-CP1-Q03",
+              "skill": "Health: assertiveness",
+              "text": "Which statement is assertive?",
+              "options": [
+                "Do what I say or else",
+                "I will never speak again",
+                "Please stop; that is not kind",
+                "Everyone deserves teasing"
+              ],
+              "correctIndex": 2,
+              "explanation": "A clear and respectful request expresses a boundary.",
+              "feedback": "A clear and respectful request expresses a boundary."
+            },
+            {
+              "id": "G5-PEH-M1-CP1-Q04",
+              "skill": "Health: help seeking",
+              "text": "When should a learner seek a trusted adult's help?",
+              "options": [
+                "Only after a reward",
+                "Never",
+                "Only during holidays",
+                "When a situation feels unsafe or difficult to handle"
+              ],
+              "correctIndex": 3,
+              "explanation": "Trusted adults can provide support when needed.",
+              "feedback": "Trusted adults can provide support when needed."
+            },
+            {
+              "id": "G5-PEH-M1-CP1-Q05",
+              "skill": "Health: healthy mindset",
+              "text": "Which action shows positive self-talk?",
+              "options": [
+                "I always fail so I quit",
+                "I can practice and improve",
+                "Nobody should ask questions",
+                "Mistakes mean I am bad"
+              ],
+              "correctIndex": 1,
+              "explanation": "Encouraging self-talk supports effort and coping.",
+              "feedback": "Encouraging self-talk supports effort and coping."
+            }
+          ]
+        },
+        {
+          "id": "G5-PEH-M1-CP2",
+          "index": 2,
+          "title": "Field Play Yard",
+          "npcName": "Coach Leo",
+          "npcOpening": "Hello! Welcome to Field Play Yard. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "In striking and fielding games, learners strike or send an object, move safely between spaces and try to prevent an opponent from scoring. Look for open space, stay aware of players, and follow the agreed rules. Movement skills include agility, balance and coordination.",
+          "miniGame": {
+            "name": "Field Placement",
+            "type": "quiz",
+            "instructions": "Choose where to send the ball on a simple field diagram; move three markers to open spaces.",
+            "steps": [
+              {
+                "id": "G5-PEH-M1-CP2-A1",
+                "type": "choose",
+                "prompt": "In a striking game, where is the most effective and safe place to send the ball?",
+                "context": "",
+                "items": [
+                  "Directly into a crowded cluster of fielders",
+                  "Toward open space away from defenders",
+                  "Outside the play area boundary"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Spot on! Open space creates a scoring opportunity safely."
+              },
+              {
+                "id": "G5-PEH-M1-CP2-A2",
+                "type": "sort",
+                "prompt": "Field Movement: sort these actions into Safe Play and Unsafe Play.",
+                "context": "",
+                "items": [
+                  "Looking around before running to avoid collisions",
+                  "Pushing another player to reach the ball",
+                  "Moving into a balanced ready position to field",
+                  "Ignoring court boundaries and teammates"
+                ],
+                "buckets": [
+                  "Safe Play",
+                  "Unsafe Play"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Excellent sportsmanship and safety awareness!"
+              }
+            ]
+          },
+          "rewardName": "Field Flag",
+          "questions": [
+            {
+              "id": "G5-PEH-M1-CP2-Q01",
+              "skill": "PE: open-space tactics",
+              "text": "In a striking game, where is a useful place to send a ball?",
+              "options": [
+                "Into a crowd of players",
+                "Outside the play area",
+                "Toward open space away from fielders",
+                "At a classmate's face"
+              ],
+              "correctIndex": 2,
+              "explanation": "Open space may give the striker an advantage without unsafe play.",
+              "feedback": "Open space may give the striker an advantage without unsafe play."
+            },
+            {
+              "id": "G5-PEH-M1-CP2-Q02",
+              "skill": "PE: safety and space",
+              "text": "Why is looking around before running important?",
+              "options": [
+                "To notice teammates and avoid collisions",
+                "To ignore boundaries",
+                "To distract defenders",
+                "To make rules unnecessary"
+              ],
+              "correctIndex": 0,
+              "explanation": "Spatial awareness helps learners move safely.",
+              "feedback": "Spatial awareness helps learners move safely."
+            },
+            {
+              "id": "G5-PEH-M1-CP2-Q03",
+              "skill": "PE: fitness skills",
+              "text": "Which skill helps a player change direction quickly?",
+              "options": [
+                "Sleeping",
+                "Reading silently",
+                "Standing still",
+                "Agility"
+              ],
+              "correctIndex": 3,
+              "explanation": "Agility is the ability to change direction efficiently.",
+              "feedback": "Agility is the ability to change direction efficiently."
+            },
+            {
+              "id": "G5-PEH-M1-CP2-Q04",
+              "skill": "PE: fielding",
+              "text": "A fielder sees a ball approaching. What should the fielder do?",
+              "options": [
+                "Turn away and ignore it",
+                "Move into a balanced ready position",
+                "Push another player aside",
+                "Leave the play area without reason"
+              ],
+              "correctIndex": 1,
+              "explanation": "A ready position helps the player respond safely.",
+              "feedback": "A ready position helps the player respond safely."
+            },
+            {
+              "id": "G5-PEH-M1-CP2-Q05",
+              "skill": "PE: sportsmanship",
+              "text": "What shows sportsmanship?",
+              "options": [
+                "Congratulating others and following rules",
+                "Mocking someone who misses",
+                "Refusing team instructions",
+                "Arguing at every call"
+              ],
+              "correctIndex": 0,
+              "explanation": "Respecting others and the rules is part of fair play.",
+              "feedback": "Respecting others and the rules is part of fair play."
+            }
+          ]
+        },
+        {
+          "id": "G5-PEH-M1-CP3",
+          "index": 3,
+          "title": "Kindness Challenge Plaza",
+          "npcName": "Teacher Nela",
+          "npcOpening": "Hello! Welcome to Kindness Challenge Plaza. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Bullying can involve repeated harmful behavior and misuse of power. Learners can say no calmly when safe, support someone being hurt, and seek a trusted adult. During games, respect personal space, safety rules and different abilities.",
+          "miniGame": {
+            "name": "Decision Trail",
+            "type": "quiz",
+            "instructions": "Choose responses at a bullying scenario and a teammate-safety scenario; each opens a different dialogue.",
+            "steps": [
+              {
+                "id": "G5-PEH-M1-CP3-A1",
+                "type": "choose",
+                "prompt": "A classmate is repeatedly teased during games. What is the most supportive action?",
+                "context": "",
+                "items": [
+                  "Cheer for the teasing and laugh along",
+                  "Pretend nobody is affected and ignore it",
+                  "Support the learner and tell a trusted adult"
+                ],
+                "buckets": [],
+                "answers": [
+                  2
+                ],
+                "minChars": 0,
+                "success": "Correct! Reporting bullying protects your classmates."
+              },
+              {
+                "id": "G5-PEH-M1-CP3-A2",
+                "type": "sort",
+                "prompt": "Decision Trail: sort these statements into Assertive & Respectful vs Hurtful & Aggressive.",
+                "context": "",
+                "items": [
+                  "Please stop; that is not kind.",
+                  "Do what I say or else!",
+                  "I need personal space right now.",
+                  "You always ruin our game!"
+                ],
+                "buckets": [
+                  "Assertive & Respectful",
+                  "Hurtful & Aggressive"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Great communication skills! Clear boundaries build a safe environment."
+              }
+            ]
+          },
+          "rewardName": "Kindness Shield",
+          "questions": [
+            {
+              "id": "G5-PEH-M1-CP3-Q01",
+              "skill": "Health: bullying response",
+              "text": "Someone repeatedly makes fun of a learner during games. What should a witness do?",
+              "options": [
+                "Share the teasing online",
+                "Cheer for the teasing",
+                "Pretend nobody is affected",
+                "Support the learner and tell a trusted adult"
+              ],
+              "correctIndex": 3,
+              "explanation": "Support and reporting can help stop repeated bullying.",
+              "feedback": "Support and reporting can help stop repeated bullying."
+            },
+            {
+              "id": "G5-PEH-M1-CP3-Q02",
+              "skill": "Health: boundaries",
+              "text": "Which response sets a safe boundary?",
+              "options": [
+                "I will hurt you back",
+                "Please stop calling me that",
+                "Everyone should laugh",
+                "I will insult your family"
+              ],
+              "correctIndex": 1,
+              "explanation": "Calm respectful words communicate a boundary.",
+              "feedback": "Calm respectful words communicate a boundary."
+            },
+            {
+              "id": "G5-PEH-M1-CP3-Q03",
+              "skill": "PE: space and tactics",
+              "text": "A team is crowded on the left side of the field. Which tactic makes sense?",
+              "options": [
+                "Run into another player",
+                "Stop participating",
+                "Move toward open space on the right",
+                "Ignore the ball and rules"
+              ],
+              "correctIndex": 2,
+              "explanation": "Using open space supports effective movement in games.",
+              "feedback": "Using open space supports effective movement in games."
+            },
+            {
+              "id": "G5-PEH-M1-CP3-Q04",
+              "skill": "PE: cooperation",
+              "text": "A teammate struggles to catch a ball. What should others do?",
+              "options": [
+                "Encourage and offer a safe practice chance",
+                "Mock the teammate",
+                "Stop passing forever",
+                "Throw the ball harder without warning"
+              ],
+              "correctIndex": 0,
+              "explanation": "Encouragement supports inclusion and skill development.",
+              "feedback": "Encouragement supports inclusion and skill development."
+            },
+            {
+              "id": "G5-PEH-M1-CP3-Q05",
+              "skill": "Integrated: health and PE",
+              "text": "Which plan supports both well-being and active play?",
+              "options": [
+                "Ignore feelings and play unsafely",
+                "Quit every activity after an error",
+                "Blame classmates and take risks",
+                "Use respectful words, ask for help, and follow game safety rules"
+              ],
+              "correctIndex": 3,
+              "explanation": "The plan combines healthy communication with safer participation.",
+              "feedback": "The plan combines healthy communication with safer participation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5-PEH-M2",
+      "number": 2,
+      "title": "Growing Well, Playing Together",
+      "story": "Wellness Town opens a Growth & Play Festival. Learners learn to respect differences in growth, make supportive choices, and complete a net/wall game strategy challenge.",
+      "focus": "Puberty changes, healthy hygiene and trusted support; net/wall game skills, open-space tactics and teamwork.",
+      "finalChallenge": {
+        "title": "Festival Finale",
+        "description": "Festival final task: choose a supportive growth-related statement, select correct net/wall tactics and demonstrate a safe cooperative rally or movement pattern with teacher observation.",
+        "rewardName": "Growth and Teamwork Badge",
+        "steps": [
+          {
+            "id": "G5-PEH-M2-F1",
+            "type": "choose",
+            "prompt": "A classmate expresses worry about growing at a different rate from others. What is the best response?",
+            "context": "",
+            "items": [
+              "Growth timing differs naturally for everyone; you can always ask a trusted nurse or parent for guidance.",
+              "Everyone is supposed to grow identically at the exact same age.",
+              "You should avoid eating so you don't grow."
+            ],
+            "buckets": [],
+            "answers": [
+              0
+            ],
+            "minChars": 0,
+            "success": "Empathetic and accurate guidance!"
+          },
+          {
+            "id": "G5-PEH-M2-F2",
+            "type": "sort",
+            "prompt": "Net/Wall Strategy Challenge: classify each rally decision as Smart Tactic vs Ineffective Play.",
+            "context": "",
+            "items": [
+              "Directing returns into uncovered spaces away from opponents",
+              "Hitting the ball blindly while looking away",
+              "Communicating clearly with your partner by calling 'Mine!'",
+              "Standing flat-footed without recovering court position"
+            ],
+            "buckets": [
+              "Smart Tactic",
+              "Ineffective Play"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 2 complete! You earned the Growth and Teamwork Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-PEH-M2-CP1",
+          "index": 1,
+          "title": "Growing Well Clinic",
+          "npcName": "Nurse Ella",
+          "npcOpening": "Hello! Welcome to Growing Well Clinic. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Puberty is a normal stage of development. Bodies and emotions change at different times and rates. Personal hygiene, adequate rest, balanced meals and trusted support can help. No one should be mocked for developing earlier or later.",
+          "miniGame": {
+            "name": "Myth or Fact",
+            "type": "quiz",
+            "instructions": "Sort statements on changing height, body development and hygiene into fact or myth.",
+            "steps": [
+              {
+                "id": "G5-PEH-M2-CP1-A1",
+                "type": "sort",
+                "prompt": "Myth or Fact: sort each statement about puberty and growth changes.",
+                "context": "",
+                "items": [
+                  "Puberty is a normal stage of growth and timing varies for everyone",
+                  "Every child must begin and finish puberty at the exact same age",
+                  "Regular bathing and clean clothes support personal hygiene",
+                  "Developing earlier or later means someone has an illness"
+                ],
+                "buckets": [
+                  "Fact",
+                  "Myth"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Well done! Understanding growth differences promotes respect and self-care."
+              }
+            ]
+          },
+          "rewardName": "Growth Leaf",
+          "questions": [
+            {
+              "id": "G5-PEH-M2-CP1-Q01",
+              "skill": "Health: growth",
+              "text": "Which statement about puberty is accurate?",
+              "options": [
+                "Every child changes at the exact same time",
+                "Puberty is an illness",
+                "Puberty is normal and timing varies",
+                "Only one group experiences it"
+              ],
+              "correctIndex": 2,
+              "explanation": "Puberty is part of growth and happens at different times.",
+              "feedback": "Puberty is part of growth and happens at different times."
+            },
+            {
+              "id": "G5-PEH-M2-CP1-Q02",
+              "skill": "Health: hygiene",
+              "text": "What is a helpful hygiene habit during puberty?",
+              "options": [
+                "Regular bathing and clean clothing",
+                "Avoiding all bathing",
+                "Sharing personal towels without cleaning",
+                "Wearing dirty clothes repeatedly"
+              ],
+              "correctIndex": 0,
+              "explanation": "Basic hygiene supports comfort and health.",
+              "feedback": "Basic hygiene supports comfort and health."
+            },
+            {
+              "id": "G5-PEH-M2-CP1-Q03",
+              "skill": "Health: respectful support",
+              "text": "A friend worries that they are growing later than classmates. What is kind advice?",
+              "options": [
+                "You are definitely ill",
+                "Everyone must grow identically",
+                "Stop asking adults",
+                "Growth timing differs; speak with a trusted adult if concerned"
+              ],
+              "correctIndex": 3,
+              "explanation": "Variation is normal, and trusted adults can help with concerns.",
+              "feedback": "Variation is normal, and trusted adults can help with concerns."
+            },
+            {
+              "id": "G5-PEH-M2-CP1-Q04",
+              "skill": "Health: trusted sources",
+              "text": "Which person may give reliable help about puberty questions?",
+              "options": [
+                "An anonymous rumor account",
+                "A parent, guardian, nurse or health professional",
+                "A stranger selling a secret product",
+                "Someone who mocks classmates"
+              ],
+              "correctIndex": 1,
+              "explanation": "Trusted adults and health professionals can give appropriate information.",
+              "feedback": "Trusted adults and health professionals can give appropriate information."
+            },
+            {
+              "id": "G5-PEH-M2-CP1-Q05",
+              "skill": "Health: dignity",
+              "text": "Why should classmates avoid teasing about body changes?",
+              "options": [
+                "It makes lessons shorter",
+                "It improves fitness",
+                "It can harm feelings and respect",
+                "It changes the rate of growth"
+              ],
+              "correctIndex": 2,
+              "explanation": "Respect for differences supports emotional well-being.",
+              "feedback": "Respect for differences supports emotional well-being."
+            }
+          ]
+        },
+        {
+          "id": "G5-PEH-M2-CP2",
+          "index": 2,
+          "title": "Net-Wall Court",
+          "npcName": "Coach Liam",
+          "npcOpening": "Hello! Welcome to Net-Wall Court. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "In net/wall games, players send an object over a net or toward a wall, recover position and defend an area. Placing the object in open space can make return difficult. Learners should communicate, stay balanced and protect personal space.",
+          "miniGame": {
+            "name": "Target Zones",
+            "type": "quiz",
+            "instructions": "Click an uncovered space on a simple court diagram; arrange receive, return and recover actions.",
+            "steps": [
+              {
+                "id": "G5-PEH-M2-CP2-A1",
+                "type": "sequence",
+                "prompt": "Target Zones: tap the three key actions of a net/wall rally in the correct order.",
+                "context": "",
+                "items": [
+                  "Receive the ball in a balanced ready stance",
+                  "Return the ball toward open space",
+                  "Recover your position to defend the court"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Smooth rally technique! Receive, return, and recover."
+              },
+              {
+                "id": "G5-PEH-M2-CP2-A2",
+                "type": "choose",
+                "prompt": "Where should a player usually aim to challenge the opposing team?",
+                "context": "",
+                "items": [
+                  "At an open space inside the court",
+                  "Directly at the referee",
+                  "Outside the court boundaries"
+                ],
+                "buckets": [],
+                "answers": [
+                  0
+                ],
+                "minChars": 0,
+                "success": "Great placement tactic!"
+              }
+            ]
+          },
+          "rewardName": "Net Play Star",
+          "questions": [
+            {
+              "id": "G5-PEH-M2-CP2-Q01",
+              "skill": "PE: placement",
+              "text": "Where should a player usually aim to challenge an opponent?",
+              "options": [
+                "At the referee",
+                "At spectators",
+                "Outside the boundary on purpose",
+                "At an open space inside the court"
+              ],
+              "correctIndex": 3,
+              "explanation": "Placing the object in an open legal area can be effective.",
+              "feedback": "Placing the object in an open legal area can be effective."
+            },
+            {
+              "id": "G5-PEH-M2-CP2-Q02",
+              "skill": "PE: court positioning",
+              "text": "After sending the ball over the net, what should the player do?",
+              "options": [
+                "Recover to a ready position",
+                "Turn away from the play",
+                "Push an opponent",
+                "Sit in the middle of the court"
+              ],
+              "correctIndex": 0,
+              "explanation": "Returning to a ready position supports the next play.",
+              "feedback": "Returning to a ready position supports the next play."
+            },
+            {
+              "id": "G5-PEH-M2-CP2-Q03",
+              "skill": "PE: movement competence",
+              "text": "Which movement skill helps maintain control while receiving a ball?",
+              "options": [
+                "Shouting",
+                "Turning away",
+                "Balance",
+                "Closing the eyes"
+              ],
+              "correctIndex": 2,
+              "explanation": "Balance helps control posture when receiving.",
+              "feedback": "Balance helps control posture when receiving."
+            },
+            {
+              "id": "G5-PEH-M2-CP2-Q04",
+              "skill": "PE: teamwork",
+              "text": "What does good team communication sound like?",
+              "options": [
+                "Silent guessing",
+                "Calling who will receive the ball",
+                "Blaming others loudly",
+                "Telling everyone to quit"
+              ],
+              "correctIndex": 1,
+              "explanation": "Clear calls reduce confusion and collisions.",
+              "feedback": "Clear calls reduce confusion and collisions."
+            },
+            {
+              "id": "G5-PEH-M2-CP2-Q05",
+              "skill": "PE: participation safety",
+              "text": "Which choice supports safe net/wall participation?",
+              "options": [
+                "Running into another player",
+                "Throwing equipment after an error",
+                "Ignoring court lines",
+                "Checking space and using controlled movements"
+              ],
+              "correctIndex": 3,
+              "explanation": "Awareness and control reduce injury risk.",
+              "feedback": "Awareness and control reduce injury risk."
+            }
+          ]
+        },
+        {
+          "id": "G5-PEH-M2-CP3",
+          "index": 3,
+          "title": "Healthy Team Pavilion",
+          "npcName": "Guide Bea",
+          "npcOpening": "Hello! Welcome to Healthy Team Pavilion. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "A supportive group respects different stages of growth and welcomes all learners into age-appropriate activity. Players can adapt tasks for varying abilities, communicate kindly and use hygiene routines after being active.",
+          "miniGame": {
+            "name": "Team Planner",
+            "type": "quiz",
+            "instructions": "Select an inclusive game rule, a safe movement option and a post-play hygiene step.",
+            "steps": [
+              {
+                "id": "G5-PEH-M2-CP3-A1",
+                "type": "sort",
+                "prompt": "Team Planner: sort the habits into Inclusive & Healthy vs Unhealthy & Exclusive.",
+                "context": "",
+                "items": [
+                  "Give everyone an appropriate chance to participate",
+                  "Let only expert players touch the ball",
+                  "Wash and change into clean clothing after active play",
+                  "Stay in sweaty, wet clothes all day"
+                ],
+                "buckets": [
+                  "Inclusive & Healthy",
+                  "Unhealthy & Exclusive"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Awesome! Inclusive teamwork and proper hygiene keep everyone healthy."
+              }
+            ]
+          },
+          "rewardName": "Healthy Team Ribbon",
+          "questions": [
+            {
+              "id": "G5-PEH-M2-CP3-Q01",
+              "skill": "Health: respectful relationships",
+              "text": "A learner feels self-conscious about body changes. What is a helpful response?",
+              "options": [
+                "Laugh about their appearance",
+                "Respect privacy and offer support",
+                "Share the concern as gossip",
+                "Compare their body with everyone else's"
+              ],
+              "correctIndex": 1,
+              "explanation": "Respect and privacy create a supportive environment.",
+              "feedback": "Respect and privacy create a supportive environment."
+            },
+            {
+              "id": "G5-PEH-M2-CP3-Q02",
+              "skill": "Health: activity hygiene",
+              "text": "What is a healthy habit after a sweaty activity?",
+              "options": [
+                "Keep wet clothing on all day",
+                "Refuse drinking water",
+                "Skip handwashing when needed",
+                "Wash and change into clean clothing"
+              ],
+              "correctIndex": 3,
+              "explanation": "Hygiene after activity supports health and comfort.",
+              "feedback": "Hygiene after activity supports health and comfort."
+            },
+            {
+              "id": "G5-PEH-M2-CP3-Q03",
+              "skill": "PE: inclusion",
+              "text": "A game has students with different skill levels. Which rule is most inclusive?",
+              "options": [
+                "Give everyone an appropriate chance to participate",
+                "Let only experts touch the ball",
+                "Mock all beginners",
+                "Ignore accommodations"
+              ],
+              "correctIndex": 0,
+              "explanation": "Fair participation supports learning for all players.",
+              "feedback": "Fair participation supports learning for all players."
+            },
+            {
+              "id": "G5-PEH-M2-CP3-Q04",
+              "skill": "PE: communication",
+              "text": "In a net/wall game, two teammates approach the same ball. What should help?",
+              "options": [
+                "Moving without looking",
+                "Pushing each other",
+                "Calling clearly who will receive it",
+                "Dropping all safety rules"
+              ],
+              "correctIndex": 2,
+              "explanation": "Communication supports coordination and safety.",
+              "feedback": "Communication supports coordination and safety."
+            },
+            {
+              "id": "G5-PEH-M2-CP3-Q05",
+              "skill": "Integrated: health and PE",
+              "text": "What best combines health and PE learning?",
+              "options": [
+                "Teasing others but winning the match",
+                "Respecting growth differences and playing safely",
+                "Avoiding rest and water",
+                "Ignoring injuries"
+              ],
+              "correctIndex": 1,
+              "explanation": "Respectful conduct and safe movement support well-being.",
+              "feedback": "Respectful conduct and safe movement support well-being."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5-PEH-M3",
+      "number": 3,
+      "title": "Safe Choices, Active Rhythms",
+      "story": "The community is setting up a safe dance-and-games celebration. The learner must identify hazards, make responsible health choices and lead a simple rhythmic sequence.",
+      "focus": "Medicine safety, substance-risk decisions, road/activity injury prevention, rhythm/dance and safe participation.",
+      "finalChallenge": {
+        "title": "Festival Safety Finale",
+        "description": "Festival safety finale: identify four risks, choose a respectful refusal to an unsafe substance, and perform a safe movement sequence as feasible and teacher-observed.",
+        "rewardName": "Active Safety Badge",
+        "steps": [
+          {
+            "id": "G5-PEH-M3-F1",
+            "type": "sort",
+            "prompt": "Festival Safety Finale: identify risks and safe choices.",
+            "context": "",
+            "items": [
+              "Drinking water and resting between active dances",
+              "Taking prescription pills offered by an acquaintance",
+              "Stopping immediately and reporting when feeling sharp pain",
+              "Walking across a busy road while looking at a phone"
+            ],
+            "buckets": [
+              "Safe Choice",
+              "High Risk"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Safety precautions mastered!"
+          },
+          {
+            "id": "G5-PEH-M3-F2",
+            "type": "choose",
+            "prompt": "How should a learner assertively refuse an unsafe offer (like tobacco or unfamiliar pills)?",
+            "context": "",
+            "items": [
+              "Accept it quietly so nobody gets upset",
+              "Say firmly and politely: 'No thank you, that is not safe for me,' and tell a trusted adult",
+              "Keep it in your pocket just in case"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 3 complete! You earned the Active Safety Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G5-PEH-M3-CP1",
+          "index": 1,
+          "title": "Safety and Choices Post",
+          "npcName": "Nurse Rose",
+          "npcOpening": "Hello! Welcome to Safety and Choices Post. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Medicines should be used only with guidance from a responsible adult and correct instructions. Never share or take unfamiliar medicine. Tobacco and alcohol can harm health, especially for children. Report hazards such as broken glass or damaged equipment.",
+          "miniGame": {
+            "name": "Safety Sort",
+            "type": "quiz",
+            "instructions": "Sort household medicine, cigarettes, broken glass and safe first-aid supplies into seek-adult-help/report/avoid categories.",
+            "steps": [
+              {
+                "id": "G5-PEH-M3-CP1-A1",
+                "type": "sort",
+                "prompt": "Safety Sort: classify each item into Safe with Adult Guidance vs Hazard / Avoid & Report.",
+                "context": "",
+                "items": [
+                  "Prescription medicine taken with a parent or school nurse",
+                  "Cigarettes and tobacco products",
+                  "Broken glass on the playground path",
+                  "Clean first-aid bandage used with adult help"
+                ],
+                "buckets": [
+                  "Safe with Adult Guidance",
+                  "Hazard / Avoid & Report"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  1,
+                  0
+                ],
+                "minChars": 0,
+                "success": "Great safety choices! Never take unfamiliar medicines or handle sharp hazards."
+              }
+            ]
+          },
+          "rewardName": "Safety Token",
+          "questions": [
+            {
+              "id": "G5-PEH-M3-CP1-Q01",
+              "skill": "Health: medicine safety",
+              "text": "A friend offers you medicine that was prescribed for another person. What should you do?",
+              "options": [
+                "Take half a tablet",
+                "Refuse it and tell a trusted adult",
+                "Mix it with juice",
+                "Save it for later"
+              ],
+              "correctIndex": 1,
+              "explanation": "Medicine for someone else should not be shared.",
+              "feedback": "Medicine for someone else should not be shared."
+            },
+            {
+              "id": "G5-PEH-M3-CP1-Q02",
+              "skill": "Health: medicine guidance",
+              "text": "What is the safest source of medicine-use instructions for a child?",
+              "options": [
+                "Rumors from friends",
+                "Anonymous messages",
+                "A responsible adult following a health professional's directions",
+                "A random advertisement"
+              ],
+              "correctIndex": 2,
+              "explanation": "Appropriate adult and professional guidance is important.",
+              "feedback": "Appropriate adult and professional guidance is important."
+            },
+            {
+              "id": "G5-PEH-M3-CP1-Q03",
+              "skill": "Health: substance prevention",
+              "text": "Why should learners avoid tobacco?",
+              "options": [
+                "It improves lung function",
+                "It helps every sport",
+                "It makes illness impossible",
+                "It can harm health and cause dependence"
+              ],
+              "correctIndex": 3,
+              "explanation": "Tobacco use carries harmful health and dependence risks.",
+              "feedback": "Tobacco use carries harmful health and dependence risks."
+            },
+            {
+              "id": "G5-PEH-M3-CP1-Q04",
+              "skill": "Health: hazard recognition",
+              "text": "You see broken glass on a playground path. What should you do?",
+              "options": [
+                "Stay clear and inform the teacher or caretaker",
+                "Touch the sharp edges",
+                "Kick it toward others",
+                "Pretend it is safe"
+              ],
+              "correctIndex": 0,
+              "explanation": "Reporting and avoiding sharp hazards can prevent injury.",
+              "feedback": "Reporting and avoiding sharp hazards can prevent injury."
+            },
+            {
+              "id": "G5-PEH-M3-CP1-Q05",
+              "skill": "Health: responsible choices",
+              "text": "Which medicine-related action is safe?",
+              "options": [
+                "Borrowing a classmate's tablets",
+                "Following instructions with a responsible adult",
+                "Taking extra doses to improve quickly",
+                "Using an unlabeled medicine"
+              ],
+              "correctIndex": 1,
+              "explanation": "Use medicines with appropriate instruction and supervision.",
+              "feedback": "Use medicines with appropriate instruction and supervision."
+            }
+          ]
+        },
+        {
+          "id": "G5-PEH-M3-CP2",
+          "index": 2,
+          "title": "Rhythm Circle",
+          "npcName": "Coach May",
+          "npcOpening": "Hello! Welcome to Rhythm Circle. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Rhythmic activity uses beat, timing, direction, level and controlled movement. A simple three-beat practice counts ONE-two-three. Keep personal space and adjust movement to ability. PE also requires actual performance, not only clicking answers.",
+          "miniGame": {
+            "name": "Step Sequence",
+            "type": "quiz",
+            "instructions": "Tap three beat icons in rhythm and arrange STEP–SIDE–CLOSE cards; use a quiet mode without audio if needed.",
+            "steps": [
+              {
+                "id": "G5-PEH-M3-CP2-A1",
+                "type": "sequence",
+                "prompt": "Step Sequence: arrange the 3-beat rhythm sequence in order.",
+                "context": "",
+                "items": [
+                  "Count 1: Step forward",
+                  "Count 2: Step to the side",
+                  "Count 3: Close feet together"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Great rhythm and timing! ONE, two, three!"
+              },
+              {
+                "id": "G5-PEH-M3-CP2-A2",
+                "type": "sort",
+                "prompt": "Movement Levels: sort the dance actions by level.",
+                "context": "",
+                "items": [
+                  "Reaching overhead tall on tiptoes",
+                  "Crouching safely toward the floor",
+                  "Jumping with arms stretched high",
+                  "Bending knees low near the floor"
+                ],
+                "buckets": [
+                  "High Level",
+                  "Low Level"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Terrific movement coordination!"
+              }
+            ]
+          },
+          "rewardName": "Rhythm Ribbon",
+          "questions": [
+            {
+              "id": "G5-PEH-M3-CP2-Q01",
+              "skill": "PE: rhythm",
+              "text": "How many counts are in a three-beat pattern?",
+              "options": [
+                "Two",
+                "Four",
+                "Three",
+                "Five"
+              ],
+              "correctIndex": 2,
+              "explanation": "A three-beat pattern groups movements into three counts.",
+              "feedback": "A three-beat pattern groups movements into three counts."
+            },
+            {
+              "id": "G5-PEH-M3-CP2-Q02",
+              "skill": "PE: movement levels",
+              "text": "Which is a low-level movement?",
+              "options": [
+                "Reaching overhead",
+                "Jumping as high as possible",
+                "Standing tall on toes",
+                "Crouching safely toward the floor"
+              ],
+              "correctIndex": 3,
+              "explanation": "Crouching is performed at a lower level.",
+              "feedback": "Crouching is performed at a lower level."
+            },
+            {
+              "id": "G5-PEH-M3-CP2-Q03",
+              "skill": "PE: dance safety",
+              "text": "Why should a dancer keep enough personal space?",
+              "options": [
+                "To reduce accidental collisions",
+                "To stop all group activities",
+                "To hide from the teacher",
+                "To ignore formations"
+              ],
+              "correctIndex": 0,
+              "explanation": "Space allows people to move with less collision risk.",
+              "feedback": "Space allows people to move with less collision risk."
+            },
+            {
+              "id": "G5-PEH-M3-CP2-Q04",
+              "skill": "PE: coordination",
+              "text": "Which action helps stay with a musical beat?",
+              "options": [
+                "Ignoring the count",
+                "Listening and moving in time",
+                "Moving at random speed only",
+                "Pushing another dancer"
+              ],
+              "correctIndex": 1,
+              "explanation": "Coordinating movement with the beat develops timing.",
+              "feedback": "Coordinating movement with the beat develops timing."
+            },
+            {
+              "id": "G5-PEH-M3-CP2-Q05",
+              "skill": "PE: participation",
+              "text": "If a learner loses the count, what is the best response?",
+              "options": [
+                "Blame someone nearby",
+                "Stop the whole group",
+                "Rejoin safely at the next count",
+                "Run across other dancers"
+              ],
+              "correctIndex": 2,
+              "explanation": "Calmly rejoining supports safe participation.",
+              "feedback": "Calmly rejoining supports safe participation."
+            }
+          ]
+        },
+        {
+          "id": "G5-PEH-M3-CP3",
+          "index": 3,
+          "title": "Safe Journey Stage",
+          "npcName": "Officer Ben",
+          "npcOpening": "Hello! Welcome to Safe Journey Stage. First read the lesson, then try our activity and answer the questions.",
+          "reading": "",
+          "lesson": "Before crossing a road, stop, look carefully, listen and cross only when it is safe and permitted. In physical activity, use suitable equipment, warm up, watch conditions and stop when injured. Safe movement and responsible choices support lifelong activity.",
+          "miniGame": {
+            "name": "Hazard Hunt",
+            "type": "quiz",
+            "instructions": "Inspect a virtual road and dance area; mark slippery floor, damaged equipment and crossing risks.",
+            "steps": [
+              {
+                "id": "G5-PEH-M3-CP3-A1",
+                "type": "sequence",
+                "prompt": "Hazard Hunt: tap the pedestrian road safety steps in the correct order.",
+                "context": "",
+                "items": [
+                  "Stop at the curb or sidewalk edge",
+                  "Look left, right, and listen for traffic",
+                  "Cross safely at the marked pedestrian lane"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Safe crossing routine mastered: Stop, Look, Listen, Cross!"
+              },
+              {
+                "id": "G5-PEH-M3-CP3-A2",
+                "type": "choose",
+                "prompt": "The stage floor is slippery before dance practice. What is the safest action?",
+                "context": "",
+                "items": [
+                  "Start dancing faster to dry it off",
+                  "Report the hazard and wait until it is safe and clean",
+                  "Challenge friends to slide on it"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Spot on! Reporting hazards prevents painful accidents."
+              }
+            ]
+          },
+          "rewardName": "Community Safety Seal",
+          "questions": [
+            {
+              "id": "G5-PEH-M3-CP3-Q01",
+              "skill": "Health: road safety",
+              "text": "Where should a person cross a road whenever possible?",
+              "options": [
+                "Between parked vehicles",
+                "At a marked pedestrian crossing when safe",
+                "Around a blind bend",
+                "In the middle of traffic"
+              ],
+              "correctIndex": 1,
+              "explanation": "A marked crossing helps pedestrians follow safer road practices.",
+              "feedback": "A marked crossing helps pedestrians follow safer road practices."
+            },
+            {
+              "id": "G5-PEH-M3-CP3-Q02",
+              "skill": "Health: pedestrian decisions",
+              "text": "Before stepping onto the road, what should a pedestrian do?",
+              "options": [
+                "Use a phone and walk quickly",
+                "Follow a friend without checking",
+                "Run without looking",
+                "Stop and check traffic carefully"
+              ],
+              "correctIndex": 3,
+              "explanation": "Stopping and checking traffic helps assess risk.",
+              "feedback": "Stopping and checking traffic helps assess risk."
+            },
+            {
+              "id": "G5-PEH-M3-CP3-Q03",
+              "skill": "PE: injury prevention",
+              "text": "Why should learners warm up before vigorous movement?",
+              "options": [
+                "To prepare body and muscles for activity",
+                "To replace the main activity",
+                "To make broken equipment safe",
+                "To avoid all rest"
+              ],
+              "correctIndex": 0,
+              "explanation": "A suitable warm-up prepares the body for movement.",
+              "feedback": "A suitable warm-up prepares the body for movement."
+            },
+            {
+              "id": "G5-PEH-M3-CP3-Q04",
+              "skill": "PE: response to injury",
+              "text": "What should a dancer do if they feel sharp pain?",
+              "options": [
+                "Continue despite pain",
+                "Hide the injury",
+                "Stop and tell a teacher or coach",
+                "Ask a friend to pull the painful area"
+              ],
+              "correctIndex": 2,
+              "explanation": "Stopping and reporting pain can help prevent worsening injury.",
+              "feedback": "Stopping and reporting pain can help prevent worsening injury."
+            },
+            {
+              "id": "G5-PEH-M3-CP3-Q05",
+              "skill": "Integrated: safe physical activity",
+              "text": "A stage floor is slippery. What is the safest action?",
+              "options": [
+                "Start dancing faster",
+                "Report the hazard and wait until it is safe",
+                "Ignore the wet area",
+                "Challenge friends to slide"
+              ],
+              "correctIndex": 1,
+              "explanation": "Removing or avoiding a hazard is important before moving.",
+              "feedback": "Removing or avoiding a hazard is important before moving."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

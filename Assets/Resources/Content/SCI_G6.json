@@ -1,0 +1,1322 @@
+{
+  "worldId": "SCI",
+  "grade": 6,
+  "missions": [
+    {
+      "id": "G6-SCI-M1",
+      "number": 1,
+      "title": "The Materials Investigation",
+      "story": "The science workshop received mixed-up samples and test records. Learners identify material changes, separate useful mixtures and investigate living systems.",
+      "focus": "Physical/chemical change; mixtures; separation and fair tests; circulation and plant reproduction.",
+      "finalChallenge": {
+        "title": "Solve the Workshop Case",
+        "description": "Solve the workshop case: classify changes and mixtures, choose separation methods, and plan a fair greenhouse investigation.",
+        "rewardName": "Materials Investigator Badge",
+        "steps": [
+          {
+            "id": "G6-SCI-M1-F1",
+            "type": "sort",
+            "prompt": "Solve the Workshop Case: classify these observations as Physical Change or Chemical Change.",
+            "context": "",
+            "items": [
+              "Melting wax into liquid form",
+              "Rust forming on an iron fixture",
+              "Dissolving sugar crystals into warm tea",
+              "Baking dough into bread (releasing gases and aroma)"
+            ],
+            "buckets": [
+              "Physical Change",
+              "Chemical Change"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Changes classified with scientific evidence!"
+          },
+          {
+            "id": "G6-SCI-M1-F2",
+            "type": "choose",
+            "prompt": "How can you separate a mixture of sand and saltwater to collect both dry sand and dry salt?",
+            "context": "",
+            "items": [
+              "Freeze the mixture until it turns into glass",
+              "Filter the mixture to remove sand, then evaporate the water to recover salt crystals",
+              "Use a magnet on the water"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 1 complete! You earned the Materials Investigator Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-SCI-M1-CP1",
+          "index": 1,
+          "title": "Changes and Mixtures Lab",
+          "npcName": "Professor Nova",
+          "npcOpening": "Welcome to Changes and Mixtures Lab! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "A physical change may affect shape, size or state without forming a new substance; some changes are reversible. A chemical change forms new substances. Mixtures contain substances combined physically. Uniform mixtures appear evenly mixed; non-uniform mixtures have visibly different parts. A substance may change state by gaining or losing heat.",
+          "miniGame": {
+            "name": "Sample Sort",
+            "type": "quiz",
+            "instructions": "Sort melting ice, tearing paper, rusting iron and sand mixed with pebbles.",
+            "steps": [
+              {
+                "id": "G6-SCI-M1-CP1-A1",
+                "type": "sort",
+                "prompt": "Sample Sort: classify each change as Physical Change or Chemical Change.",
+                "context": "",
+                "items": [
+                  "Ice melting into liquid water",
+                  "An iron nail developing reddish rust",
+                  "Tearing a sheet of paper into small pieces",
+                  "Wood burning into ash and smoke"
+                ],
+                "buckets": [
+                  "Physical Change",
+                  "Chemical Change"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Spot on! Chemical changes form new substances, physical changes alter form without new substances."
+              },
+              {
+                "id": "G6-SCI-M1-CP1-A2",
+                "type": "sort",
+                "prompt": "Mixture Analysis: classify these mixtures as Uniform (Homogeneous) or Non-Uniform (Heterogeneous).",
+                "context": "",
+                "items": [
+                  "Salt completely dissolved in clear water",
+                  "Pebbles mixed with dry rice grains",
+                  "Filtered sugar dissolved in warm water",
+                  "Vegetable oil floating on water"
+                ],
+                "buckets": [
+                  "Uniform (Homogeneous)",
+                  "Non-Uniform (Heterogeneous)"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Uniform solutions appear identical throughout; non-uniform mixtures have visibly distinct parts."
+              }
+            ]
+          },
+          "rewardName": "Material Inspector Card",
+          "questions": [
+            {
+              "id": "G6-SCI-M1-CP1-Q01",
+              "skill": "physical change",
+              "text": "Which example is mainly a physical change?",
+              "options": [
+                "Iron rusting",
+                "Wood burning",
+                "Ice melting",
+                "Milk souring"
+              ],
+              "correctIndex": 2,
+              "explanation": "Melting changes water’s state without creating a new substance.",
+              "feedback": "Melting changes water’s state without creating a new substance."
+            },
+            {
+              "id": "G6-SCI-M1-CP1-Q02",
+              "skill": "chemical change",
+              "text": "Which observation strongly indicates a new substance formed?",
+              "options": [
+                "Paper being folded",
+                "An iron nail developing rust",
+                "Ice breaking into smaller pieces",
+                "Water being poured into a bowl"
+              ],
+              "correctIndex": 1,
+              "explanation": "Rust is a new material produced by a chemical reaction.",
+              "feedback": "Rust is a new material produced by a chemical reaction."
+            },
+            {
+              "id": "G6-SCI-M1-CP1-Q03",
+              "skill": "mixture type",
+              "text": "Which mixture is usually uniform after stirring until all the salt dissolves?",
+              "options": [
+                "Sand with stones",
+                "Cereal with raisins",
+                "Oil with water",
+                "Salt dissolved in water"
+              ],
+              "correctIndex": 3,
+              "explanation": "A dissolved salt solution looks uniform throughout.",
+              "feedback": "A dissolved salt solution looks uniform throughout."
+            },
+            {
+              "id": "G6-SCI-M1-CP1-Q04",
+              "skill": "mixture type",
+              "text": "Which mixture is non-uniform?",
+              "options": [
+                "Rice mixed with pebbles",
+                "Clear salt solution",
+                "Filtered sugar solution",
+                "Clean air"
+              ],
+              "correctIndex": 0,
+              "explanation": "Rice and pebbles remain visibly distinct components.",
+              "feedback": "Rice and pebbles remain visibly distinct components."
+            },
+            {
+              "id": "G6-SCI-M1-CP1-Q05",
+              "skill": "state diagram",
+              "text": "Which flow best represents freezing?",
+              "options": [
+                "Solid water → gas by warming",
+                "Gas → liquid by heating",
+                "Liquid water → ice by cooling",
+                "Ice → vapor by cooling"
+              ],
+              "correctIndex": 2,
+              "explanation": "Cooling liquid water can make it solidify into ice.",
+              "feedback": "Cooling liquid water can make it solidify into ice."
+            }
+          ]
+        },
+        {
+          "id": "G6-SCI-M1-CP2",
+          "index": 2,
+          "title": "Separation & Fair Test Workshop",
+          "npcName": "Scientist Lily",
+          "npcOpening": "Welcome to Separation & Fair Test Workshop! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Sieving separates larger solid particles from smaller ones. Filtration can separate an insoluble solid from a liquid, and evaporation can recover a dissolved solid from solution. A fair test changes one variable while controlling other important factors. Repeating trials improves confidence in the result.",
+          "miniGame": {
+            "name": "Separation Route",
+            "type": "quiz",
+            "instructions": "Choose sieving, filtration or evaporation for three sample mixtures; identify controls.",
+            "steps": [
+              {
+                "id": "G6-SCI-M1-CP2-A1",
+                "type": "sort",
+                "prompt": "Separation Route: choose the most effective separation method for each mixture.",
+                "context": "",
+                "items": [
+                  "Separating large pebbles from fine sand",
+                  "Separating insoluble sand from water",
+                  "Recovering dissolved salt from saltwater",
+                  "Trapping tea leaves from brewed tea liquid"
+                ],
+                "buckets": [
+                  "Sieving",
+                  "Filtration",
+                  "Evaporation"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Great lab technique! Sieving uses pore size, filtration traps solids, evaporation removes liquid."
+              }
+            ]
+          },
+          "rewardName": "Reliable Research Seal",
+          "questions": [
+            {
+              "id": "G6-SCI-M1-CP2-Q01",
+              "skill": "separation",
+              "text": "Which method is best for separating sand from water?",
+              "options": [
+                "Filtration",
+                "Freezing",
+                "Magnetizing water",
+                "Melting"
+              ],
+              "correctIndex": 0,
+              "explanation": "A filter can trap the sand while water passes through.",
+              "feedback": "A filter can trap the sand while water passes through."
+            },
+            {
+              "id": "G6-SCI-M1-CP2-Q02",
+              "skill": "separation",
+              "text": "How can pebbles be separated from fine sand?",
+              "options": [
+                "Condensation",
+                "Evaporation of sand",
+                "Sieving",
+                "Heating to boiling"
+              ],
+              "correctIndex": 2,
+              "explanation": "A sieve lets smaller sand particles pass while keeping larger pebbles.",
+              "feedback": "A sieve lets smaller sand particles pass while keeping larger pebbles."
+            },
+            {
+              "id": "G6-SCI-M1-CP2-Q03",
+              "skill": "separation",
+              "text": "Which method can recover dissolved salt from saltwater?",
+              "options": [
+                "Filtering dissolved salt through cloth",
+                "Evaporating the water",
+                "Using a sieve for the solution",
+                "Collecting the salt with a magnet"
+              ],
+              "correctIndex": 1,
+              "explanation": "Removing water by evaporation leaves dissolved salt behind.",
+              "feedback": "Removing water by evaporation leaves dissolved salt behind."
+            },
+            {
+              "id": "G6-SCI-M1-CP2-Q04",
+              "skill": "controlled variables",
+              "text": "A student tests sugar dissolving in warm and cool water. Which should be kept the same?",
+              "options": [
+                "The water temperature",
+                "The final time result",
+                "The number of students watching",
+                "The amount of sugar and volume of water"
+              ],
+              "correctIndex": 3,
+              "explanation": "Only temperature should change in the intended fair comparison.",
+              "feedback": "Only temperature should change in the intended fair comparison."
+            },
+            {
+              "id": "G6-SCI-M1-CP2-Q05",
+              "skill": "replication",
+              "text": "Why should scientific experiments be repeated?",
+              "options": [
+                "To make the answer always the same",
+                "To replace observations with guesses",
+                "To check whether results are consistent",
+                "To avoid recording data"
+              ],
+              "correctIndex": 2,
+              "explanation": "Multiple trials help evaluate repeatability and reliability.",
+              "feedback": "Multiple trials help evaluate repeatability and reliability."
+            }
+          ]
+        },
+        {
+          "id": "G6-SCI-M1-CP3",
+          "index": 3,
+          "title": "Living Systems Greenhouse",
+          "npcName": "Biologist Mira",
+          "npcOpening": "Welcome to Living Systems Greenhouse! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "The heart pumps blood through blood vessels. Blood carries oxygen and nutrients to body cells. Plants may reproduce through seeds or, for some plants, vegetative methods such as cuttings. A fair plant investigation compares methods using similar soil, light and watering conditions.",
+          "miniGame": {
+            "name": "Greenhouse Helper",
+            "type": "quiz",
+            "instructions": "Connect heart to blood vessel diagram and sort seed-growing versus cutting propagation.",
+            "steps": [
+              {
+                "id": "G6-SCI-M1-CP3-A1",
+                "type": "choose",
+                "prompt": "What is the primary role of the heart in the circulatory system?",
+                "context": "",
+                "items": [
+                  "Filtering oxygen directly from air into stomach",
+                  "Pumping blood through blood vessels to supply oxygen and nutrients",
+                  "Digesting solid food into glucose"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "The heart acts as a muscular pump driving the circulatory system."
+              },
+              {
+                "id": "G6-SCI-M1-CP3-A2",
+                "type": "sort",
+                "prompt": "Greenhouse Helper: classify plant reproduction methods as Sexual (Seeds) or Asexual (Vegetative).",
+                "context": "",
+                "items": [
+                  "Growing a mango tree from a seed",
+                  "Propagating a rose bush from a stem cutting",
+                  "Growing a new sweet potato from a tuber",
+                  "Flowering plant pollinated to develop seed pods"
+                ],
+                "buckets": [
+                  "Sexual (Seeds)",
+                  "Asexual (Vegetative)"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  1,
+                  0
+                ],
+                "minChars": 0,
+                "success": "Clear distinction! Seeds involve sexual reproduction; cuttings and tubers reproduce vegetatively."
+              }
+            ]
+          },
+          "rewardName": "Life Science Token",
+          "questions": [
+            {
+              "id": "G6-SCI-M1-CP3-Q01",
+              "skill": "circulatory system",
+              "text": "What is the main job of the heart in the circulatory system?",
+              "options": [
+                "Pump blood through the body",
+                "Digest food in the stomach",
+                "Carry air into the lungs directly",
+                "Make sunlight into sugar"
+              ],
+              "correctIndex": 0,
+              "explanation": "The heart pumps blood through blood vessels.",
+              "feedback": "The heart pumps blood through blood vessels."
+            },
+            {
+              "id": "G6-SCI-M1-CP3-Q02",
+              "skill": "circulation",
+              "text": "Which substance is transported by blood to body cells?",
+              "options": [
+                "Sand",
+                "Rock fragments",
+                "Oxygen",
+                "Sunlight"
+              ],
+              "correctIndex": 2,
+              "explanation": "Blood carries oxygen obtained through respiration to cells.",
+              "feedback": "Blood carries oxygen obtained through respiration to cells."
+            },
+            {
+              "id": "G6-SCI-M1-CP3-Q03",
+              "skill": "plant reproduction",
+              "text": "What is one way a plant can reproduce without a seed?",
+              "options": [
+                "Producing stones",
+                "Growing from a stem cutting",
+                "Turning into an animal",
+                "Burning a leaf"
+              ],
+              "correctIndex": 1,
+              "explanation": "Some plants can develop into new plants from stem cuttings.",
+              "feedback": "Some plants can develop into new plants from stem cuttings."
+            },
+            {
+              "id": "G6-SCI-M1-CP3-Q04",
+              "skill": "fair test",
+              "text": "What should stay the same when comparing two plant-growing methods fairly?",
+              "options": [
+                "The growing method being tested",
+                "The hypothesis wording only",
+                "The label colors on pots",
+                "Soil, water and light conditions"
+              ],
+              "correctIndex": 3,
+              "explanation": "Keeping environmental conditions similar isolates the growing method.",
+              "feedback": "Keeping environmental conditions similar isolates the growing method."
+            },
+            {
+              "id": "G6-SCI-M1-CP3-Q05",
+              "skill": "evidence",
+              "text": "Which evidence would best show that a cutting developed into a new plant?",
+              "options": [
+                "The old stem became dry immediately",
+                "No change was observed",
+                "It formed roots and new leaves",
+                "The pot changed color"
+              ],
+              "correctIndex": 2,
+              "explanation": "Roots and new leaves indicate active growth.",
+              "feedback": "Roots and new leaves indicate active growth."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6-SCI-M2",
+      "number": 2,
+      "title": "The Ecosystem Engineering Quest",
+      "story": "A river habitat needs repair, and a village workshop needs a device to lift supplies. Students combine ecosystem reasoning with engineering and wave observations.",
+      "focus": "Food webs and ecological roles; biotic/abiotic interactions; simple machines, fair tests and water/sound waves.",
+      "finalChallenge": {
+        "title": "Restore Balance",
+        "description": "Restore balance: build a food web, identify a possible habitat problem using evidence, and choose a practical simple machine based on tests.",
+        "rewardName": "Ecosystem Engineer Badge",
+        "steps": [
+          {
+            "id": "G6-SCI-M2-F1",
+            "type": "sequence",
+            "prompt": "Restore Balance: arrange the forest ecosystem food chain in order of energy transfer.",
+            "context": "",
+            "items": [
+              "Forest Ferns & Plants (Producers)",
+              "Herbivorous Deer (Primary Consumer)",
+              "Wolf Pack (Secondary Predator)",
+              "Fungi & Microbes (Decomposers)"
+            ],
+            "buckets": [],
+            "answers": [],
+            "minChars": 0,
+            "success": "Ecosystem balance restored!"
+          },
+          {
+            "id": "G6-SCI-M2-F2",
+            "type": "choose",
+            "prompt": "Which simple machine would require the least effort force to lift a 100 kg generator into a clinic?",
+            "context": "",
+            "items": [
+              "Lifting it straight up with bare hands",
+              "Using a gentle, low-angle inclined plane ramp with rollers",
+              "Dropping it from a roof"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 2 complete! You earned the Ecosystem Engineer Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-SCI-M2-CP1",
+          "index": 1,
+          "title": "Food Web Forest",
+          "npcName": "Ranger Tala",
+          "npcOpening": "Welcome to Food Web Forest! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Plants are producers because they make their own food. Consumers eat other organisms; decomposers break down dead matter. Scavengers feed on dead animals. Food chains and food webs show who eats whom, with arrows showing the direction of energy transfer. Removing one organism can affect others.",
+          "miniGame": {
+            "name": "Food Web Builder",
+            "type": "quiz",
+            "instructions": "Connect grass → grasshopper → frog → snake and add decomposers.",
+            "steps": [
+              {
+                "id": "G6-SCI-M2-CP1-A1",
+                "type": "sort",
+                "prompt": "Food Web Builder: classify the organisms by their ecological role in the ecosystem.",
+                "context": "",
+                "items": [
+                  "Green grass producing food by photosynthesis",
+                  "Grasshopper feeding on plant leaves",
+                  "Mushroom fungus decomposing dead wood",
+                  "Vulture feeding on dead animal remains",
+                  "Snake hunting frogs"
+                ],
+                "buckets": [
+                  "Producer",
+                  "Consumer",
+                  "Decomposer / Scavenger"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2,
+                  2,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Producers make food, consumers feed on organisms, and decomposers recycle nutrients."
+              },
+              {
+                "id": "G6-SCI-M2-CP1-A2",
+                "type": "sequence",
+                "prompt": "Arrange the food chain in the direction of energy transfer (producer to predator):",
+                "context": "",
+                "items": [
+                  "Green Grass (Producer)",
+                  "Grasshopper (Primary Consumer)",
+                  "Frog (Secondary Consumer)",
+                  "Snake (Apex Predator)"
+                ],
+                "buckets": [],
+                "answers": [],
+                "minChars": 0,
+                "success": "Arrows point in the direction of energy transfer from food to consumer."
+              }
+            ]
+          },
+          "rewardName": "Forest Web Token",
+          "questions": [
+            {
+              "id": "G6-SCI-M2-CP1-Q01",
+              "skill": "producer",
+              "text": "Which organism is a producer in a grassland food chain?",
+              "options": [
+                "Grass",
+                "Frog",
+                "Snake",
+                "Mushroom"
+              ],
+              "correctIndex": 0,
+              "explanation": "Grass makes food through photosynthesis.",
+              "feedback": "Grass makes food through photosynthesis."
+            },
+            {
+              "id": "G6-SCI-M2-CP1-Q02",
+              "skill": "food chain",
+              "text": "What do arrows usually show in a food chain?",
+              "options": [
+                "Where the animals live",
+                "The age of the organisms",
+                "The direction energy moves from food to consumer",
+                "The direction wind blows"
+              ],
+              "correctIndex": 2,
+              "explanation": "Arrows point along the direction of energy transfer.",
+              "feedback": "Arrows point along the direction of energy transfer."
+            },
+            {
+              "id": "G6-SCI-M2-CP1-Q03",
+              "skill": "decomposition",
+              "text": "Which organism helps break down dead plants and animals?",
+              "options": [
+                "Eagle",
+                "Mushroom fungus",
+                "Deer",
+                "Butterfly"
+              ],
+              "correctIndex": 1,
+              "explanation": "Many fungi act as decomposers.",
+              "feedback": "Many fungi act as decomposers."
+            },
+            {
+              "id": "G6-SCI-M2-CP1-Q04",
+              "skill": "scavenger",
+              "text": "A vulture eats the remains of a dead animal. What role is it showing?",
+              "options": [
+                "Producer",
+                "Abiotic factor",
+                "Plant pollinator",
+                "Scavenger"
+              ],
+              "correctIndex": 3,
+              "explanation": "Scavengers feed on dead organisms.",
+              "feedback": "Scavengers feed on dead organisms."
+            },
+            {
+              "id": "G6-SCI-M2-CP1-Q05",
+              "skill": "ecosystem prediction",
+              "text": "If frogs decrease in a grasshopper–frog food chain, what may initially happen to grasshoppers?",
+              "options": [
+                "They may increase because fewer frogs eat them",
+                "They must disappear immediately",
+                "They turn into producers",
+                "They stop needing food"
+              ],
+              "correctIndex": 0,
+              "explanation": "With fewer predators, grasshoppers may initially increase.",
+              "feedback": "With fewer predators, grasshoppers may initially increase."
+            }
+          ]
+        },
+        {
+          "id": "G6-SCI-M2-CP2",
+          "index": 2,
+          "title": "Habitat Balance Trail",
+          "npcName": "Ecologist Noor",
+          "npcOpening": "Welcome to Habitat Balance Trail! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Biotic factors are living parts of an ecosystem; abiotic factors are nonliving conditions such as sunlight, water and temperature. Predators eat prey; competing organisms use limited resources. A scientist measures conditions, records data and considers other possible causes before making conclusions.",
+          "miniGame": {
+            "name": "Habitat Map",
+            "type": "quiz",
+            "instructions": "Drag water, sunlight, tree, fish, soil and frog into living or nonliving categories.",
+            "steps": [
+              {
+                "id": "G6-SCI-M2-CP2-A1",
+                "type": "sort",
+                "prompt": "Habitat Map: classify each pond ecosystem factor as Biotic (Living) or Abiotic (Nonliving).",
+                "context": "",
+                "items": [
+                  "Freshwater fish",
+                  "Water temperature",
+                  "Water lily plant",
+                  "Sunlight intensity",
+                  "Pond snail",
+                  "Dissolved minerals in soil"
+                ],
+                "buckets": [
+                  "Biotic Factor (Living)",
+                  "Abiotic Factor (Nonliving)"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Biotic parts are living organisms; abiotic factors are nonliving environmental conditions."
+              }
+            ]
+          },
+          "rewardName": "Habitat Balance Seal",
+          "questions": [
+            {
+              "id": "G6-SCI-M2-CP2-Q01",
+              "skill": "abiotic",
+              "text": "Which is an abiotic factor in a pond ecosystem?",
+              "options": [
+                "Fish",
+                "Algae",
+                "Water temperature",
+                "Frog"
+              ],
+              "correctIndex": 2,
+              "explanation": "Temperature is a nonliving environmental condition.",
+              "feedback": "Temperature is a nonliving environmental condition."
+            },
+            {
+              "id": "G6-SCI-M2-CP2-Q02",
+              "skill": "biotic",
+              "text": "Which is a biotic factor?",
+              "options": [
+                "Sunlight",
+                "Water lily",
+                "Rocks",
+                "Rainfall"
+              ],
+              "correctIndex": 1,
+              "explanation": "A water lily is a living organism.",
+              "feedback": "A water lily is a living organism."
+            },
+            {
+              "id": "G6-SCI-M2-CP2-Q03",
+              "skill": "competition",
+              "text": "What is competition in an ecosystem?",
+              "options": [
+                "Organisms using the same limited resource",
+                "An animal becoming a rock",
+                "Rain evaporating from a pond",
+                "Water moving downhill"
+              ],
+              "correctIndex": 0,
+              "explanation": "Competition occurs when organisms need limited resources.",
+              "feedback": "Competition occurs when organisms need limited resources."
+            },
+            {
+              "id": "G6-SCI-M2-CP2-Q04",
+              "skill": "predation",
+              "text": "Which example shows predation?",
+              "options": [
+                "Two plants needing sunlight",
+                "A stone warmed by the Sun",
+                "Rain falling in a forest",
+                "A snake capturing a mouse"
+              ],
+              "correctIndex": 3,
+              "explanation": "The snake is a predator consuming prey.",
+              "feedback": "The snake is a predator consuming prey."
+            },
+            {
+              "id": "G6-SCI-M2-CP2-Q05",
+              "skill": "evidence",
+              "text": "A pond has fewer fish than last month. What should students do before claiming pollution caused it?",
+              "options": [
+                "Assume pollution without testing",
+                "Ignore the change",
+                "Collect evidence about water conditions and other possible causes",
+                "Remove all plants immediately"
+              ],
+              "correctIndex": 2,
+              "explanation": "Scientific conclusions require observations and consideration of alternative explanations.",
+              "feedback": "Scientific conclusions require observations and consideration of alternative explanations."
+            }
+          ]
+        },
+        {
+          "id": "G6-SCI-M2-CP3",
+          "index": 3,
+          "title": "Machines and Waves Workshop",
+          "npcName": "Engineer Leo",
+          "npcOpening": "Welcome to Machines and Waves Workshop! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Simple machines such as levers, pulleys and inclined planes can change the size or direction of the force needed. A fair lever test keeps other conditions constant while changing one variable. Waves transfer energy; the material in a water-wave tank mainly oscillates while the disturbance moves through it.",
+          "miniGame": {
+            "name": "Build & Test",
+            "type": "quiz",
+            "instructions": "Choose a ramp or lever to lift a crate and observe ripples in a shallow tub.",
+            "steps": [
+              {
+                "id": "G6-SCI-M2-CP3-A1",
+                "type": "sort",
+                "prompt": "Build & Test: match each tool to its simple machine classification.",
+                "context": "",
+                "items": [
+                  "Slanted ramp used to load a heavy box into a truck",
+                  "Crowbar pivoting on a fulcrum to pry a rock",
+                  "Wheel and grooved rope used to hoist a flag",
+                  "Wheelchair access ramp alongside stairs"
+                ],
+                "buckets": [
+                  "Inclined Plane (Ramp)",
+                  "Lever",
+                  "Pulley"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  2,
+                  0
+                ],
+                "minChars": 0,
+                "success": "Simple machines provide mechanical advantage to move loads more easily."
+              },
+              {
+                "id": "G6-SCI-M2-CP3-A2",
+                "type": "choose",
+                "prompt": "When ripples pass across a pond, small floating leaves bob up and down. What does this demonstrate?",
+                "context": "",
+                "items": [
+                  "All the water is traveling permanently to the shore",
+                  "Waves transfer energy outward while particles oscillate in place",
+                  "Water is solidifying into ice"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Waves transfer energy across distances without carrying the medium as a whole."
+              }
+            ]
+          },
+          "rewardName": "Engineer Medal",
+          "questions": [
+            {
+              "id": "G6-SCI-M2-CP3-Q01",
+              "skill": "simple machines",
+              "text": "Which simple machine is a sloping surface used to raise a box?",
+              "options": [
+                "Lever",
+                "Pulley",
+                "Wedge",
+                "Inclined plane"
+              ],
+              "correctIndex": 3,
+              "explanation": "A ramp is an inclined plane.",
+              "feedback": "A ramp is an inclined plane."
+            },
+            {
+              "id": "G6-SCI-M2-CP3-Q02",
+              "skill": "lever",
+              "text": "What can a lever help a person do?",
+              "options": [
+                "Eliminate all work",
+                "Change the force needed to move a load",
+                "Remove gravity",
+                "Create energy from nothing"
+              ],
+              "correctIndex": 1,
+              "explanation": "A lever changes the mechanical advantage depending on its arrangement.",
+              "feedback": "A lever changes the mechanical advantage depending on its arrangement."
+            },
+            {
+              "id": "G6-SCI-M2-CP3-Q03",
+              "skill": "fair test",
+              "text": "In a fair test of lever-arm length, what should be kept the same?",
+              "options": [
+                "The load being lifted",
+                "The lever-arm length being tested",
+                "All results written down",
+                "The final measured effort"
+              ],
+              "correctIndex": 0,
+              "explanation": "The load must be controlled if lever-arm length is being varied.",
+              "feedback": "The load must be controlled if lever-arm length is being varied."
+            },
+            {
+              "id": "G6-SCI-M2-CP3-Q04",
+              "skill": "waves",
+              "text": "What is mainly transferred outward by ripples on a water surface?",
+              "options": [
+                "Whole buckets of water",
+                "Rocks from the bottom",
+                "Energy",
+                "The container"
+              ],
+              "correctIndex": 2,
+              "explanation": "Waves transfer energy away from a disturbance.",
+              "feedback": "Waves transfer energy away from a disturbance."
+            },
+            {
+              "id": "G6-SCI-M2-CP3-Q05",
+              "skill": "wave evidence",
+              "text": "A student sees small floating leaves bob up and down as ripples pass. What is the best conclusion?",
+              "options": [
+                "All pond water flows outward with the ripples",
+                "Water is turning into gas",
+                "The leaves are being pulled by a magnet",
+                "The disturbance moves while the leaves mainly oscillate"
+              ],
+              "correctIndex": 3,
+              "explanation": "The leaves’ bobbing illustrates wave motion with limited net transport.",
+              "feedback": "The leaves’ bobbing illustrates wave motion with limited net transport."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6-SCI-M3",
+      "number": 3,
+      "title": "The Sky and Safety Expedition",
+      "story": "The village receives unusual sound observations and volcano alerts. Learners use scientific models and official guidance to keep the village safe and explain the night sky.",
+      "focus": "Longitudinal/transverse waves and sound; volcanoes and preparedness; Philippine seasons, Earth motion and constellations.",
+      "finalChallenge": {
+        "title": "Science Expedition Report",
+        "description": "Science expedition report: identify wave behavior, choose appropriate volcano-safety decisions and explain Earth rotation using a model.",
+        "rewardName": "Sky & Safety Badge",
+        "steps": [
+          {
+            "id": "G6-SCI-M3-F1",
+            "type": "sort",
+            "prompt": "Science Expedition Report: classify the wave motions as Transverse or Longitudinal.",
+            "context": "",
+            "items": [
+              "Ocean surface ripple oscillating up and down",
+              "Sound wave traveling through air as pressure pulses",
+              "Light traveling through space",
+              "Seismic P-wave compressing ground back and forth in travel direction"
+            ],
+            "buckets": [
+              "Transverse Wave",
+              "Longitudinal Wave"
+            ],
+            "answers": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "minChars": 0,
+            "success": "Wave physics accurately categorized!"
+          },
+          {
+            "id": "G6-SCI-M3-F2",
+            "type": "choose",
+            "prompt": "When PHIVOLCS raises an alert level and local disaster officials order evacuation, what is the best protocol?",
+            "context": "",
+            "items": [
+              "Visit the volcanic crater to film the eruption",
+              "Promptly follow local evacuation procedures and stay clear of permanent danger zones",
+              "Stay indoors without water or emergency supplies"
+            ],
+            "buckets": [],
+            "answers": [
+              1
+            ],
+            "minChars": 0,
+            "success": "Mission 3 complete! You earned the Sky & Safety Badge!"
+          }
+        ]
+      },
+      "checkpoints": [
+        {
+          "id": "G6-SCI-M3-CP1",
+          "index": 1,
+          "title": "Wave Observatory",
+          "npcName": "Scientist Lily",
+          "npcOpening": "Welcome to Wave Observatory! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Waves transfer energy. In a transverse wave, the motion of the medium is perpendicular to the direction a disturbance travels; in a longitudinal wave, the motion is parallel. Sound in air propagates as compressions and rarefactions. Frequency relates to pitch; amplitude relates to loudness under otherwise comparable conditions.",
+          "miniGame": {
+            "name": "Wave Demo",
+            "type": "quiz",
+            "instructions": "Match rope up-and-down wave and slinky compression wave; compare sound pitch and volume.",
+            "steps": [
+              {
+                "id": "G6-SCI-M3-CP1-A1",
+                "type": "sort",
+                "prompt": "Wave Demo: classify each wave phenomenon by wave type.",
+                "context": "",
+                "items": [
+                  "Rope moving up and down perpendicular to wave travel",
+                  "Sound wave traveling as compressions and rarefactions in air",
+                  "Light wave vibrating perpendicular to propagation",
+                  "Slinky pushed and pulled parallel to wave motion"
+                ],
+                "buckets": [
+                  "Transverse Wave",
+                  "Longitudinal Wave"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Transverse waves oscillate perpendicular to travel; longitudinal oscillate parallel."
+              },
+              {
+                "id": "G6-SCI-M3-CP1-A2",
+                "type": "choose",
+                "prompt": "When the frequency of a sound wave increases, how does its pitch change?",
+                "context": "",
+                "items": [
+                  "It is perceived as lower in pitch",
+                  "It is perceived as higher in pitch",
+                  "It instantly turns silent"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Higher frequency creates a higher musical pitch."
+              }
+            ]
+          },
+          "rewardName": "Wave Research Badge",
+          "questions": [
+            {
+              "id": "G6-SCI-M3-CP1-Q01",
+              "skill": "transverse wave",
+              "text": "Which description fits a transverse wave on a rope?",
+              "options": [
+                "The rope moves up and down while the wave travels along it",
+                "The rope becomes rigid",
+                "The rope travels entirely from one end to the other",
+                "The rope disappears as the wave moves"
+              ],
+              "correctIndex": 0,
+              "explanation": "A transverse disturbance is perpendicular to the direction of wave travel.",
+              "feedback": "A transverse disturbance is perpendicular to the direction of wave travel."
+            },
+            {
+              "id": "G6-SCI-M3-CP1-Q02",
+              "skill": "longitudinal wave",
+              "text": "In a longitudinal wave, particles of the medium move mainly how?",
+              "options": [
+                "Only upward",
+                "Perpendicular to travel direction",
+                "Parallel to travel direction",
+                "In permanent circles only"
+              ],
+              "correctIndex": 2,
+              "explanation": "Longitudinal particle motion is parallel to propagation.",
+              "feedback": "Longitudinal particle motion is parallel to propagation."
+            },
+            {
+              "id": "G6-SCI-M3-CP1-Q03",
+              "skill": "sound",
+              "text": "Sound normally travels through air as what kind of wave?",
+              "options": [
+                "Pure light wave",
+                "Longitudinal pressure wave",
+                "Transverse rope wave",
+                "Magnetic field wave only"
+              ],
+              "correctIndex": 1,
+              "explanation": "Sound in air travels through compressions and rarefactions.",
+              "feedback": "Sound in air travels through compressions and rarefactions."
+            },
+            {
+              "id": "G6-SCI-M3-CP1-Q04",
+              "skill": "frequency",
+              "text": "When sound frequency increases, what generally happens to its pitch?",
+              "options": [
+                "It gets lower",
+                "It loses all energy",
+                "It stops instantly",
+                "It gets higher"
+              ],
+              "correctIndex": 3,
+              "explanation": "Higher frequency corresponds to higher pitch.",
+              "feedback": "Higher frequency corresponds to higher pitch."
+            },
+            {
+              "id": "G6-SCI-M3-CP1-Q05",
+              "skill": "amplitude",
+              "text": "With comparable conditions, a larger sound-wave amplitude usually means a sound is perceived as what?",
+              "options": [
+                "Louder",
+                "Higher in pitch automatically",
+                "Faster in all materials",
+                "Silent"
+              ],
+              "correctIndex": 0,
+              "explanation": "Amplitude often relates to loudness, not pitch.",
+              "feedback": "Amplitude often relates to loudness, not pitch."
+            }
+          ]
+        },
+        {
+          "id": "G6-SCI-M3-CP2",
+          "index": 2,
+          "title": "Volcano Safety Center",
+          "npcName": "Rescue Guide Tomas",
+          "npcOpening": "Welcome to Volcano Safety Center! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Volcanoes form where molten rock rises and reaches or approaches Earth’s surface. Eruptions can release lava, ash and gases and create several hazards. PHIVOLCS publishes volcano bulletins and alert guidance in the Philippines. Local authorities may order evacuation; learners should never enter restricted danger zones.",
+          "miniGame": {
+            "name": "Safety Board",
+            "type": "quiz",
+            "instructions": "Classify ashfall, lava, and volcanic gases, then choose safe official-response cards.",
+            "steps": [
+              {
+                "id": "G6-SCI-M3-CP2-A1",
+                "type": "sort",
+                "prompt": "Safety Board: classify each item as Volcanic Material / Hazard vs Official Safety Action.",
+                "context": "",
+                "items": [
+                  "Molten rock flowing at Earth's surface (Lava)",
+                  "Fine abrasive airborne rock particles (Ashfall)",
+                  "Monitoring official PHIVOLCS bulletins and alert levels",
+                  "Promptly evacuating designated restricted danger zones",
+                  "Closing doors and windows during severe ashfall"
+                ],
+                "buckets": [
+                  "Volcanic Material / Hazard",
+                  "Official Safety Action"
+                ],
+                "answers": [
+                  0,
+                  0,
+                  1,
+                  1,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Safety first! Understanding hazards and following official PHIVOLCS guidance saves lives."
+              },
+              {
+                "id": "G6-SCI-M3-CP2-A2",
+                "type": "choose",
+                "prompt": "Which Philippine agency is responsible for official volcano monitoring and alert levels?",
+                "context": "",
+                "items": [
+                  "PAGASA",
+                  "PHIVOLCS",
+                  "Department of Agriculture"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "PHIVOLCS provides specialized monitoring for volcanoes, earthquakes, and tsunamis."
+              }
+            ]
+          },
+          "rewardName": "Safety Ranger Token",
+          "questions": [
+            {
+              "id": "G6-SCI-M3-CP2-Q01",
+              "skill": "volcano material",
+              "text": "What is molten rock called after it reaches Earth’s surface?",
+              "options": [
+                "Lava",
+                "Granite only",
+                "Soil",
+                "Steam"
+              ],
+              "correctIndex": 0,
+              "explanation": "Molten rock at the surface is lava.",
+              "feedback": "Molten rock at the surface is lava."
+            },
+            {
+              "id": "G6-SCI-M3-CP2-Q02",
+              "skill": "volcano hazards",
+              "text": "Which hazard can spread fine particles through the air during an eruption?",
+              "options": [
+                "Moonlight",
+                "Sandcastle formation",
+                "Volcanic ashfall",
+                "Ocean tides"
+              ],
+              "correctIndex": 2,
+              "explanation": "Ash can be carried through the atmosphere.",
+              "feedback": "Ash can be carried through the atmosphere."
+            },
+            {
+              "id": "G6-SCI-M3-CP2-Q03",
+              "skill": "official source",
+              "text": "Which agency provides official Philippine volcano monitoring bulletins?",
+              "options": [
+                "PAGASA for volcano alert levels",
+                "PHIVOLCS",
+                "Library council",
+                "National museum shop"
+              ],
+              "correctIndex": 1,
+              "explanation": "PHIVOLCS monitors volcano activity and issues related bulletins.",
+              "feedback": "PHIVOLCS monitors volcano activity and issues related bulletins."
+            },
+            {
+              "id": "G6-SCI-M3-CP2-Q04",
+              "skill": "preparedness",
+              "text": "When authorities order evacuation for your location, what is the best response?",
+              "options": [
+                "Stay to photograph the crater",
+                "Visit a restricted area",
+                "Wait until ash covers the roof",
+                "Follow the evacuation instructions promptly"
+              ],
+              "correctIndex": 3,
+              "explanation": "Following evacuation orders can reduce exposure to hazards.",
+              "feedback": "Following evacuation orders can reduce exposure to hazards."
+            },
+            {
+              "id": "G6-SCI-M3-CP2-Q05",
+              "skill": "ash safety",
+              "text": "Which action is appropriate when volcanic ash is falling and authorities advise staying indoors?",
+              "options": [
+                "Keep windows and doors closed where appropriate",
+                "Run outside to collect ash without protection",
+                "Drink collected ashwater",
+                "Approach the volcano to see more clearly"
+              ],
+              "correctIndex": 0,
+              "explanation": "Limiting ash entry can help protect indoor air, subject to current official guidance.",
+              "feedback": "Limiting ash entry can help protect indoor air, subject to current official guidance."
+            }
+          ]
+        },
+        {
+          "id": "G6-SCI-M3-CP3",
+          "index": 3,
+          "title": "Night Sky Hill",
+          "npcName": "Astronomer Nia",
+          "npcOpening": "Welcome to Night Sky Hill! Study the clue first, try the activity, and answer the questions to earn your reward.",
+          "reading": "",
+          "lesson": "Earth rotates roughly once every day, producing the cycle of day and night. Earth also travels around the Sun. Seasonal differences are related to Earth’s tilted axis and its orbit, while the Philippines commonly describes wet and dry seasons shaped strongly by regional weather and monsoon patterns. Constellations are named apparent star patterns; cultures, including Indigenous communities, have meaningful sky knowledge. A model can help communicate these ideas.",
+          "miniGame": {
+            "name": "Sky Match",
+            "type": "quiz",
+            "instructions": "Rotate an Earth model to show day and night and connect constellation cards to observation notes.",
+            "steps": [
+              {
+                "id": "G6-SCI-M3-CP3-A1",
+                "type": "sort",
+                "prompt": "Sky Match: match Earth's motion to its observable consequence.",
+                "context": "",
+                "items": [
+                  "Roughly 24-hour cycle of day and night",
+                  "Changing seasonal positions of constellations in the night sky",
+                  "Sun appearing to rise in the east and set in the west daily",
+                  "Annual 365.25-day revolution orbit around the Sun"
+                ],
+                "buckets": [
+                  "Earth Rotation (Daily)",
+                  "Earth Revolution (Annual)"
+                ],
+                "answers": [
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "minChars": 0,
+                "success": "Rotation produces day and night; revolution and axial tilt shape seasonal sky changes."
+              },
+              {
+                "id": "G6-SCI-M3-CP3-A2",
+                "type": "choose",
+                "prompt": "What is a constellation?",
+                "context": "",
+                "items": [
+                  "A storm cloud inside Earth's atmosphere",
+                  "A recognizable apparent pattern of stars in the night sky",
+                  "A single planet orbiting Earth directly"
+                ],
+                "buckets": [],
+                "answers": [
+                  1
+                ],
+                "minChars": 0,
+                "success": "Constellations are apparent star patterns seen from Earth with deep cultural and navigation history."
+              }
+            ]
+          },
+          "rewardName": "Sky Explorer Medal",
+          "questions": [
+            {
+              "id": "G6-SCI-M3-CP3-Q01",
+              "skill": "earth rotation",
+              "text": "What causes the daily cycle of day and night on Earth?",
+              "options": [
+                "The Moon making its own light",
+                "Earth rotating on its axis",
+                "Clouds orbiting the Sun",
+                "Earth stopping in its orbit"
+              ],
+              "correctIndex": 1,
+              "explanation": "Earth’s rotation alternately exposes places to sunlight.",
+              "feedback": "Earth’s rotation alternately exposes places to sunlight."
+            },
+            {
+              "id": "G6-SCI-M3-CP3-Q02",
+              "skill": "revolution",
+              "text": "Which motion describes Earth traveling around the Sun?",
+              "options": [
+                "Condensation",
+                "Rotation only",
+                "Revolution",
+                "Erosion"
+              ],
+              "correctIndex": 2,
+              "explanation": "Earth completes an orbit or revolution around the Sun.",
+              "feedback": "Earth completes an orbit or revolution around the Sun."
+            },
+            {
+              "id": "G6-SCI-M3-CP3-Q03",
+              "skill": "philippine seasons",
+              "text": "Which statement best describes seasons commonly discussed in the Philippines?",
+              "options": [
+                "Wet and dry seasons are strongly influenced by regional weather and monsoons",
+                "Philippine weather never changes",
+                "Seasons happen only because Earth is closer to the Sun",
+                "There is no rainfall during the wet season"
+              ],
+              "correctIndex": 0,
+              "explanation": "Monsoon and regional weather patterns shape Philippine wet and dry seasons.",
+              "feedback": "Monsoon and regional weather patterns shape Philippine wet and dry seasons."
+            },
+            {
+              "id": "G6-SCI-M3-CP3-Q04",
+              "skill": "constellations",
+              "text": "What is a constellation?",
+              "options": [
+                "A group of planets inside Earth",
+                "A cloud that causes typhoons",
+                "A single star changing its color daily",
+                "A recognizable apparent pattern of stars in the sky"
+              ],
+              "correctIndex": 3,
+              "explanation": "Constellations are apparent patterns of stars as seen from Earth.",
+              "feedback": "Constellations are apparent patterns of stars as seen from Earth."
+            },
+            {
+              "id": "G6-SCI-M3-CP3-Q05",
+              "skill": "scientific and cultural perspective",
+              "text": "Why should students study Indigenous knowledge about star patterns respectfully?",
+              "options": [
+                "It replaces all scientific observations",
+                "It has cultural value and records generations of sky observations",
+                "It proves every star is the same distance away",
+                "It means planets are not real"
+              ],
+              "correctIndex": 1,
+              "explanation": "Indigenous sky knowledge is culturally meaningful and reflects long-term observation.",
+              "feedback": "Indigenous sky knowledge is culturally meaningful and reflects long-term observation."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
