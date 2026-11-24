@@ -8,9 +8,20 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using NutriMind.Core;
 using NutriMind.Data;
+using NutriMind.Network;
 
 namespace NutriMind.Interface
 {
+    // SERVER QUIZZES (teachers' quizzes from the web app)
+    // When the learner signed in through the server, the list shows the quizzes their teachers assigned
+    // (GET /api/v1/game/quizzes), followed by the game's built-in quizzes marked "Practice:".
+    //   - Server quiz: questions come from the server WITHOUT answers; on submit the SERVER grades the answers
+    //     (POST /quizzes/{id}/attempts) and the result screen shows the server's score. Teachers see the attempt.
+    //   - Practice quiz: works exactly as before, fully offline, graded on the device.
+    // When the server can't be reached, Panel_Offline is shown (MessageText, RetryButton, BackButton).
+    // Identification (typed answer) questions need a TMP_InputField named "AnswerInput" inside Panel_QuizPlay;
+    // until a designer adds one, those questions show without a way to answer and count as wrong.
+    //
     // Full offline online quiz controller supporting:
     // 1. Panel_QuizList: View and select available quizzes/assessments
     // 2. Panel_QuizDetails: View quiz coverage, total items, time limit
@@ -50,6 +61,13 @@ namespace NutriMind.Interface
         [SerializeField] TMP_Text nextButtonText;
         [SerializeField] Image questionImage;
         [SerializeField] VideoPlayer questionVideoPlayer;
+        [Tooltip("Optional: text box for identification (typed answer) questions from teachers. Auto-found as Panel_QuizPlay/AnswerInput.")]
+        [SerializeField] TMP_InputField answerInput;
+
+        [Header("Offline Screen (shown when the server can't be reached)")]
+        [SerializeField] TMP_Text offlineMessageText;
+        [SerializeField] Button offlineRetryButton;
+        [SerializeField] Button offlineBackButton;
 
         [Header("Summary Screen")]
         [SerializeField] TMP_Text summaryAnsweredText;
@@ -88,7 +106,18 @@ namespace NutriMind.Interface
             public string subject;
             public string coverage;
             public int questionCount;
-            public float timeLimitSeconds;
+            public float timeLimitSeconds;     // 0 = no time limit (teacher quizzes may have none)
+
+            // Teacher quizzes from the server (fromServer == false means a built-in practice quiz).
+            public bool fromServer;
+            public int serverId;
+            public bool unlimitedAttempts;
+            public int attemptsLeft;
+
+            public bool CanStart
+            {
+                get { return !fromServer || unlimitedAttempts || attemptsLeft > 0; }
+            }
         }
 
         List<QuizDef> availableQuizzes = new List<QuizDef>();
@@ -102,6 +131,21 @@ namespace NutriMind.Interface
         bool isQuizActive;
         bool isReviewMode;
         bool updatingToggles;
+
+        // Server quiz state.
+        List<ServerQuestion> serverQuestions = new List<ServerQuestion>();
+        string[] typedAnswers;            // answers to identification questions
+        bool[] serverCorrect;             // per question, as graded by the server
+        QuizAttemptData lastServerResult; // the graded attempt shown on the result screen
+        DateTime quizStartedUtc;
+        bool hasTimeLimit = true;
+        bool isWaitingForServer;
+        Action offlineRetryAction;        // what RetryButton on Panel_Offline does
+
+        bool IsServerQuiz
+        {
+            get { return currentQuizDef.fromServer; }
+        }
 
         void Awake()
         {
@@ -216,6 +260,16 @@ namespace NutriMind.Interface
                 if (previousButton == null) previousButton = panelPlay.transform.Find("PreviousButton")?.GetComponent<Button>();
                 if (nextButton == null) nextButton = panelPlay.transform.Find("NextButton")?.GetComponent<Button>();
                 if (nextButtonText == null && nextButton != null) nextButtonText = nextButton.GetComponentInChildren<TMP_Text>(true);
+                if (answerInput == null) answerInput = panelPlay.transform.Find("AnswerInput")?.GetComponent<TMP_InputField>();
+                if (answerInput != null) answerInput.gameObject.SetActive(false);
+            }
+
+            // Offline screen
+            if (panelOffline != null)
+            {
+                if (offlineMessageText == null) offlineMessageText = panelOffline.transform.Find("MessageText")?.GetComponent<TMP_Text>();
+                if (offlineRetryButton == null) offlineRetryButton = panelOffline.transform.Find("RetryButton")?.GetComponent<Button>();
+                if (offlineBackButton == null) offlineBackButton = panelOffline.transform.Find("BackButton")?.GetComponent<Button>();
             }
 
             // Summary screen
@@ -337,6 +391,39 @@ namespace NutriMind.Interface
                 });
             }
 
+            if (offlineRetryButton != null)
+            {
+                offlineRetryButton.onClick.RemoveAllListeners();
+                offlineRetryButton.onClick.AddListener(() =>
+                {
+                    if (!MenuNavigation.CanClick()) return;
+                    SetPanelActive(panelOffline, false);
+                    if (offlineRetryAction != null) offlineRetryAction();
+                });
+            }
+
+            if (offlineBackButton != null)
+            {
+                // Closes the offline message and returns to the screen underneath (nothing typed is lost).
+                offlineBackButton.onClick.RemoveAllListeners();
+                offlineBackButton.onClick.AddListener(() =>
+                {
+                    if (MenuNavigation.CanClick()) SetPanelActive(panelOffline, false);
+                });
+            }
+
+            if (answerInput != null)
+            {
+                answerInput.onValueChanged.RemoveAllListeners();
+                answerInput.onValueChanged.AddListener(text =>
+                {
+                    if (isQuizActive && !isReviewMode && typedAnswers != null && currentIndex < typedAnswers.Length)
+                    {
+                        typedAnswers[currentIndex] = text;
+                    }
+                });
+            }
+
             // Wire Option Toggles
             if (optionToggles != null)
             {
@@ -381,6 +468,12 @@ namespace NutriMind.Interface
             timeRemaining -= Time.deltaTime;
             timeSpent += Time.deltaTime;
 
+            if (!hasTimeLimit)
+            {
+                if (timerText != null) timerText.text = "No limit";
+                return;
+            }
+
             if (timeRemaining <= 0f)
             {
                 timeRemaining = 0f;
@@ -418,11 +511,63 @@ namespace NutriMind.Interface
             PopulateQuizList();
         }
 
+        // Shows the built-in practice quizzes right away; when the learner signed in through the server, the
+        // teachers' quizzes are then loaded and listed first.
         void PopulateQuizList()
+        {
+            availableQuizzes = BuildPracticeQuizzes(false);
+            RenderQuizRows();
+
+            if (ApiSession.HasToken) StartCoroutine(LoadServerQuizzes());
+        }
+
+        IEnumerator LoadServerQuizzes()
+        {
+            ApiResult result = null;
+            yield return ApiClient.GetQuizzes(r => result = r);
+
+            if (result.Success)
+            {
+                var combined = new List<QuizDef>();
+                foreach (ServerQuiz quiz in result.Parse<QuizListResponse>().data) combined.Add(ToQuizDef(quiz));
+                combined.AddRange(BuildPracticeQuizzes(combined.Count > 0));
+                availableQuizzes = combined;
+                RenderQuizRows();
+            }
+            else if (result.IsServerUnreachable)
+            {
+                ShowOffline("Can't reach the NutriMind server, so your teachers' quizzes can't be loaded right now.\nYou can still take the practice quizzes.", PopulateQuizList);
+            }
+            else
+            {
+                Debug.LogWarning("NutriMind: could not load the teachers' quizzes (" + result.StatusCode + "): " + result.ErrorMessage);
+            }
+        }
+
+        static QuizDef ToQuizDef(ServerQuiz quiz)
+        {
+            string subjectName = quiz.subject != null ? quiz.subject.name : "Quiz";
+            return new QuizDef
+            {
+                id = "server-" + quiz.id,
+                title = quiz.title,
+                subject = subjectName,
+                coverage = string.IsNullOrEmpty(quiz.instructions) ? subjectName : subjectName + "\n" + quiz.instructions,
+                questionCount = quiz.question_count,
+                timeLimitSeconds = quiz.time_limit_minutes * 60f,
+                fromServer = true,
+                serverId = quiz.id,
+                unlimitedAttempts = quiz.HasUnlimitedAttempts,
+                attemptsLeft = quiz.attempts_left
+            };
+        }
+
+        // The game's own quizzes, built from the local mission content (always available offline).
+        List<QuizDef> BuildPracticeQuizzes(bool markAsPractice)
         {
             int grade = GameSession.Instance != null ? GameSession.Instance.Grade : 5;
 
-            availableQuizzes = new List<QuizDef>
+            var practiceQuizzes = new List<QuizDef>
             {
                 new QuizDef {
                     id = "ENG",
@@ -458,6 +603,21 @@ namespace NutriMind.Interface
                 }
             };
 
+            if (markAsPractice)
+            {
+                for (int i = 0; i < practiceQuizzes.Count; i++)
+                {
+                    QuizDef def = practiceQuizzes[i];
+                    def.title = "Practice: " + def.title;
+                    practiceQuizzes[i] = def;
+                }
+            }
+
+            return practiceQuizzes;
+        }
+
+        void RenderQuizRows()
+        {
             if (listContent == null) return;
 
             // Template row is the first child of listContent
@@ -485,7 +645,11 @@ namespace NutriMind.Interface
                 var btn = row.Find("TakeQuizButton")?.GetComponent<Button>() ?? row.GetComponentInChildren<Button>();
 
                 if (titleTmp != null) titleTmp.text = def.title;
-                if (itemsTmp != null) itemsTmp.text = $"{def.questionCount} Questions  •  {Mathf.RoundToInt(def.timeLimitSeconds / 60f)}:00 Mins";
+                if (itemsTmp != null)
+                {
+                    string time = def.timeLimitSeconds > 0 ? $"{Mathf.RoundToInt(def.timeLimitSeconds / 60f)}:00 Mins" : "No time limit";
+                    itemsTmp.text = $"{def.questionCount} Questions  •  {time}";
+                }
 
                 if (btn != null)
                 {
@@ -543,14 +707,29 @@ namespace NutriMind.Interface
             if (totalItemsText != null)
             {
                 int count = currentQuizDef.questionCount > 0 ? currentQuizDef.questionCount : QuizQuestionCount;
-                totalItemsText.text = count + " Questions";
+                string text = count + " Questions";
+                if (IsServerQuiz && !currentQuizDef.unlimitedAttempts)
+                {
+                    text += "  •  " + currentQuizDef.attemptsLeft + (currentQuizDef.attemptsLeft == 1 ? " attempt left" : " attempts left");
+                }
+                totalItemsText.text = text;
             }
             if (timeLimitText != null)
             {
-                float secs = currentQuizDef.timeLimitSeconds > 0 ? currentQuizDef.timeLimitSeconds : DefaultTimeLimitSeconds;
-                int mins = Mathf.RoundToInt(secs / 60f);
-                timeLimitText.text = mins + ":00 Minutes";
+                if (IsServerQuiz && currentQuizDef.timeLimitSeconds <= 0)
+                {
+                    timeLimitText.text = "No time limit";
+                }
+                else
+                {
+                    float secs = currentQuizDef.timeLimitSeconds > 0 ? currentQuizDef.timeLimitSeconds : DefaultTimeLimitSeconds;
+                    int mins = Mathf.RoundToInt(secs / 60f);
+                    timeLimitText.text = mins + ":00 Minutes";
+                }
             }
+
+            // A teacher quiz whose attempts are used up can't be started again.
+            if (startButton != null) startButton.interactable = currentQuizDef.CanStart;
         }
 
         // ==========================================
@@ -559,16 +738,84 @@ namespace NutriMind.Interface
 
         public void StartQuiz()
         {
-            LoadQuestionsForCurrentQuiz();
+            if (IsServerQuiz)
+            {
+                if (!currentQuizDef.CanStart || isWaitingForServer) return;
+                StartCoroutine(LoadServerQuestionsThenBegin());
+                return;
+            }
 
+            serverQuestions.Clear();
+            LoadQuestionsForCurrentQuiz();
+            BeginQuiz();
+        }
+
+        // Downloads a teacher quiz's questions (without answers) and starts it.
+        IEnumerator LoadServerQuestionsThenBegin()
+        {
+            isWaitingForServer = true;
+            if (startButton != null) startButton.interactable = false;
+            if (retryButton != null) retryButton.interactable = false;
+
+            ApiResult result = null;
+            yield return ApiClient.GetQuiz(currentQuizDef.serverId, r => result = r);
+
+            isWaitingForServer = false;
+            if (startButton != null) startButton.interactable = currentQuizDef.CanStart;
+
+            if (!result.Success)
+            {
+                // 404 = the quiz was closed or unassigned since the list loaded.
+                ShowOffline(result.IsServerUnreachable ? "Can't reach the NutriMind server to load this quiz." : result.ErrorMessage,
+                            result.IsServerUnreachable ? (Action)StartQuiz : null);
+                yield break;
+            }
+
+            ServerQuiz quiz = result.Parse<QuizDetailResponse>().data;
+            currentQuizDef.timeLimitSeconds = quiz.time_limit_minutes * 60f;
+            currentQuizDef.unlimitedAttempts = quiz.HasUnlimitedAttempts;
+            currentQuizDef.attemptsLeft = quiz.attempts_left;
+
+            if (!currentQuizDef.CanStart)
+            {
+                ShowDetailsScreen();
+                yield break;
+            }
+
+            // The quiz screens show QuestionData, so the server questions are copied into that shape.
+            // correctIndex stays -1 (unknown) until the server grades the attempt.
+            serverQuestions = quiz.questions ?? new List<ServerQuestion>();
+            questions.Clear();
+            foreach (ServerQuestion question in serverQuestions)
+            {
+                questions.Add(new QuestionData
+                {
+                    id = question.id.ToString(),
+                    text = question.prompt,
+                    options = question.choices != null ? question.choices.ToArray() : new string[0],
+                    correctIndex = -1
+                });
+            }
+
+            BeginQuiz();
+        }
+
+        void BeginQuiz()
+        {
             if (questions.Count == 0)
             {
                 Debug.LogWarning("NutriMind: No questions found for online quiz.");
+                if (IsServerQuiz) ShowOffline("This quiz has no questions yet. Please tell your teacher.", null);
                 return;
             }
 
             userSelectedAnswers = new int[questions.Count];
             for (int i = 0; i < userSelectedAnswers.Length; i++) userSelectedAnswers[i] = -1;
+            typedAnswers = new string[questions.Count];
+            serverCorrect = null;
+            lastServerResult = null;
+            quizStartedUtc = DateTime.UtcNow;
+            hasTimeLimit = !IsServerQuiz || currentQuizDef.timeLimitSeconds > 0;
 
             currentIndex = 0;
             timeRemaining = currentQuizDef.timeLimitSeconds > 0 ? currentQuizDef.timeLimitSeconds : DefaultTimeLimitSeconds;
@@ -651,8 +898,29 @@ namespace NutriMind.Interface
 
             QuestionData q = questions[currentIndex];
 
-            if (questionText != null) questionText.text = q.text;
+            bool isTypedAnswer = IsServerQuiz && currentIndex < serverQuestions.Count && serverQuestions[currentIndex].IsTypedAnswer;
+
+            if (questionText != null)
+            {
+                questionText.text = q.text;
+                if (isTypedAnswer && answerInput == null)
+                {
+                    questionText.text += "\n\n<size=70%>(Type-in answers are not supported on this screen yet.)</size>";
+                    Debug.LogWarning("NutriMind: question " + q.id + " needs a typed answer. Add a TMP_InputField named \"AnswerInput\" to Panel_QuizPlay.");
+                }
+            }
             if (counterText != null) counterText.text = "Question " + (currentIndex + 1) + " of " + questions.Count;
+
+            // Identification questions from teachers: show the text box instead of the choices.
+            if (answerInput != null)
+            {
+                answerInput.gameObject.SetActive(isTypedAnswer);
+                if (isTypedAnswer)
+                {
+                    answerInput.SetTextWithoutNotify(typedAnswers != null ? (typedAnswers[currentIndex] ?? "") : "");
+                    answerInput.interactable = !isReviewMode;
+                }
+            }
 
             int selected = userSelectedAnswers[currentIndex];
             updatingToggles = true;
@@ -682,8 +950,10 @@ namespace NutriMind.Interface
                     {
                         if (isReviewMode)
                         {
+                            // correctIndex is -1 for a teacher quiz that hides correct answers; the learner
+                            // still sees whether their own choice was right (from the server's grading).
                             if (i == q.correctIndex) img.color = correctColor;
-                            else if (i == selected && selected != q.correctIndex) img.color = wrongColor;
+                            else if (i == selected) img.color = IsAnswerCorrect(currentIndex) ? correctColor : wrongColor;
                             else img.color = normalOptionColor;
                         }
                         else
@@ -780,7 +1050,7 @@ namespace NutriMind.Interface
             List<int> unanswered = new List<int>();
             for (int i = 0; i < userSelectedAnswers.Length; i++)
             {
-                if (userSelectedAnswers[i] >= 0) answeredCount++;
+                if (IsAnswered(i)) answeredCount++;
                 else unanswered.Add(i + 1);
             }
 
@@ -807,7 +1077,9 @@ namespace NutriMind.Interface
                 int minRem = Mathf.FloorToInt(timeRemaining / 60f);
                 int secRem = Mathf.FloorToInt(timeRemaining % 60f);
 
-                summaryTimeUsedText.text = $"Time Used: <b>{minUsed:00}:{secUsed:00}</b>   •   Remaining: <b>{minRem:00}:{secRem:00}</b>";
+                summaryTimeUsedText.text = hasTimeLimit
+                    ? $"Time Used: <b>{minUsed:00}:{secUsed:00}</b>   •   Remaining: <b>{minRem:00}:{secRem:00}</b>"
+                    : $"Time Used: <b>{minUsed:00}:{secUsed:00}</b>   •   No time limit";
             }
         }
 
@@ -825,6 +1097,14 @@ namespace NutriMind.Interface
 
         public void SubmitQuiz()
         {
+            if (IsServerQuiz)
+            {
+                if (isWaitingForServer) return;
+                isQuizActive = false;
+                StartCoroutine(SubmitToServer());
+                return;
+            }
+
             isQuizActive = false;
 
             int correctCount = 0;
@@ -849,8 +1129,102 @@ namespace NutriMind.Interface
             ShowResultScreen(correctCount, total, pct);
         }
 
+        // Sends a teacher quiz's answers; the SERVER grades them and stores the attempt for the teacher.
+        // If sending fails, the answers stay on screen and RetryButton sends them again.
+        IEnumerator SubmitToServer()
+        {
+            isWaitingForServer = true;
+            if (summarySubmitButton != null) summarySubmitButton.interactable = false;
+
+            // started_at is left empty on purpose: a tablet with a wrong clock would be refused. The server
+            // works out the start time from duration_seconds.
+            var attempt = new QuizAttemptRequest
+            {
+                duration_seconds = Mathf.RoundToInt(timeSpent),
+                is_offline = false
+            };
+            for (int i = 0; i < serverQuestions.Count; i++)
+            {
+                string answer = serverQuestions[i].IsTypedAnswer
+                    ? (typedAnswers[i] ?? "").Trim()
+                    : (userSelectedAnswers[i] >= 0 ? userSelectedAnswers[i].ToString() : "");
+                if (answer.Length > 0) attempt.answers.Add(new QuizAnswer { question_id = serverQuestions[i].id, answer = answer });
+            }
+
+            ApiResult result = null;
+            yield return ApiClient.SubmitQuizAttempt(currentQuizDef.serverId, attempt, r => result = r);
+
+            isWaitingForServer = false;
+            if (summarySubmitButton != null) summarySubmitButton.interactable = true;
+
+            if (!result.Success)
+            {
+                // 422 here usually means "You have used all N attempts for this quiz."
+                ShowOffline(result.IsServerUnreachable
+                        ? "Can't reach the NutriMind server, so your answers were not sent yet.\nYour answers are kept. Tap Retry to send them."
+                        : result.ErrorMessage,
+                    result.IsServerUnreachable ? (Action)SubmitQuiz : null);
+                yield break;
+            }
+
+            QuizAttemptResponse response = result.Parse<QuizAttemptResponse>();
+            lastServerResult = response.data;
+            currentQuizDef.attemptsLeft = lastServerResult.attempts_left;
+
+            // Copy the server's grading into the review screen.
+            serverCorrect = new bool[questions.Count];
+            foreach (QuizResultData graded in lastServerResult.results)
+            {
+                int index = serverQuestions.FindIndex(q => q.id == graded.question_id);
+                if (index < 0) continue;
+                serverCorrect[index] = graded.is_correct;
+                if (graded.HasCorrectAnswer && !serverQuestions[index].IsTypedAnswer) questions[index].correctIndex = graded.correct_choice;
+            }
+
+            // The server's updated points/level (also refreshes anything listening to SyncService.ProfileUpdated).
+            SyncService.PublishProfile(response.student);
+
+            ShowResultScreen();
+        }
+
+        void ShowServerResultScreen()
+        {
+            SetPanelActive(panelList, false);
+            SetPanelActive(panelDetails, false);
+            SetPanelActive(panelPlay, false);
+            SetPanelActive(panelSummary, false);
+            SetPanelActive(panelResult, true);
+            SetPanelActive(panelOffline, false);
+
+            QuizAttemptData attempt = lastServerResult;
+            int pct = Mathf.RoundToInt(attempt.percentage);
+
+            // Score is in POINTS (teachers can make a question worth more than 1 point).
+            if (scoreText != null) scoreText.text = attempt.score + " / " + attempt.max_score;
+            if (percentText != null) percentText.text = "Percentage: " + pct + "%";
+
+            if (resultTimeUsedText != null)
+            {
+                int min = Mathf.FloorToInt(timeSpent / 60f);
+                int sec = Mathf.FloorToInt(timeSpent % 60f);
+                resultTimeUsedText.text = "Time Used: " + string.Format("{0:00}:{1:00}", min, sec);
+            }
+
+            if (passedText != null) passedText.text = attempt.passed ? "Quiz Passed! Excellent Work!" : "Completed! Keep Reviewing!";
+            if (passedBadge != null) passedBadge.SetActive(attempt.passed);
+            if (retryButton != null) retryButton.interactable = currentQuizDef.CanStart;
+        }
+
         void ShowResultScreen(int correctCount = -1, int total = -1, int pct = -1)
         {
+            if (IsServerQuiz && lastServerResult != null)
+            {
+                ShowServerResultScreen();
+                return;
+            }
+
+            if (retryButton != null) retryButton.interactable = true;
+
             if (correctCount < 0)
             {
                 correctCount = 0;
@@ -904,6 +1278,37 @@ namespace NutriMind.Interface
         void SetPanelActive(GameObject panel, bool active)
         {
             if (panel != null) panel.SetActive(active);
+        }
+
+        // Shows Panel_Offline over the current screen. RetryButton runs retry (hidden when retry is null);
+        // BackButton just closes the panel, so whatever the learner was doing is still there.
+        void ShowOffline(string message, Action retry)
+        {
+            offlineRetryAction = retry;
+
+            if (panelOffline == null)
+            {
+                Debug.LogWarning("NutriMind: " + message);
+                return;
+            }
+
+            if (offlineMessageText != null) offlineMessageText.text = message;
+            if (offlineRetryButton != null) offlineRetryButton.gameObject.SetActive(retry != null);
+            panelOffline.SetActive(true);
+            panelOffline.transform.SetAsLastSibling(); // draw on top of the other panels
+        }
+
+        bool IsAnswered(int index)
+        {
+            if (userSelectedAnswers != null && userSelectedAnswers[index] >= 0) return true;
+            return typedAnswers != null && !string.IsNullOrWhiteSpace(typedAnswers[index]);
+        }
+
+        // Teacher quizzes use the server's grading; practice quizzes compare with the local answer key.
+        bool IsAnswerCorrect(int index)
+        {
+            if (serverCorrect != null) return serverCorrect[index];
+            return userSelectedAnswers[index] == questions[index].correctIndex;
         }
 
         public void ExitToMainMenu()

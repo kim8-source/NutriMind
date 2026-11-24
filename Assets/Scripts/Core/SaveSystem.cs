@@ -6,7 +6,7 @@ using NutriMind.Data;
 namespace NutriMind.Core
 {
     // Saves one JSON file per student in Application.persistentDataPath/NutriMind.
-    // Works fully offline. Later, a sync script uploads files where needsSync == true.
+    // Works fully offline. NutriMind.Network.SyncService uploads saves where needsSync == true to the server.
     public static class SaveSystem
     {
         static string Folder
@@ -44,11 +44,24 @@ namespace NutriMind.Core
 
         public static void Save(StudentSave save)
         {
+            save.lastSavedAt = DateTime.UtcNow.ToString("o");
+            save.needsSync = true;   // NutriMind.Network.SyncService uploads saves marked like this
+            Write(save);
+        }
+
+        // Called by NutriMind.Network.SyncService after the server accepted this save.
+        // Writes needsSync = false WITHOUT changing lastSavedAt (Save() would mark it unsent again).
+        public static void MarkSynced(StudentSave save)
+        {
+            save.needsSync = false;
+            Write(save);
+        }
+
+        static void Write(StudentSave save)
+        {
             try
             {
                 Directory.CreateDirectory(Folder);
-                save.lastSavedAt = DateTime.UtcNow.ToString("o");
-                save.needsSync = true;
 
                 string path = PathFor(save.studentId);
                 string temp = path + ".tmp";

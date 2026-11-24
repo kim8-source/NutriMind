@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using NutriMind.Core;
 using NutriMind.Data;
+using NutriMind.Network;
 
 namespace NutriMind.Interface
 {
@@ -194,7 +195,7 @@ namespace NutriMind.Interface
             GameSession session = GameSession.Instance;
             if (session == null || !session.IsSignedIn) return;
 
-            if (helloText != null) helloText.text = "Hello, " + session.StudentId + "!";
+            if (helloText != null) helloText.text = "Hello, " + DisplayName(session) + "!";
             if (pointsText != null) pointsText.text = session.Save.totalPoints.ToString();
         }
 
@@ -244,6 +245,16 @@ namespace NutriMind.Interface
             WireButton("Card_Science", () => PickWorld("SCI"));
             WireButton("Card_PEHealth", () => PickWorld("PEH"));
             WireButton("BackButton", () => Go(SceneNames.MainMenu));
+        }
+
+        // The learner's real name when they signed in through the server, otherwise their test/debug ID.
+        static string DisplayName(GameSession session)
+        {
+            if (ApiSession.IsFor(session.StudentId) && !string.IsNullOrEmpty(ApiSession.Profile.name))
+            {
+                return ApiSession.Profile.name;
+            }
+            return session.StudentId;
         }
 
         void InitLoginIfPresent()
@@ -792,7 +803,11 @@ namespace NutriMind.Interface
             }
 
             // 2. Student Info Details
-            if (studentIdText != null) studentIdText.text = session.StudentId;
+            if (studentIdText != null)
+            {
+                // Server learners: show their username (GameSession.StudentId is the server's internal user ID).
+                studentIdText.text = ApiSession.IsFor(session.StudentId) ? ApiSession.Profile.username : session.StudentId;
+            }
             if (gradeLevelText != null) gradeLevelText.text = $"Grade {session.Grade}";
             if (totalScoreText != null) totalScoreText.text = $"{session.Save.totalPoints} PTS";
 
@@ -1409,29 +1424,96 @@ namespace NutriMind.Interface
 
         // ---------- Login scene ----------
 
+        // Sign-in order (see Assets/Scripts/Network/ApiConfig.cs for the server address and switches):
+        //   1. Ask the Laravel server (username OR 12-digit LRN + password).
+        //   2. Server unreachable -> sign in offline if this learner signed in online on this device before.
+        //   3. Still nothing     -> the hard-coded test accounts (only while ApiConfig.AllowTestAccounts is true).
+        // A wrong password / deactivated account answer from the server is shown and does NOT fall back.
         public void Login()
         {
             if (ClickIgnored("Login")) return;
-            string id = studentIdInput != null ? studentIdInput.text : "";
+            string id = studentIdInput != null ? studentIdInput.text.Trim() : "";
             string password = passwordInput != null ? passwordInput.text : "";
 
-            int grade;
-            string studentId;
-            AuthResult result = TestAccounts.TryLogin(id, password, out studentId, out grade);
-            if (result != AuthResult.Ok)
+            if (string.IsNullOrEmpty(id)) { ShowLoginMessage(TestAccounts.Describe(AuthResult.EmptyId), true); return; }
+            if (string.IsNullOrEmpty(password)) { ShowLoginMessage(TestAccounts.Describe(AuthResult.EmptyPassword), true); return; }
+
+            StartCoroutine(ServerLoginRoutine(id, password));
+        }
+
+        IEnumerator ServerLoginRoutine(string id, string password)
+        {
+            s_ignoreClicksUntil = Time.unscaledTime + ApiConfig.TimeoutSeconds + 1f; // block repeated taps while waiting
+            SetLoginInputsInteractable(false);
+            ShowLoginMessage("Connecting...", false);
+
+            ApiResult result = null;
+            yield return ApiClient.Login(id, password, r => result = r);
+
+            // 1. Online sign-in.
+            if (result.Success)
             {
-                if (messageText != null)
-                {
-                    messageText.text = TestAccounts.Describe(result);
-                    messageText.color = new Color(1f, 0.45f, 0.45f, 1f); // Warning red tint
-                    messageText.gameObject.SetActive(true);
-                }
-                return;
+                LoginResponse login = result.Parse<LoginResponse>();
+                ApiSession.SignedInOnline(id, password, login);
+                int grade = login.data.grade == 6 ? 6 : 5;   // the game has Grade 5 and Grade 6 content
+                StartCoroutine(LoggingInRoutine(login.data.id.ToString(), grade));
+                yield break;
             }
 
-            // Valid credentials -> Start login timer with pulsing fade animation
-            StartCoroutine(LoggingInRoutine(studentId, grade));
+            // Wrong password, deactivated account, too many tries, ...: show the server's message.
+            if (!result.IsServerUnreachable)
+            {
+                ShowLoginMessage(result.ErrorMessage, true);
+                SetLoginInputsInteractable(true);
+                s_ignoreClicksUntil = Time.unscaledTime + 0.3f;
+                yield break;
+            }
+
+            // 2. Offline sign-in from this device's memory.
+            string studentId;
+            int offlineGrade;
+            if (ApiConfig.AllowOfflineSignIn && ApiSession.TryOfflineSignIn(id, password, out studentId, out offlineGrade))
+            {
+                Debug.Log("NutriMind: server unreachable, signed in offline. Progress uploads when the server is back.");
+                StartCoroutine(LoggingInRoutine(studentId, offlineGrade));
+                yield break;
+            }
+
+            // 3. Hard-coded test accounts (testing without Laravel running). Never uploaded.
+            if (ApiConfig.AllowTestAccounts && TestAccounts.TryLogin(id, password, out studentId, out offlineGrade) == AuthResult.Ok)
+            {
+                ApiSession.SignOut();
+                Debug.Log("NutriMind: server unreachable, signed in with a TEST account (progress is not uploaded).");
+                StartCoroutine(LoggingInRoutine(studentId, offlineGrade));
+                yield break;
+            }
+
+            ShowLoginMessage(result.ErrorMessage, true);
+            SetLoginInputsInteractable(true);
+            s_ignoreClicksUntil = Time.unscaledTime + 0.3f;
         }
+
+        void ShowLoginMessage(string text, bool isError)
+        {
+            if (messageText == null) return;
+            if (!m_HasLoginMessageColor)
+            {
+                m_LoginMessageColor = messageText.color;
+                m_HasLoginMessageColor = true;
+            }
+            messageText.text = text;
+            messageText.color = isError ? new Color(1f, 0.45f, 0.45f, 1f) : m_LoginMessageColor; // red tint for errors
+            messageText.gameObject.SetActive(true);
+        }
+
+        void SetLoginInputsInteractable(bool interactable)
+        {
+            if (studentIdInput != null) studentIdInput.interactable = interactable;
+            if (passwordInput != null) passwordInput.interactable = interactable;
+        }
+
+        Color m_LoginMessageColor = Color.white;
+        bool m_HasLoginMessageColor;
 
         IEnumerator LoggingInRoutine(string studentId, int grade)
         {
@@ -1476,6 +1558,7 @@ namespace NutriMind.Interface
         {
             if (ClickIgnored("Logout")) return;
             if (GameSession.Instance != null) GameSession.Instance.SignOut();
+            ApiSession.SignOut(); // the learner stays remembered on this device for offline sign-in
             s_ignoreClicksUntil = Time.unscaledTime + 0.6f;
             SceneManager.LoadScene(SceneNames.Login);
         }
@@ -1516,7 +1599,8 @@ namespace NutriMind.Interface
         WrongPassword
     }
 
-    // Hard-coded test accounts for offline validation.
+    // Hard-coded test accounts, used ONLY when the server can't be reached and ApiConfig.AllowTestAccounts is true
+    // (see MenuNavigation.Login). Real learners sign in with the username/LRN and password from the web app.
     public static class TestAccounts
     {
         struct Account
@@ -1567,7 +1651,7 @@ namespace NutriMind.Interface
         {
             switch (result)
             {
-                case AuthResult.EmptyId: return "Enter your Student ID.";
+                case AuthResult.EmptyId: return "Enter your username or LRN.";
                 case AuthResult.EmptyPassword: return "Enter your password.";
                 case AuthResult.NotFound: return "Student ID not found.";
                 case AuthResult.WrongPassword: return "Incorrect password.";
