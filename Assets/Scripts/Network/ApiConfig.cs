@@ -16,13 +16,14 @@ namespace NutriMind.Network
     //      php artisan serve --host=0.0.0.0          -> also reachable from a phone on the same Wi-Fi
     //
     //  WHICH BaseUrl TO USE
-    //      Unity Editor on the same PC as Laravel ... "http://127.0.0.1:8000"   (default below)
+    //      Team's hosted server ..................... "https://nutrimind.galaangramospickleball.com"   (default below)
+    //      Unity Editor on the same PC as Laravel ... "http://127.0.0.1:8000"   (testing your own local backend)
     //      Android emulator ......................... "http://10.0.2.2:8000"    (the emulator's name for your PC)
     //      Real phone on the same Wi-Fi ............. "http://192.168.x.x:8000" (your PC's IPv4 from `ipconfig`)
-    //      Hosted server ............................ "https://your-domain.com" (always use https when hosted)
+    //  The hosted server works from the Editor, emulator and real phones alike, with no extra setup.
     //
-    //  Plain http:// is allowed by Assets/Scripts/Editor/AllowHttpForLocalServer.cs. When the game moves to
-    //  an https server, that file can be deleted.
+    //  The hosted server uses https://, which Unity always allows. Only the local http:// addresses need
+    //  Assets/Scripts/Editor/AllowHttpForLocalServer.cs, which switches itself on when BaseUrl starts with http://.
     //
     //  Do NOT end BaseUrl with a slash.
     // =====================================================================================
@@ -30,8 +31,8 @@ namespace NutriMind.Network
     {
         // ---- Where the Laravel server is ------------------------------------------------
 
-        // Laravel's default `php artisan serve` address.
-        public const string BaseUrl = "http://127.0.0.1:8000";
+        // The team's hosted NutriMind web app. Use "http://127.0.0.1:8000" to test against Laravel on your own PC.
+        public const string BaseUrl = "https://nutrimind.galaangramospickleball.com";
 
         // The game API's path inside the Laravel app (routes/api.php). Change only if the backend changes it.
         public const string ApiPath = "/api/v1/game";
