@@ -397,12 +397,16 @@ namespace NutriMind.Interface
                 titleFontMax = 42f;
             }
 
-            titleText.fontSizeMax = titleFontMax;
-            titleText.fontSizeMin = 28f;
+            float scale = NutriMind.Core.GameSettings.TextSizeScale;
+            titleText.fontSizeMax = titleFontMax * scale;
+            titleText.fontSizeMin = 28f * scale;
 
-            messageText.fontSize = maxMsgFont;
-            messageText.fontSizeMax = maxMsgFont;
-            messageText.fontSizeMin = 22f;
+            messageText.fontSize = maxMsgFont * scale;
+            messageText.fontSizeMax = maxMsgFont * scale;
+            messageText.fontSizeMin = 22f * scale;
+
+            if (okButtonText != null)
+                okButtonText.fontSize = 32f * scale;
 
             // Adjust bottom margin if there's no OK button (loading modal)
             float bottomReserve = showOkButton ? 128f : 48f;

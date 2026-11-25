@@ -13,6 +13,7 @@ namespace NutriMind.Interface
         {
             IsDone = false;
             gameObject.SetActive(true);
+            NutriMind.Core.TextSizeManager.ApplyToHierarchy(transform);
         }
 
         protected void Close()

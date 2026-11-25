@@ -52,7 +52,9 @@ namespace NutriMind.Interface
         [Header("Play Screen")]
         [SerializeField] TMP_Text questionText;
         [SerializeField] TMP_Text counterText;
+        [SerializeField] Image progressBar;
         [SerializeField] TMP_Text timerText;
+        [SerializeField] Button playBackButton;
         [SerializeField] ToggleGroup optionsToggleGroup;
         [SerializeField] Toggle[] optionToggles;
         [SerializeField] TMP_Text[] optionTexts;
@@ -216,7 +218,9 @@ namespace NutriMind.Interface
             {
                 if (questionText == null) questionText = panelPlay.transform.Find("QuestionText")?.GetComponent<TMP_Text>();
                 if (counterText == null) counterText = panelPlay.transform.Find("CounterText")?.GetComponent<TMP_Text>();
+                if (progressBar == null) progressBar = panelPlay.transform.Find("ProgressBar")?.GetComponent<Image>();
                 if (timerText == null) timerText = panelPlay.transform.Find("TimerText")?.GetComponent<TMP_Text>();
+                if (playBackButton == null) playBackButton = panelPlay.transform.Find("BackButton")?.GetComponent<Button>();
 
                 if (optionsToggleGroup == null)
                 {
@@ -313,6 +317,17 @@ namespace NutriMind.Interface
                 detailsBackButton.onClick.AddListener(() =>
                 {
                     if (MenuNavigation.CanClick()) ShowListScreen();
+                });
+            }
+
+            if (playBackButton != null)
+            {
+                playBackButton.onClick.RemoveAllListeners();
+                playBackButton.onClick.AddListener(() =>
+                {
+                    if (!MenuNavigation.CanClick()) return;
+                    if (isReviewMode) ShowResultScreen();
+                    else ShowDetailsScreen();
                 });
             }
 
@@ -681,6 +696,8 @@ namespace NutriMind.Interface
             {
                 listContent.GetChild(i).gameObject.SetActive(false);
             }
+
+            NutriMind.Core.TextSizeManager.ApplyToHierarchy(listContent);
         }
 
         void SelectQuiz(QuizDef def)
@@ -919,6 +936,13 @@ namespace NutriMind.Interface
                 }
             }
             if (counterText != null) counterText.text = "Question " + (currentIndex + 1) + " of " + questions.Count;
+            if (progressBar != null)
+            {
+                progressBar.type = Image.Type.Filled;
+                progressBar.fillMethod = Image.FillMethod.Horizontal;
+                progressBar.fillOrigin = (int)Image.OriginHorizontal.Left;
+                progressBar.fillAmount = questions.Count > 0 ? (float)(currentIndex + 1) / questions.Count : 0f;
+            }
 
             // Identification questions from teachers: show the text box instead of the choices.
             if (answerInput != null)

@@ -173,6 +173,7 @@ namespace NutriMind.Interface
             {
                 BuildCards();
                 if (isSort) BuildBuckets();
+                NutriMind.Core.TextSizeManager.ApplyToHierarchy(transform);
             }
             else if (!isWrite)
             {
