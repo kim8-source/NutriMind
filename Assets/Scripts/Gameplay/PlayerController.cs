@@ -33,12 +33,15 @@ namespace NutriMind.Gameplay
         [SerializeField] Animator animator;
 
         public bool InputEnabled = true;
-        public bool IsRunning { get; private set; }
+        public bool IsRunToggled { get; private set; }
+        public bool IsRunHeld { get; private set; }
+        public bool IsRunning => IsRunToggled || IsRunHeld;
 
         CharacterController controller;
         float verticalSpeed;
         float lastGroundedTime;
         float jumpBufferTimer;
+        bool keyboardShiftHeld;
         int speedHash;
         int isMovingHash;
         int isRunningHash;
@@ -127,12 +130,23 @@ namespace NutriMind.Gameplay
         // Hook the Run button or scripts to these:
         public void ToggleRun()
         {
-            SetRunning(!IsRunning);
+            SetRunToggled(!IsRunToggled);
         }
 
         public void SetRunning(bool running)
         {
-            IsRunning = running;
+            IsRunToggled = running;
+            IsRunHeld = false;
+        }
+
+        public void SetRunToggled(bool toggled)
+        {
+            IsRunToggled = toggled;
+        }
+
+        public void SetRunHeld(bool held)
+        {
+            IsRunHeld = held;
         }
 
         void Update()
@@ -155,6 +169,11 @@ namespace NutriMind.Gameplay
             {
                 CheckKeyboardSprint();
                 CheckKeyboardJump();
+            }
+            else if (keyboardShiftHeld)
+            {
+                keyboardShiftHeld = false;
+                SetRunHeld(false);
             }
 
             float speed = (IsRunning ? runSpeed : walkSpeed) * amount;
@@ -256,13 +275,11 @@ namespace NutriMind.Gameplay
             var keyboard = UnityEngine.InputSystem.Keyboard.current;
             if (keyboard != null)
             {
-                if (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed)
+                bool shiftHeld = keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed;
+                if (shiftHeld != keyboardShiftHeld)
                 {
-                    IsRunning = true;
-                }
-                else if (keyboard.leftShiftKey.wasReleasedThisFrame || keyboard.rightShiftKey.wasReleasedThisFrame)
-                {
-                    IsRunning = false;
+                    keyboardShiftHeld = shiftHeld;
+                    SetRunHeld(shiftHeld);
                 }
 
                 if (keyboard.rKey.wasPressedThisFrame)
@@ -271,13 +288,11 @@ namespace NutriMind.Gameplay
                 }
             }
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            if (shiftHeld != keyboardShiftHeld)
             {
-                IsRunning = true;
-            }
-            else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
-            {
-                IsRunning = false;
+                keyboardShiftHeld = shiftHeld;
+                SetRunHeld(shiftHeld);
             }
 
             if (Input.GetKeyDown(KeyCode.R))
@@ -299,7 +314,7 @@ namespace NutriMind.Gameplay
                 Vector2 val = joystick.Value;
                 if (autoSprintOnTiltMax && val.magnitude > 0.9f)
                 {
-                    IsRunning = true;
+                    SetRunHeld(true);
                 }
                 return val;
             }
@@ -309,7 +324,7 @@ namespace NutriMind.Gameplay
                 Vector2 val = genericJoystick.Direction;
                 if (autoSprintOnTiltMax && val.magnitude > 0.9f)
                 {
-                    IsRunning = true;
+                    SetRunHeld(true);
                 }
                 return val;
             }

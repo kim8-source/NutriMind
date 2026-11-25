@@ -6,9 +6,9 @@ namespace NutriMind.Gameplay
 {
     // Attach to the RunButton UI GameObject in the HUD.
     // Works reliably anytime: whether idle, walking, running, or transitioning between them.
-    // 1. Single Tap: Toggles Run mode on/off.
-    // 2. Press and Hold: Sprints while held down, returns to walk upon release.
-    public class RunButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    // 1. Quick Tap: Toggles persistent Run mode ON/OFF.
+    // 2. Press and Hold: Temporarily sprints while held down, then returns to previous toggle state on release.
+    public class RunButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ICancelHandler
     {
         [Tooltip("Reference to the player controller. Auto-detected if null.")]
         [SerializeField] PlayerController player;
@@ -22,7 +22,7 @@ namespace NutriMind.Gameplay
 
         float pointerDownTime;
         bool isPointerDown;
-        bool wasRunningOnDown;
+        bool wasToggledOnDown;
         int activePointerId = int.MinValue;
         int activeTouchId = -1;
         bool isMouseHold;
@@ -36,6 +36,11 @@ namespace NutriMind.Gameplay
             if (btn != null)
             {
                 btn.onClick.RemoveAllListeners();
+                // Prevent Button's ColorTint/Selection states from overriding RunButton's active/inactive visual color.
+                btn.transition = Selectable.Transition.None;
+                var nav = btn.navigation;
+                nav.mode = Navigation.Mode.None;
+                btn.navigation = nav;
             }
         }
 
@@ -59,9 +64,9 @@ namespace NutriMind.Gameplay
 
             if (player != null)
             {
-                wasRunningOnDown = player.IsRunning;
-                // Instantly engage run on touch down for zero latency
-                player.SetRunning(true);
+                wasToggledOnDown = player.IsRunToggled;
+                // Engage temporary hold-to-run immediately without altering persistent toggle state
+                player.SetRunHeld(true);
             }
             UpdateVisual(true);
         }
@@ -71,10 +76,16 @@ namespace NutriMind.Gameplay
             if (!isPointerDown) return;
             if (eventData != null && activePointerId != int.MinValue && eventData.pointerId != activePointerId) return;
 
-            HandleRelease();
+            HandleRelease(false);
         }
 
-        void HandleRelease()
+        public void OnCancel(BaseEventData eventData)
+        {
+            if (!isPointerDown) return;
+            HandleRelease(true);
+        }
+
+        void HandleRelease(bool cancelled)
         {
             ResolvePlayer();
             float duration = Time.unscaledTime - pointerDownTime;
@@ -85,19 +96,20 @@ namespace NutriMind.Gameplay
 
             if (player != null)
             {
-                if (duration < holdThreshold)
+                // Always clear temporary hold state on release
+                player.SetRunHeld(false);
+
+                if (!cancelled && duration < holdThreshold)
                 {
-                    // TAP: Toggle run mode anytime (idle, walking, running)
-                    bool targetState = !wasRunningOnDown;
-                    player.SetRunning(targetState);
-                    UpdateVisual(targetState);
+                    // QUICK TAP: Toggle persistent run state
+                    player.SetRunToggled(!wasToggledOnDown);
                 }
-                else
-                {
-                    // PRESS AND HOLD: Releasing returns to walking
-                    player.SetRunning(false);
-                    UpdateVisual(false);
-                }
+                // PRESS AND HOLD (or cancelled): leave IsRunToggled untouched so it returns to previous toggle state
+                UpdateVisual(player.IsRunning);
+            }
+            else
+            {
+                UpdateVisual(false);
             }
         }
 
@@ -162,7 +174,7 @@ namespace NutriMind.Gameplay
             // release immediately so hold-to-run never stays stuck ON.
             if (isPointerDown && !IsActivePointerStillPressed())
             {
-                HandleRelease();
+                HandleRelease(false);
                 return;
             }
 
@@ -221,7 +233,15 @@ namespace NutriMind.Gameplay
         {
             if (isPointerDown)
             {
-                HandleRelease();
+                HandleRelease(true);
+            }
+        }
+
+        void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus && isPointerDown)
+            {
+                HandleRelease(true);
             }
         }
 
