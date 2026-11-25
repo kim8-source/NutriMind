@@ -18,12 +18,18 @@ namespace NutriMind.Gameplay
         [SerializeField] float turnSharpness = 12f;
         [SerializeField] float gravity = -20f;
 
+        [Header("Jump Settings")]
+        [SerializeField] float jumpHeight = 1.6f;
+        [SerializeField] bool canJump = true;
+        [Tooltip("Normalized start time (0-0.5) to skip Mixamo crouch wind-up so animation matches takeoff.")]
+        [SerializeField, Range(0f, 0.5f)] float jumpAnimStartOffset = 0.18f;
+
         [Header("Mobile Controls")]
         [Tooltip("If true, pushing the mobile joystick all the way to the outer edge (> 90%) will also trigger run.")]
         [SerializeField] bool autoSprintOnTiltMax = false;
 
         [Header("Optional")]
-        [Tooltip("Animator handling player locomotion (Speed, IsMoving, IsRunning).")]
+        [Tooltip("Animator handling player locomotion (Speed, IsMoving, IsRunning, Jump).")]
         [SerializeField] Animator animator;
 
         public bool InputEnabled = true;
@@ -31,12 +37,26 @@ namespace NutriMind.Gameplay
 
         CharacterController controller;
         float verticalSpeed;
+        float lastGroundedTime;
+        float jumpBufferTimer;
         int speedHash;
         int isMovingHash;
         int isRunningHash;
+        int jumpHash;
+        int isGroundedHash;
         bool animatorHasSpeed;
         bool animatorHasIsMoving;
         bool animatorHasIsRunning;
+        bool animatorHasJump;
+        bool animatorHasIsGrounded;
+
+        bool CheckGrounded()
+        {
+            if (controller.isGrounded) return true;
+            // Raycast check down 0.35m from slightly above feet to handle uneven slopes while running
+            Vector3 origin = transform.position + Vector3.up * 0.15f;
+            return Physics.Raycast(origin, Vector3.down, 0.35f, ~0, QueryTriggerInteraction.Ignore);
+        }
 
         void Awake()
         {
@@ -57,12 +77,16 @@ namespace NutriMind.Gameplay
                 speedHash = Animator.StringToHash("Speed");
                 isMovingHash = Animator.StringToHash("IsMoving");
                 isRunningHash = Animator.StringToHash("IsRunning");
+                jumpHash = Animator.StringToHash("Jump");
+                isGroundedHash = Animator.StringToHash("IsGrounded");
 
                 foreach (AnimatorControllerParameter p in animator.parameters)
                 {
                     if (p.nameHash == speedHash) animatorHasSpeed = true;
                     if (p.nameHash == isMovingHash) animatorHasIsMoving = true;
                     if (p.nameHash == isRunningHash) animatorHasIsRunning = true;
+                    if (p.nameHash == jumpHash) animatorHasJump = true;
+                    if (p.nameHash == isGroundedHash) animatorHasIsGrounded = true;
                 }
             }
 
@@ -73,6 +97,18 @@ namespace NutriMind.Gameplay
             if (runBtnObj != null && runBtnObj.GetComponent<RunButton>() == null)
             {
                 runBtnObj.AddComponent<RunButton>();
+            }
+
+            // Auto-detect and wire up JumpButton in the HUD if present
+            GameObject jumpBtnObj = GameObject.Find("JumpButton");
+            if (jumpBtnObj != null)
+            {
+                var misplacedRun = jumpBtnObj.GetComponent<RunButton>();
+                if (misplacedRun != null) Destroy(misplacedRun);
+                if (jumpBtnObj.GetComponent<JumpButton>() == null)
+                {
+                    jumpBtnObj.AddComponent<JumpButton>();
+                }
             }
         }
 
@@ -114,16 +150,36 @@ namespace NutriMind.Gameplay
             float amount = Mathf.Clamp01(direction.magnitude);
             bool isMoving = amount > 0.05f;
 
-            // Keyboard sprint support for testing (Hold Shift to run, or press R to toggle)
+            // Keyboard sprint and jump support for testing
             if (InputEnabled)
             {
                 CheckKeyboardSprint();
+                CheckKeyboardJump();
             }
 
             float speed = (IsRunning ? runSpeed : walkSpeed) * amount;
 
-            if (controller.isGrounded && verticalSpeed < 0f) verticalSpeed = -2f;
-            verticalSpeed += gravity * Time.deltaTime;
+            bool grounded = CheckGrounded();
+            if (grounded)
+            {
+                lastGroundedTime = Time.time;
+                if (verticalSpeed < 0f) verticalSpeed = -2f;
+            }
+            else
+            {
+                verticalSpeed += gravity * Time.deltaTime;
+            }
+
+            // Execute buffered jump if player pressed jump right before touching ground
+            if (jumpBufferTimer > 0f)
+            {
+                jumpBufferTimer -= Time.deltaTime;
+                if (grounded)
+                {
+                    jumpBufferTimer = 0f;
+                    ExecuteJump();
+                }
+            }
 
             Vector3 velocity = direction.normalized * speed + Vector3.up * verticalSpeed;
             controller.Move(velocity * Time.deltaTime);
@@ -141,7 +197,57 @@ namespace NutriMind.Gameplay
                 if (animatorHasSpeed) animator.SetFloat(speedHash, speed);
                 if (animatorHasIsMoving) animator.SetBool(isMovingHash, isMoving);
                 if (animatorHasIsRunning) animator.SetBool(isRunningHash, isMoving && IsRunning);
+                if (animatorHasIsGrounded) animator.SetBool(isGroundedHash, grounded);
             }
+        }
+
+        public void Jump()
+        {
+            if (!InputEnabled || !canJump) return;
+
+            // Allow jump if currently grounded or within coyote time (0.2s of leaving ground).
+            // No jump buffer: buffering would cause an auto-jump ~1 second later when the
+            // player lands, because the buffer countdown runs in Update() and fires ExecuteJump()
+            // the moment isGrounded becomes true — which looks like a second unprompted jump.
+            if (Time.time - lastGroundedTime <= 0.2f)
+            {
+                lastGroundedTime = -10f; // Consume coyote time so double jump is prevented
+                jumpBufferTimer = 0f;    // Clear any stale buffer
+                ExecuteJump();
+            }
+            // If in mid-air and not within coyote window, do nothing (no buffer).
+        }
+
+        void ExecuteJump()
+        {
+            verticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            if (animator != null)
+            {
+                if (animatorHasJump)
+                {
+                    animator.ResetTrigger(jumpHash);
+                }
+                // CrossFade immediately with a slight start offset to skip the Mixamo crouch wind-up
+                // so the visual takeoff matches the physical jump without delay.
+                animator.CrossFadeInFixedTime("Jump", 0.04f, 0, jumpAnimStartOffset);
+            }
+        }
+
+        void CheckKeyboardJump()
+        {
+#if ENABLE_INPUT_SYSTEM
+            var keyboard = UnityEngine.InputSystem.Keyboard.current;
+            if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
+            {
+                Jump();
+            }
+#elif ENABLE_LEGACY_INPUT_MANAGER
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+#endif
         }
 
         void CheckKeyboardSprint()

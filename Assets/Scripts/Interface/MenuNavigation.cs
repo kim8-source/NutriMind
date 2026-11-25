@@ -154,6 +154,7 @@ namespace NutriMind.Interface
         {
             if (Time.unscaledTime < s_ignoreClicksUntil) return false;
             s_ignoreClicksUntil = Time.unscaledTime + 0.35f;
+            AudioManager.PlayClick();
             return true;
         }
 
@@ -166,14 +167,52 @@ namespace NutriMind.Interface
         void OnEnable()
         {
             s_ignoreClicksUntil = Mathf.Max(s_ignoreClicksUntil, Time.unscaledTime + 0.4f);
+            SyncService.ProfileUpdated += OnProfileUpdated;
+
+            if (ApiSession.HasToken)
+            {
+                StartCoroutine(ApiClient.GetProfile(result =>
+                {
+                    if (!result.Success) return;
+                    var resp = result.Parse<ProfileResponse>();
+                    if (resp != null && resp.data != null)
+                    {
+                        SyncService.PublishProfile(resp.data);
+                    }
+                }));
+            }
         }
 
         void OnDisable()
         {
+            SyncService.ProfileUpdated -= OnProfileUpdated;
+
             if (m_ProgressAnimCoroutine != null)
             {
                 StopCoroutine(m_ProgressAnimCoroutine);
                 m_ProgressAnimCoroutine = null;
+            }
+        }
+
+        void OnProfileUpdated(ProfileData profile)
+        {
+            if (profile == null) return;
+            var session = GameSession.Instance;
+            if (session == null || !session.IsSignedIn) return;
+
+            if (pointsText != null)
+            {
+                pointsText.text = profile.total_points.ToString();
+            }
+
+            if (panelProfile != null && panelProfile.activeInHierarchy)
+            {
+                PopulateProfileData();
+            }
+
+            if (panelProgress != null && panelProgress.activeInHierarchy)
+            {
+                PopulateProgressData();
             }
         }
 
@@ -187,6 +226,7 @@ namespace NutriMind.Interface
                 UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             }
 
+            InitBootIfPresent();
             InitLoginIfPresent();
             InitMainMenuIfPresent();
             InitWorldSelectIfPresent();
@@ -195,8 +235,11 @@ namespace NutriMind.Interface
             GameSession session = GameSession.Instance;
             if (session == null || !session.IsSignedIn) return;
 
+            ProfileData me = ApiSession.IsFor(session.StudentId) ? ApiSession.Profile : null;
+            int points = me != null ? me.total_points : session.Save.totalPoints;
+
             if (helloText != null) helloText.text = "Hello, " + DisplayName(session) + "!";
-            if (pointsText != null) pointsText.text = session.Save.totalPoints.ToString();
+            if (pointsText != null) pointsText.text = points.ToString();
         }
 
         void Update()
@@ -257,6 +300,65 @@ namespace NutriMind.Interface
             return session.StudentId;
         }
 
+        void InitBootIfPresent()
+        {
+            if (SceneManager.GetActiveScene().name != SceneNames.Boot) return;
+
+            WireButton("PlayButton", () => Go(SceneNames.Login));
+
+            GameObject loadingBarGo = GameObject.Find("LoadingBar");
+            GameObject playButtonGo = GameObject.Find("PlayButton");
+
+            if (loadingBarGo != null && playButtonGo != null)
+            {
+                StartCoroutine(BootLoadingSequence(loadingBarGo, playButtonGo));
+            }
+        }
+
+        IEnumerator BootLoadingSequence(GameObject loadingBar, GameObject playButton)
+        {
+            loadingBar.SetActive(true);
+            playButton.SetActive(false);
+
+            Transform fillTrans = loadingBar.transform.Find("Image");
+            Image fillImage = fillTrans != null ? fillTrans.GetComponent<Image>() : null;
+
+            if (fillImage != null)
+            {
+                fillImage.type = Image.Type.Filled;
+                fillImage.fillMethod = Image.FillMethod.Horizontal;
+                fillImage.fillOrigin = (int)Image.OriginHorizontal.Left;
+                fillImage.fillAmount = 0f;
+            }
+
+            float duration = 1.4f;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float progress = Mathf.Clamp01(elapsed / duration);
+                float eased = Mathf.Sin(progress * Mathf.PI * 0.5f);
+
+                if (fillImage != null)
+                {
+                    fillImage.fillAmount = eased;
+                }
+
+                yield return null;
+            }
+
+            if (fillImage != null)
+            {
+                fillImage.fillAmount = 1f;
+            }
+
+            yield return new WaitForSeconds(0.2f);
+
+            loadingBar.SetActive(false);
+            playButton.SetActive(true);
+        }
+
         void InitLoginIfPresent()
         {
             if (SceneManager.GetActiveScene().name != SceneNames.Login) return;
@@ -265,6 +367,7 @@ namespace NutriMind.Interface
                 messageText.text = "";
                 messageText.gameObject.SetActive(false);
             }
+            WireButton("BackButton", () => Go(SceneNames.Boot));
         }
 
         void InitMissionSelectIfPresent()
@@ -526,7 +629,11 @@ namespace NutriMind.Interface
                 if (allButtons[i].gameObject.scene == gameObject.scene && allButtons[i].gameObject.name == goName)
                 {
                     allButtons[i].onClick.RemoveAllListeners();
-                    allButtons[i].onClick.AddListener(action);
+                    allButtons[i].onClick.AddListener(() =>
+                    {
+                        AudioManager.Instance?.PlayButtonClick();
+                        action?.Invoke();
+                    });
                     return;
                 }
             }
@@ -542,7 +649,11 @@ namespace NutriMind.Interface
                 if (allButtons[i].name == "BackButton" && allButtons[i].gameObject.scene == gameObject.scene)
                 {
                     allButtons[i].onClick.RemoveAllListeners();
-                    allButtons[i].onClick.AddListener(ShowHome);
+                    allButtons[i].onClick.AddListener(() =>
+                    {
+                        AudioManager.Instance?.PlayButtonClick();
+                        ShowHome();
+                    });
                 }
             }
         }
@@ -552,8 +663,10 @@ namespace NutriMind.Interface
             if (panelSettings == null) return;
 
             // Music Slider
-            var sliderMusic = panelSettings.transform.Find("PanelBackground/Slider_Music")?.GetComponent<Slider>()
-                           ?? GameObject.Find("Slider_Music")?.GetComponent<Slider>();
+            var sliderMusic = panelSettings.transform.Find("Background/Slider_Music")?.GetComponent<Slider>()
+                           ?? panelSettings.transform.Find("PanelBackground/Slider_Music")?.GetComponent<Slider>()
+                           ?? panelSettings.transform.Find("Slider_Music")?.GetComponent<Slider>()
+                           ?? panelSettings.GetComponentInChildren<Slider>(true);
             if (sliderMusic != null)
             {
                 sliderMusic.value = GameSettings.MusicVolume;
@@ -562,8 +675,10 @@ namespace NutriMind.Interface
             }
 
             // Effects Slider
-            var sliderEffects = panelSettings.transform.Find("PanelBackground/Slider_Effects")?.GetComponent<Slider>()
-                             ?? GameObject.Find("Slider_Effects")?.GetComponent<Slider>();
+            var sliderEffects = panelSettings.transform.Find("Background/Slider_Effects")?.GetComponent<Slider>()
+                             ?? panelSettings.transform.Find("PanelBackground/Slider_Effects")?.GetComponent<Slider>()
+                             ?? panelSettings.transform.Find("Slider_Effects")?.GetComponent<Slider>()
+                             ?? panelSettings.GetComponentInChildren<Slider>(true);
             if (sliderEffects != null)
             {
                 sliderEffects.value = GameSettings.SfxVolume;
@@ -572,13 +687,62 @@ namespace NutriMind.Interface
             }
 
             // Text Size Dropdown
-            var dropdownText = panelSettings.transform.Find("PanelBackground/Dropdown_TextSize")?.GetComponent<TMP_Dropdown>()
-                            ?? GameObject.Find("Dropdown_TextSize")?.GetComponent<TMP_Dropdown>();
+            var dropdownText = panelSettings.transform.Find("Background/Dropdown_TextSize")?.GetComponent<TMP_Dropdown>()
+                            ?? panelSettings.transform.Find("PanelBackground/Dropdown_TextSize")?.GetComponent<TMP_Dropdown>()
+                            ?? panelSettings.transform.Find("Dropdown_TextSize")?.GetComponent<TMP_Dropdown>()
+                            ?? panelSettings.GetComponentInChildren<TMP_Dropdown>(true);
             if (dropdownText != null)
             {
+                // Auto-resolve ItemText from Template if unassigned in the inspector
+                if (dropdownText.itemText == null && dropdownText.template != null)
+                {
+                    dropdownText.itemText = dropdownText.template.GetComponentInChildren<TMP_Text>(true);
+                }
+
+                // Ensure item background highlight only appears on the selected item
+                if (dropdownText.template != null)
+                {
+                    var itemToggle = dropdownText.template.GetComponentInChildren<Toggle>(true);
+                    if (itemToggle != null)
+                    {
+                        var bg = itemToggle.transform.Find("Item Background")?.GetComponent<Image>();
+                        var checkmark = itemToggle.transform.Find("Item Checkmark")?.GetComponent<Image>();
+                        if (bg != null && checkmark != null)
+                        {
+                            // Transfer highlight sprite to checkmark so only the selected item displays it
+                            var checkRect = checkmark.rectTransform;
+                            checkRect.anchorMin = Vector2.zero;
+                            checkRect.anchorMax = Vector2.one;
+                            checkRect.anchoredPosition = Vector2.zero;
+                            checkRect.sizeDelta = Vector2.zero;
+
+                            if (bg.sprite != null)
+                            {
+                                checkmark.sprite = bg.sprite;
+                                checkmark.color = bg.color;
+                                bg.sprite = null;
+                            }
+                            else if (checkmark.sprite == null || checkmark.sprite.name == "UISprite" || checkmark.sprite.name.Contains("Checkmark"))
+                            {
+                                checkmark.color = new Color(0.82f, 0.82f, 0.82f, 1f);
+                            }
+
+                            // Base background is transparent when unselected
+                            bg.color = new Color(1f, 1f, 1f, 0f);
+
+                            var colors = itemToggle.colors;
+                            colors.normalColor = new Color(1f, 1f, 1f, 0f);
+                            colors.highlightedColor = new Color(1f, 1f, 1f, 0.2f);
+                            colors.selectedColor = new Color(1f, 1f, 1f, 0f);
+                            itemToggle.colors = colors;
+                        }
+                    }
+                }
+
                 dropdownText.ClearOptions();
                 dropdownText.AddOptions(new List<string> { "Small (80%)", "Normal (100%)", "Large (120%)" });
                 dropdownText.value = GameSettings.TextSizeIndex;
+                dropdownText.RefreshShownValue();
                 dropdownText.onValueChanged.RemoveAllListeners();
                 dropdownText.onValueChanged.AddListener(idx => GameSettings.SetTextSize(idx));
             }
@@ -595,10 +759,15 @@ namespace NutriMind.Interface
             SetPanel(panelProgress, false);
             SetPanel(panelSettings, false);
 
-            // Refresh points on home
-            if (pointsText != null && GameSession.Instance != null && GameSession.Instance.Save != null)
+            // Refresh points on home – prefer server points when signed in through the backend
+            if (pointsText != null)
             {
-                pointsText.text = GameSession.Instance.Save.totalPoints.ToString();
+                var homeSession = GameSession.Instance;
+                if (homeSession != null && homeSession.IsSignedIn)
+                {
+                    ProfileData homeMe = ApiSession.IsFor(homeSession.StudentId) ? ApiSession.Profile : null;
+                    pointsText.text = (homeMe != null ? homeMe.total_points : homeSession.Save.totalPoints).ToString();
+                }
             }
         }
 
@@ -766,6 +935,19 @@ namespace NutriMind.Interface
             }
         }
 
+        static string GetRankTitleForLevel(int lvl)
+        {
+            switch (lvl)
+            {
+                case 1: return "Apprentice Learner";
+                case 2: return "Curious Explorer";
+                case 3: return "Knowledge Seeker";
+                case 4: return "Honor Scholar";
+                case 5: return "Master Scholar";
+                default: return "NutriMind Scholar";
+            }
+        }
+
         void PopulateProfileData()
         {
             if (panelProfile == null) return;
@@ -774,10 +956,12 @@ namespace NutriMind.Interface
 
             InitProfileBindings();
 
-            // 1. Current Badge Image & Separated Rank / Level Details
-            int level = session.GetStudentLevel();
-            string rankTitle = session.GetStudentRankTitle();
+            ProfileData me = ApiSession.IsFor(session.StudentId) ? ApiSession.Profile : null;
+            int points = me != null ? me.total_points : session.Save.totalPoints;
+            int level = (me != null && me.level > 0) ? me.level : session.GetStudentLevel();
+            string rankTitle = GetRankTitleForLevel(level);
 
+            // 1. Current Badge Image & Separated Rank / Level Details
             if (currentBadgeImage != null)
             {
                 Sprite rankSprite = GetRankBadgeSprite(level);
@@ -806,10 +990,14 @@ namespace NutriMind.Interface
             if (studentIdText != null)
             {
                 // Server learners: show their username (GameSession.StudentId is the server's internal user ID).
-                studentIdText.text = ApiSession.IsFor(session.StudentId) ? ApiSession.Profile.username : session.StudentId;
+                studentIdText.text = (me != null && !string.IsNullOrEmpty(me.username)) ? me.username : session.StudentId;
             }
-            if (gradeLevelText != null) gradeLevelText.text = $"Grade {session.Grade}";
-            if (totalScoreText != null) totalScoreText.text = $"{session.Save.totalPoints} PTS";
+            if (gradeLevelText != null)
+            {
+                int grade = (me != null && me.grade > 0) ? me.grade : session.Grade;
+                gradeLevelText.text = $"Grade {grade}";
+            }
+            if (totalScoreText != null) totalScoreText.text = $"{points} PTS";
 
             // 3. Academic & Quiz Statistics
             int missionsDone = session.GetCompletedMissionsCount();
@@ -969,6 +1157,20 @@ namespace NutriMind.Interface
                     if (IsBadgeItem(item) && !badges.Contains(item))
                     {
                         badges.Add(item);
+                    }
+                }
+            }
+
+            // Also include server rewards if signed in
+            ProfileData me = ApiSession.IsFor(session.StudentId) ? ApiSession.Profile : null;
+            if (me != null && me.rewards != null)
+            {
+                for (int i = 0; i < me.rewards.Count; i++)
+                {
+                    string rName = me.rewards[i].name;
+                    if (!string.IsNullOrEmpty(rName) && !badges.Contains(rName))
+                    {
+                        badges.Add(rName);
                     }
                 }
             }
@@ -1144,7 +1346,8 @@ namespace NutriMind.Interface
             int targetSciPct = Mathf.RoundToInt((float)sciCompleted / 9f * 100f);
             int targetPehPct = Mathf.RoundToInt((float)pehCompleted / 9f * 100f);
             int targetOverallPct = Mathf.RoundToInt((float)totalStations / totalPossible * 100f);
-            int targetPoints = session.Save.totalPoints;
+            ProfileData me = ApiSession.IsFor(session.StudentId) ? ApiSession.Profile : null;
+            int targetPoints = me != null ? me.total_points : session.Save.totalPoints;
 
             // Set static count labels immediately
             if (engCountText != null) engCountText.text = $"{engCompleted} of 9 Checkpoints";
@@ -1288,45 +1491,200 @@ namespace NutriMind.Interface
         }
 
         Sprite GetBadgeSprite(string badgeName)
+
         {
+
+            // Available badge files in Resources/Badges/:
+
+            //   active_hero, atlas, critical_reader, crystal, earth_explorer,
+
+            //   eco_guardian, eng, evidence_based_communicator, fitness_champion,
+
+            //   lantern, leaf, matter_master, medal, peh, persuasion_investigator,
+
+            //   sci, wellness_pioneer
+
+
+
             if (string.IsNullOrEmpty(badgeName))
-                return Resources.Load<Sprite>("Badges/medal") ?? FindFallbackSprite("medal", "star");
+
+                return LoadBadgeFallback();
+
+
 
             // 1. Try loading direct or formatted name from Resources/Badges/
+
             string rawClean = badgeName.Trim();
+
             Sprite direct = Resources.Load<Sprite>("Badges/" + rawClean);
+
             if (direct != null) return direct;
+
+
 
             string slug = rawClean.ToLowerInvariant().Replace(" ", "_").Replace("'", "").Replace("’", "").Replace("-", "_");
+
             direct = Resources.Load<Sprite>("Badges/" + slug);
+
             if (direct != null) return direct;
 
+
+
             string noSpaces = rawClean.ToLowerInvariant().Replace(" ", "").Replace("'", "").Replace("’", "").Replace("-", "");
+
             direct = Resources.Load<Sprite>("Badges/" + noSpaces);
+
             if (direct != null) return direct;
+
+
 
             string lower = rawClean.ToLowerInvariant();
 
-            // 2. Specific mission badge keywords
-            if (lower.Contains("lantern")) direct = Resources.Load<Sprite>("Badges/lantern") ?? Resources.Load<Sprite>("Badges/golden_lantern");
-            else if (lower.Contains("crystal")) direct = Resources.Load<Sprite>("Badges/crystal") ?? Resources.Load<Sprite>("Badges/wisdom_crystal");
-            else if (lower.Contains("atlas")) direct = Resources.Load<Sprite>("Badges/atlas") ?? Resources.Load<Sprite>("Badges/explorers_atlas");
-            if (direct != null) return direct;
 
-            // 3. Subject-based fallback to core sprites
+
+            // 2. Specific multi-word badge names (most specific first)
+
+            if (lower.Contains("critical") && lower.Contains("reader"))
+
+                return Resources.Load<Sprite>("Badges/critical_reader") ?? Resources.Load<Sprite>("Badges/eng") ?? FindFallbackSprite("engicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("evidence") || lower.Contains("communicator"))
+
+                return Resources.Load<Sprite>("Badges/evidence_based_communicator") ?? Resources.Load<Sprite>("Badges/eng") ?? FindFallbackSprite("engicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("persuasion") || lower.Contains("investigator"))
+
+                return Resources.Load<Sprite>("Badges/persuasion_investigator") ?? Resources.Load<Sprite>("Badges/eng") ?? FindFallbackSprite("engicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("matter") && lower.Contains("master"))
+
+                return Resources.Load<Sprite>("Badges/matter_master") ?? Resources.Load<Sprite>("Badges/sci") ?? FindFallbackSprite("sciicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("earth") && lower.Contains("explorer"))
+
+                return Resources.Load<Sprite>("Badges/earth_explorer") ?? Resources.Load<Sprite>("Badges/sci") ?? FindFallbackSprite("sciicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("eco") || lower.Contains("guardian"))
+
+                return Resources.Load<Sprite>("Badges/eco_guardian") ?? Resources.Load<Sprite>("Badges/sci") ?? FindFallbackSprite("sciicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("active") && lower.Contains("hero"))
+
+                return Resources.Load<Sprite>("Badges/active_hero") ?? Resources.Load<Sprite>("Badges/peh") ?? FindFallbackSprite("peicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("fitness") && lower.Contains("champion"))
+
+                return Resources.Load<Sprite>("Badges/fitness_champion") ?? Resources.Load<Sprite>("Badges/peh") ?? FindFallbackSprite("peicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("wellness") && lower.Contains("pioneer"))
+
+                return Resources.Load<Sprite>("Badges/wellness_pioneer") ?? Resources.Load<Sprite>("Badges/peh") ?? FindFallbackSprite("peicon") ?? LoadBadgeFallback();
+
+
+
+            // 3. Single-keyword subject matches
+
+            if (lower.Contains("lantern"))
+
+                return Resources.Load<Sprite>("Badges/lantern") ?? LoadBadgeFallback();
+
+            if (lower.Contains("crystal"))
+
+                return Resources.Load<Sprite>("Badges/crystal") ?? LoadBadgeFallback();
+
+            if (lower.Contains("atlas"))
+
+                return Resources.Load<Sprite>("Badges/atlas") ?? LoadBadgeFallback();
+
             if (lower.Contains("sci") || lower.Contains("flask") || lower.Contains("matter") || lower.Contains("eco") || lower.Contains("earth"))
-                return Resources.Load<Sprite>("Badges/sci") ?? FindFallbackSprite("sciicon", "sci");
-            if (lower.Contains("peh") || lower.Contains("health") || lower.Contains("pe") || lower.Contains("fitness") || lower.Contains("wellness") || lower.Contains("hero"))
-                return Resources.Load<Sprite>("Badges/peh") ?? FindFallbackSprite("peicon", "peh");
-            if (lower.Contains("eng") || lower.Contains("litera") || lower.Contains("reader") || lower.Contains("communicator") || lower.Contains("investigator"))
-                return Resources.Load<Sprite>("Badges/eng") ?? FindFallbackSprite("engicon", "eng");
-            if (lower.Contains("leaf"))
-                return Resources.Load<Sprite>("Badges/leaf") ?? FindFallbackSprite("checklisticon", "leaf");
-            if (lower.Contains("star") || lower.Contains("rank"))
-                return Resources.Load<Sprite>("Badges/star") ?? FindFallbackSprite("star");
 
-            return Resources.Load<Sprite>("Badges/medal") ?? FindFallbackSprite("medal", "star");
+                return Resources.Load<Sprite>("Badges/sci") ?? FindFallbackSprite("sciicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("peh") || lower.Contains("health") || lower.Contains("fitness") || lower.Contains("wellness") || lower.Contains("hero") || lower.Contains("active"))
+
+                return Resources.Load<Sprite>("Badges/peh") ?? FindFallbackSprite("peicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("eng") || lower.Contains("litera") || lower.Contains("reader") || lower.Contains("communicator") || lower.Contains("investigator"))
+
+                return Resources.Load<Sprite>("Badges/eng") ?? FindFallbackSprite("engicon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("leaf"))
+
+                return Resources.Load<Sprite>("Badges/leaf") ?? FindFallbackSprite("checklisticon") ?? LoadBadgeFallback();
+
+            if (lower.Contains("star") || lower.Contains("rank"))
+
+                return Resources.Load<Sprite>("Badges/medal") ?? LoadBadgeFallback();
+
+
+
+            // 4. Unknown name: hash-based pick so different unrecognised badges look different
+
+            int nameHash = 0;
+
+            for (int ci = 0; ci < lower.Length; ci++) nameHash += lower[ci];
+
+            Sprite[] palette = new Sprite[]
+
+            {
+
+                Resources.Load<Sprite>("Badges/eng"),
+
+                Resources.Load<Sprite>("Badges/sci"),
+
+                Resources.Load<Sprite>("Badges/peh"),
+
+                Resources.Load<Sprite>("Badges/lantern"),
+
+                Resources.Load<Sprite>("Badges/crystal"),
+
+                Resources.Load<Sprite>("Badges/atlas"),
+
+                Resources.Load<Sprite>("Badges/leaf"),
+
+                Resources.Load<Sprite>("Badges/medal"),
+
+            };
+
+            var valid = new System.Collections.Generic.List<Sprite>();
+
+            for (int pi = 0; pi < palette.Length; pi++)
+
+                if (palette[pi] != null) valid.Add(palette[pi]);
+
+            if (valid.Count > 0)
+
+                return valid[Mathf.Abs(nameHash) % valid.Count];
+
+
+
+            return LoadBadgeFallback();
+
         }
+
+
+
+        static Sprite LoadBadgeFallback()
+
+        {
+
+            // Always return a real sprite so Image components never go white
+
+            return Resources.Load<Sprite>("Badges/medal")
+
+                ?? Resources.Load<Sprite>("Badges/eng")
+
+                ?? Resources.Load<Sprite>("Badges/sci")
+
+                ?? Resources.Load<Sprite>("Badges/peh")
+
+                ?? Resources.Load<Sprite>("Badges/leaf")
+
+                ?? FindFallbackSprite("medal", "star", "checklisticon", "engicon", "sciicon", "peicon");
+
+        }
+
+
 
         Sprite GetRankBadgeSprite(int level)
         {
@@ -1412,6 +1770,7 @@ namespace NutriMind.Interface
                 return true;
             }
             s_ignoreClicksUntil = Time.unscaledTime + 0.35f;
+            AudioManager.PlayClick();
             return false;
         }
 
@@ -1495,15 +1854,29 @@ namespace NutriMind.Interface
 
         void ShowLoginMessage(string text, bool isError)
         {
-            if (messageText == null) return;
-            if (!m_HasLoginMessageColor)
+            // Keep inline TMP text hidden — SweetAlertPopup handles all login messages & errors
+            if (messageText != null)
             {
-                m_LoginMessageColor = messageText.color;
-                m_HasLoginMessageColor = true;
+                messageText.text = "";
+                messageText.gameObject.SetActive(false);
             }
-            messageText.text = text;
-            messageText.color = isError ? new Color(1f, 0.45f, 0.45f, 1f) : m_LoginMessageColor; // red tint for errors
-            messageText.gameObject.SetActive(true);
+
+            if (string.IsNullOrEmpty(text))
+            {
+                SweetAlertPopup.Hide();
+            }
+            else if (isError)
+            {
+                SweetAlertPopup.ShowError("Login Failed", text);
+            }
+            else if (text == "Connecting...")
+            {
+                SweetAlertPopup.ShowLoading("Connecting...", "Signing in to NutriMind...");
+            }
+            else
+            {
+                SweetAlertPopup.ShowInfo("Notice", text);
+            }
         }
 
         void SetLoginInputsInteractable(bool interactable)
@@ -1524,31 +1897,20 @@ namespace NutriMind.Interface
 
             if (messageText != null)
             {
-                messageText.text = "Logging in...";
-                messageText.gameObject.SetActive(true);
+                messageText.text = "";
+                messageText.gameObject.SetActive(false);
             }
+            SweetAlertPopup.Show("Welcome!", "Logging in...", SweetAlertPopup.AlertType.Success, false);
 
             float timer = 0f;
             float totalDuration = 1.3f; // Login timer before scene transition
-            Color baseColor = messageText != null ? messageText.color : Color.white;
-
             while (timer < totalDuration)
             {
                 timer += Time.unscaledDeltaTime;
-                if (messageText != null)
-                {
-                    // Pulsing fade between 0.3 and 1.0 alpha
-                    float alpha = 0.65f + 0.35f * Mathf.Sin(timer * 9f);
-                    messageText.color = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
-                }
                 yield return null;
             }
 
-            if (messageText != null)
-            {
-                messageText.color = new Color(baseColor.r, baseColor.g, baseColor.b, 1f);
-            }
-
+            SweetAlertPopup.Hide();
             GameSession.Instance.SignIn(studentId, grade);
             s_ignoreClicksUntil = Time.unscaledTime + 0.6f;
             SceneManager.LoadScene(SceneNames.MainMenu);

@@ -42,6 +42,17 @@ namespace NutriMind.Interface
         static readonly Color GoodTextColor = new Color32(29, 106, 84, 255);
         static readonly Color BadTextColor = new Color32(179, 64, 47, 255);
 
+        // Distinct color-coded palette for buckets and their assigned cards
+        static readonly Color[] BucketPalette = new Color[]
+        {
+            new Color32(186, 225, 255, 255), // Soft Sky Blue
+            new Color32(255, 218, 179, 255), // Soft Peach
+            new Color32(198, 242, 198, 255), // Soft Mint
+            new Color32(226, 205, 255, 255), // Soft Lavender
+            new Color32(255, 243, 176, 255), // Soft Butter Yellow
+            new Color32(255, 204, 220, 255), // Soft Rose
+        };
+
         string heading;
         string lastLabel;
         List<ActivityStep> steps;
@@ -61,6 +72,7 @@ namespace NutriMind.Interface
 
         Button[] cards;
         TMP_Text[] cardTexts;
+        TMP_Text[] cardRightTexts;
         Button[] bucketButtons;
         TMP_Text[] bucketTexts;
         readonly List<GameObject> spawned = new List<GameObject>();
@@ -70,6 +82,7 @@ namespace NutriMind.Interface
             doneButton.onClick.AddListener(OnMainButton);
             if (cardTemplate != null) cardTemplate.gameObject.SetActive(false);
             if (writeInput != null) writeInput.onValueChanged.AddListener(OnWriteChanged);
+            if (feedbackText != null) feedbackText.gameObject.SetActive(false);
         }
 
         // ---------- Called by CheckpointFlow and WorldController ----------
@@ -207,20 +220,64 @@ namespace NutriMind.Interface
             Canvas.ForceUpdateCanvases();
             float w = AreaSize(cardArea, true, 900f);
             float h = AreaSize(cardArea, false, 460f);
-            int cols = n > 5 ? 2 : 1;
+
+            // Pick column count based on number of cards and available width so text stays readable
+            int cols = n <= 4 ? 1 : (n <= 8 || w < 900f ? 2 : 3);
             int rows = Mathf.CeilToInt(n / (float)cols);
             float cellW = (w - Gap * (cols - 1)) / cols;
-            float cellH = Mathf.Clamp((h - Gap * (rows - 1)) / rows, 56f, 110f);
+            float cellH = Mathf.Clamp((h - Gap * (rows - 1)) / rows, 68f, 110f);
+            float totalH = rows * cellH + Mathf.Max(0, rows - 1) * Gap;
+            float topOffset = Mathf.Max(0f, (h - totalH) * 0.5f);
 
             cards = new Button[n];
             cardTexts = new TMP_Text[n];
+            cardRightTexts = new TMP_Text[n];
             for (int slot = 0; slot < n; slot++)
             {
                 int item = order[slot];
-                Vector2 pos = new Vector2((slot % cols) * (cellW + Gap), -(slot / cols) * (cellH + Gap));
+                int row = slot / cols;
+                int col = slot % cols;
+                Vector2 pos = new Vector2(col * (cellW + Gap), -(topOffset + row * (cellH + Gap)));
                 Button b = MakeButton(cardArea, new Vector2(cellW, cellH), pos, () => OnCardClicked(item));
                 cards[item] = b;
-                cardTexts[item] = b.GetComponentInChildren<TMP_Text>(true);
+
+                TMP_Text leftTxt = b.GetComponentInChildren<TMP_Text>(true);
+                if (leftTxt != null)
+                {
+                    leftTxt.alignment = TextAlignmentOptions.MidlineLeft;
+                    leftTxt.margin = new Vector4(22f, 6f, 12f, 6f);
+                    RectTransform lrt = leftTxt.rectTransform;
+                    lrt.anchorMin = Vector2.zero;
+                    lrt.anchorMax = Vector2.one;
+                    lrt.offsetMin = Vector2.zero;
+                    lrt.offsetMax = Vector2.zero;
+                }
+                cardTexts[item] = leftTxt;
+
+                // Right-side label for assigned bucket (sort steps)
+                if (leftTxt != null)
+                {
+                    GameObject rightGo = new GameObject("BucketTagText", typeof(RectTransform));
+                    rightGo.transform.SetParent(b.transform, false);
+                    RectTransform rrt = rightGo.GetComponent<RectTransform>();
+                    rrt.anchorMin = new Vector2(0.55f, 0f);
+                    rrt.anchorMax = new Vector2(1f, 1f);
+                    rrt.offsetMin = Vector2.zero;
+                    rrt.offsetMax = Vector2.zero;
+
+                    TMP_Text rightTxt = rightGo.AddComponent<TextMeshProUGUI>();
+                    rightTxt.font = leftTxt.font;
+                    rightTxt.color = new Color32(34, 41, 56, 255);
+                    rightTxt.fontStyle = FontStyles.Bold;
+                    rightTxt.enableWordWrapping = true;
+                    rightTxt.enableAutoSizing = true;
+                    rightTxt.fontSizeMin = 16f;
+                    rightTxt.fontSizeMax = 28f;
+                    rightTxt.alignment = TextAlignmentOptions.MidlineRight;
+                    rightTxt.margin = new Vector4(8f, 6f, 22f, 6f);
+                    rightTxt.raycastTarget = false;
+                    cardRightTexts[item] = rightTxt;
+                }
             }
         }
 
@@ -229,20 +286,49 @@ namespace NutriMind.Interface
             int k = step.buckets.Length;
             Canvas.ForceUpdateCanvases();
             float w = AreaSize(bucketArea, true, 900f);
+            float h = AreaSize(bucketArea, false, 96f);
 
-            // Ensure the labels sit in a spacious HorizontalLayoutGroup
-            LayoutGroup other = bucketArea.GetComponent<LayoutGroup>();
-            if (other != null && !(other is HorizontalLayoutGroup)) DestroyImmediate(other);
+            LayoutGroup existingLayout = bucketArea.GetComponent<LayoutGroup>();
+            if (k <= 4)
+            {
+                if (existingLayout != null && !(existingLayout is HorizontalLayoutGroup))
+                {
+                    DestroyImmediate(existingLayout);
+                    existingLayout = null;
+                }
 
-            HorizontalLayoutGroup row = bucketArea.GetComponent<HorizontalLayoutGroup>();
-            if (row == null) row = bucketArea.gameObject.AddComponent<HorizontalLayoutGroup>();
-            row.spacing = 16f;
-            row.padding = new RectOffset(10, 10, 4, 4);
-            row.childAlignment = TextAnchor.MiddleCenter;
-            row.childControlWidth = true;
-            row.childControlHeight = true;
-            row.childForceExpandWidth = true;
-            row.childForceExpandHeight = true;
+                HorizontalLayoutGroup row = existingLayout as HorizontalLayoutGroup;
+                if (row == null) row = bucketArea.gameObject.AddComponent<HorizontalLayoutGroup>();
+                row.spacing = 16f;
+                row.padding = new RectOffset(10, 10, 4, 4);
+                row.childAlignment = TextAnchor.MiddleCenter;
+                row.childControlWidth = true;
+                row.childControlHeight = true;
+                row.childForceExpandWidth = true;
+                row.childForceExpandHeight = true;
+            }
+            else
+            {
+                if (existingLayout != null && !(existingLayout is GridLayoutGroup))
+                {
+                    DestroyImmediate(existingLayout);
+                    existingLayout = null;
+                }
+
+                int cols = Mathf.CeilToInt(k / 2f);
+                int rows = Mathf.CeilToInt(k / (float)cols);
+                float cellW = (Mathf.Max(w, 850f) - 20f - 14f * (cols - 1)) / cols;
+                float cellH = Mathf.Clamp((Mathf.Max(h, 150f) - 8f - 10f * (rows - 1)) / rows, 58f, 84f);
+
+                GridLayoutGroup grid = existingLayout as GridLayoutGroup;
+                if (grid == null) grid = bucketArea.gameObject.AddComponent<GridLayoutGroup>();
+                grid.padding = new RectOffset(10, 10, 4, 4);
+                grid.spacing = new Vector2(14f, 10f);
+                grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+                grid.constraintCount = cols;
+                grid.cellSize = new Vector2(cellW, cellH);
+                grid.childAlignment = TextAnchor.MiddleCenter;
+            }
 
             float availableWidth = Mathf.Max(w, 850f);
             float perButtonWidth = (availableWidth - (16f * Mathf.Max(0, k - 1))) / Mathf.Max(1, k);
@@ -252,15 +338,15 @@ namespace NutriMind.Interface
             for (int b = 0; b < k; b++)
             {
                 int bucket = b;
-                Button btn = MakeButton(bucketArea, new Vector2(perButtonWidth, 75f), Vector2.zero, () => OnBucketClicked(bucket));
-                if (btn.image != null) btn.image.color = BucketColor;
+                Button btn = MakeButton(bucketArea, new Vector2(perButtonWidth, 84f), Vector2.zero, () => OnBucketClicked(bucket));
+                if (btn.image != null) btn.image.color = GetBucketColor(b);
 
                 LayoutElement element = btn.GetComponent<LayoutElement>();
                 if (element == null) element = btn.gameObject.AddComponent<LayoutElement>();
                 element.minWidth = 140f;
                 element.preferredWidth = perButtonWidth;
-                element.minHeight = 65f;
-                element.preferredHeight = 75f;
+                element.minHeight = 68f;
+                element.preferredHeight = 84f;
                 element.flexibleWidth = 1f;
                 element.flexibleHeight = 1f;
 
@@ -270,10 +356,10 @@ namespace NutriMind.Interface
                 {
                     txt.enableWordWrapping = true;
                     txt.enableAutoSizing = true;
-                    txt.fontSizeMin = 13f;
-                    txt.fontSizeMax = 26f;
+                    txt.fontSizeMin = 18f;
+                    txt.fontSizeMax = 30f;
                     txt.alignment = TextAlignmentOptions.Center;
-                    txt.margin = new Vector4(6, 4, 6, 4);
+                    txt.margin = new Vector4(10, 6, 10, 6);
                 }
                 bucketTexts[b] = txt;
             }
@@ -287,6 +373,13 @@ namespace NutriMind.Interface
             b.onClick.RemoveAllListeners();
             b.onClick.AddListener(onClick);
 
+            // Apply rounded corners to both card and bucket buttons
+            if (b.image != null)
+            {
+                b.image.sprite = SweetAlertPopup.RoundedSprite;
+                b.image.type = Image.Type.Sliced;
+            }
+
             RectTransform rt = (RectTransform)b.transform;
             rt.anchorMin = new Vector2(0f, 1f);
             rt.anchorMax = new Vector2(0f, 1f);
@@ -297,10 +390,12 @@ namespace NutriMind.Interface
             TMP_Text t = b.GetComponentInChildren<TMP_Text>(true);
             if (t != null)
             {
+                t.enableWordWrapping = true;
                 t.enableAutoSizing = true;
-                t.fontSizeMin = 16f;
-                t.fontSizeMax = 32f;
+                t.fontSizeMin = 18f;
+                t.fontSizeMax = 34f;
                 t.alignment = TextAlignmentOptions.Center;
+                t.margin = new Vector4(12, 6, 12, 6);
             }
 
             spawned.Add(b.gameObject);
@@ -317,6 +412,7 @@ namespace NutriMind.Interface
             spawned.Clear();
             cards = null;
             cardTexts = null;
+            cardRightTexts = null;
             bucketButtons = null;
             bucketTexts = null;
         }
@@ -510,12 +606,24 @@ namespace NutriMind.Interface
                 for (int i = 0; i < cards.Length; i++)
                 {
                     if (cards[i] == null) continue;
-                    if (cardTexts[i] != null) cardTexts[i].text = CardLabel(i);
+                    bool hasBucketTag = step.type == "sort" && assign[i] >= 0;
+
+                    if (cardTexts[i] != null)
+                    {
+                        cardTexts[i].text = CardLabel(i);
+                        RectTransform lrt = cardTexts[i].rectTransform;
+                        lrt.anchorMax = new Vector2(hasBucketTag ? 0.57f : 1f, 1f);
+                    }
+                    if (cardRightTexts != null && i < cardRightTexts.Length && cardRightTexts[i] != null)
+                    {
+                        cardRightTexts[i].text = hasBucketTag ? "-> " + step.buckets[assign[i]] : "";
+                    }
 
                     Color color = CardColor;
                     if (marks[i] == 1) color = CorrectColor;
                     else if (marks[i] == 2) color = WrongColor;
                     else if (step.type == "sort" && selected == i) color = SelectedColor;
+                    else if (hasBucketTag) color = GetBucketColor(assign[i]);
                     else if (step.type == "choose" && picked[i]) color = SelectedColor;
                     else if (step.type == "sequence" && assign[i] >= 0) color = SelectedColor;
                     if (cards[i].image != null) cards[i].image.color = color;
@@ -532,6 +640,10 @@ namespace NutriMind.Interface
                         if (assign[i] == b) count++;
                     }
                     if (bucketTexts[b] != null) bucketTexts[b].text = step.buckets[b] + "  (" + count + ")";
+                    if (bucketButtons[b] != null && bucketButtons[b].image != null)
+                    {
+                        bucketButtons[b].image.color = GetBucketColor(b);
+                    }
                 }
             }
 
@@ -541,15 +653,17 @@ namespace NutriMind.Interface
         string CardLabel(int item)
         {
             string text = step.items[item];
-            if (step.type == "sort" && assign[item] >= 0)
-            {
-                return text + "\n<size=75%><b>-> " + step.buckets[assign[item]] + "</b></size>";
-            }
             if (step.type == "sequence" && assign[item] >= 0)
             {
                 return (assign[item] + 1) + ".  " + text;
             }
             return text;
+        }
+
+        static Color GetBucketColor(int bucketIndex)
+        {
+            if (bucketIndex < 0) return BucketColor;
+            return BucketPalette[bucketIndex % BucketPalette.Length];
         }
 
         void UpdateMainButton()
@@ -600,9 +714,18 @@ namespace NutriMind.Interface
 
         void SetFeedback(string message, bool good)
         {
-            if (feedbackText == null) return;
-            feedbackText.text = message;
-            feedbackText.color = good ? GoodTextColor : BadTextColor;
+            // Keep inline TMP feedback hidden — SweetAlertPopup handles activity feedback & errors
+            if (feedbackText != null)
+            {
+                feedbackText.text = "";
+                feedbackText.gameObject.SetActive(false);
+            }
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                if (good) SweetAlertPopup.ShowSuccess("Great Job!", message);
+                else SweetAlertPopup.ShowError("Oops!", message);
+            }
         }
 
         static bool Contains(int[] values, int value)

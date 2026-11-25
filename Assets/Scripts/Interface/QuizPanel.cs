@@ -42,7 +42,8 @@ namespace NutriMind.Interface
                 normalColors[i] = optionButtons[i].targetGraphic.color;
                 optionButtons[i].onClick.AddListener(() => Choose(captured));
             }
-            nextButton.onClick.AddListener(Next);
+            if (nextButton != null) nextButton.onClick.AddListener(Next);
+            if (feedbackRoot != null) feedbackRoot.SetActive(false);
         }
 
         public void Show(IList<QuestionData> items)
@@ -62,7 +63,7 @@ namespace NutriMind.Interface
 
             progressText.text = "Question " + (index + 1) + " of " + questions.Count;
             questionText.text = q.text;
-            feedbackRoot.SetActive(false);
+            if (feedbackRoot != null) feedbackRoot.SetActive(false);
 
             for (int i = 0; i < optionButtons.Length; i++)
             {
@@ -98,9 +99,13 @@ namespace NutriMind.Interface
             if (!correct) optionButtons[chosen].targetGraphic.color = wrongColor;
 
             string fb = !string.IsNullOrEmpty(q.feedback) ? q.feedback : q.explanation;
-            feedbackText.text = (correct ? "Correct! " : "Not quite. ") + fb;
-            nextLabel.text = index >= questions.Count - 1 ? "Finish" : "Next";
-            feedbackRoot.SetActive(true);
+            string btnLabel = index >= questions.Count - 1 ? "Finish" : "Next";
+            if (feedbackRoot != null) feedbackRoot.SetActive(false);
+
+            if (correct)
+                SweetAlertPopup.ShowSuccess("Correct!", fb, Next, btnLabel);
+            else
+                SweetAlertPopup.ShowError("Not Quite", fb, Next, btnLabel);
         }
 
         void Next()

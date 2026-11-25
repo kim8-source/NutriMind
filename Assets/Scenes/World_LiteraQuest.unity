@@ -1816,6 +1816,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Village Woman Variant Asia
       objectReference: {fileID: 0}
+    - target: {fileID: 6046852510375843227, guid: 7b43de5a7cacedf4d9497990ff11cc03, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6fa14fc13bad7d746a6a922e2d82c057, type: 2}
+    - target: {fileID: 6046852510375843227, guid: 7b43de5a7cacedf4d9497990ff11cc03, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4530,31 +4538,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.44
+      value: 27.45
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.146
+      value: -0.16
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.65
+      value: -42.1
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.5027231
+      value: -0.17287086
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5027231
+      value: 0.17287086
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.49726203
+      value: -0.6856498
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.49726203
+      value: -0.6856498
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4566,7 +4574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7705214584934938294, guid: 6c3c8dc4e3a29c244af02521a777786b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -270.626
+      value: -208.302
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9547,6 +9555,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 84636126}
     m_Modifications:
+    - target: {fileID: 3104839302756787056, guid: b4bf60106e5e4f94097e56aabd2a21ec, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6fa14fc13bad7d746a6a922e2d82c057, type: 2}
+    - target: {fileID: 3104839302756787056, guid: b4bf60106e5e4f94097e56aabd2a21ec, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8556107692957033392, guid: b4bf60106e5e4f94097e56aabd2a21ec, type: 3}
       propertyPath: m_Name
       value: Farmer H Variant Asia
@@ -10057,15 +10073,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866416169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.34, y: 1.54, z: 28.49}
+  m_LocalRotation: {x: -0, y: 0.14126176, z: -0, w: 0.9899723}
+  m_LocalPosition: {x: 78.52, y: 1.54, z: 12.01}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1833506886}
   - {fileID: 1125580573}
   m_Father: {fileID: 871658780}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 16.242, z: 0}
 --- !u!1 &869226067
 GameObject:
   m_ObjectHideFlags: 0
@@ -13167,6 +13183,14 @@ PrefabInstance:
     - target: {fileID: 1027172739383563611, guid: 7b43de5a7cacedf4d9497990ff11cc03, type: 3}
       propertyPath: m_Name
       value: Village Woman Variant Asia
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046852510375843227, guid: 7b43de5a7cacedf4d9497990ff11cc03, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6fa14fc13bad7d746a6a922e2d82c057, type: 2}
+    - target: {fileID: 6046852510375843227, guid: 7b43de5a7cacedf4d9497990ff11cc03, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19908,7 +19932,7 @@ Transform:
   m_GameObject: {fileID: 1635079903}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9982966, z: -0, w: 0.058342103}
-  m_LocalPosition: {x: 40.91, y: 3.09, z: -14.25}
+  m_LocalPosition: {x: 40.91, y: 3.09, z: -29.45}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26209,7 +26233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454984664451684052, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_margin.x
-      value: -1.2778727
+      value: -0.63551795
       objectReference: {fileID: 0}
     - target: {fileID: 6454984664451684052, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_margin.y
@@ -26217,31 +26241,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454984664451684052, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_margin.z
-      value: -0.3883561
+      value: 0.45316398
       objectReference: {fileID: 0}
     - target: {fileID: 6454984664451684052, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_fontSizeBase
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6552114282098916817, guid: 4b85089b90d283542bd5901716772b96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552114282098916817, guid: 4b85089b90d283542bd5901716772b96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9670268
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552114282098916817, guid: 4b85089b90d283542bd5901716772b96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.25467446
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552114282098916817, guid: 4b85089b90d283542bd5901716772b96, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552114282098916817, guid: 4b85089b90d283542bd5901716772b96, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552114282098916817, guid: 4b85089b90d283542bd5901716772b96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 29.509
+      objectReference: {fileID: 0}
     - target: {fileID: 7133697164895343045, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.192
+      value: -1.995
       objectReference: {fileID: 0}
     - target: {fileID: 7133697164895343045, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9767916
+      value: 0.9938495
       objectReference: {fileID: 0}
     - target: {fileID: 7133697164895343045, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.21419172
+      value: 0.1107396
       objectReference: {fileID: 0}
     - target: {fileID: 7133697164895343045, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -6.721
+      value: 4.956
       objectReference: {fileID: 0}
     - target: {fileID: 7133697164895343045, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -24.736
+      value: 12.716
       objectReference: {fileID: 0}
     - target: {fileID: 8909876684133748840, guid: 4b85089b90d283542bd5901716772b96, type: 3}
       propertyPath: m_Name

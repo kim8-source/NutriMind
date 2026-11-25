@@ -471,6 +471,10 @@ namespace NutriMind.Interface
             if (!hasTimeLimit)
             {
                 if (timerText != null) timerText.text = "No limit";
+                if (summaryTimeUsedText != null && summaryTimeUsedText.gameObject.activeInHierarchy)
+                {
+                    summaryTimeUsedText.text = "No limit";
+                }
                 return;
             }
 
@@ -486,10 +490,15 @@ namespace NutriMind.Interface
 
         void UpdateTimerDisplay()
         {
-            if (timerText == null) return;
             int minutes = Mathf.FloorToInt(timeRemaining / 60f);
             int seconds = Mathf.FloorToInt(timeRemaining % 60f);
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            string formatted = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+            if (timerText != null) timerText.text = formatted;
+            if (summaryTimeUsedText != null && summaryTimeUsedText.gameObject.activeInHierarchy)
+            {
+                summaryTimeUsedText.text = formatted;
+            }
         }
 
         // ==========================================
@@ -989,6 +998,7 @@ namespace NutriMind.Interface
         void OnOptionSelected(int optionIndex)
         {
             if (!isQuizActive || isReviewMode) return;
+            AudioManager.PlayClick();
             userSelectedAnswers[currentIndex] = optionIndex;
 
             if (optionToggles != null)
@@ -1047,39 +1057,30 @@ namespace NutriMind.Interface
             SetPanelActive(panelOffline, false);
 
             int answeredCount = 0;
-            List<int> unanswered = new List<int>();
             for (int i = 0; i < userSelectedAnswers.Length; i++)
             {
                 if (IsAnswered(i)) answeredCount++;
-                else unanswered.Add(i + 1);
             }
 
             int total = questions.Count;
-            int unansweredCount = total - answeredCount;
 
             if (summaryAnsweredText != null)
             {
-                if (unansweredCount == 0)
-                {
-                    summaryAnsweredText.text = $"<color=#8CE68C><b>{answeredCount} of {total} Answered</b></color>\n(All questions answered!)";
-                }
-                else
-                {
-                    string list = string.Join(", #", unanswered);
-                    summaryAnsweredText.text = $"<b>{answeredCount} of {total} Answered</b>\n<color=#FF9E9E>Unanswered ({unansweredCount}): #{list}</color>";
-                }
+                summaryAnsweredText.text = $"{answeredCount}/{total} Answered";
             }
 
             if (summaryTimeUsedText != null)
             {
-                int minUsed = Mathf.FloorToInt(timeSpent / 60f);
-                int secUsed = Mathf.FloorToInt(timeSpent % 60f);
-                int minRem = Mathf.FloorToInt(timeRemaining / 60f);
-                int secRem = Mathf.FloorToInt(timeRemaining % 60f);
-
-                summaryTimeUsedText.text = hasTimeLimit
-                    ? $"Time Used: <b>{minUsed:00}:{secUsed:00}</b>   •   Remaining: <b>{minRem:00}:{secRem:00}</b>"
-                    : $"Time Used: <b>{minUsed:00}:{secUsed:00}</b>   •   No time limit";
+                if (!hasTimeLimit)
+                {
+                    summaryTimeUsedText.text = "No limit";
+                }
+                else
+                {
+                    int minRem = Mathf.FloorToInt(timeRemaining / 60f);
+                    int secRem = Mathf.FloorToInt(timeRemaining % 60f);
+                    summaryTimeUsedText.text = string.Format("{0:00}:{1:00}", minRem, secRem);
+                }
             }
         }
 
