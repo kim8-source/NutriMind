@@ -14,17 +14,12 @@ namespace NutriMind.Core
 
         public static float MusicVolume { get; private set; } = 0.8f;
         public static float SfxVolume { get; private set; } = 0.8f;
-        public static int TextSizeIndex { get; private set; } = 1; // 0: Small, 1: Normal, 2: Large
+        public static int TextSizeIndex { get; private set; } = 1; // 0: Small, 1: Normal
         public static float TextSizeScale
         {
             get
             {
-                switch (TextSizeIndex)
-                {
-                    case 0: return 0.8f;
-                    case 2: return 1.2f;
-                    default: return 1.0f;
-                }
+                return TextSizeIndex == 0 ? 0.8f : 1.0f;
             }
         }
         public static float LookSensitivity { get; private set; } = 1.0f; // 0.5 to 2.0
@@ -46,7 +41,7 @@ namespace NutriMind.Core
         {
             MusicVolume = PlayerPrefs.GetFloat(KeyMusicVolume, 0.8f);
             SfxVolume = PlayerPrefs.GetFloat(KeySfxVolume, 0.8f);
-            TextSizeIndex = PlayerPrefs.GetInt(KeyTextSize, 1);
+            TextSizeIndex = Mathf.Clamp(PlayerPrefs.GetInt(KeyTextSize, 1), 0, 1);
             LookSensitivity = PlayerPrefs.GetFloat(KeySensitivity, 1.0f);
         }
 
@@ -68,7 +63,7 @@ namespace NutriMind.Core
 
         public static void SetTextSize(int index)
         {
-            TextSizeIndex = Mathf.Clamp(index, 0, 2);
+            TextSizeIndex = Mathf.Clamp(index, 0, 1);
             PlayerPrefs.SetInt(KeyTextSize, TextSizeIndex);
             Notify();
         }

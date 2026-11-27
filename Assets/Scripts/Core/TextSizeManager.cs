@@ -8,7 +8,7 @@ namespace NutriMind.Core
     /// <summary>
     /// Zero-setup global text size applier.
     /// Scales every TMP_Text proportionally from its original fontSize (and auto-size min/max)
-    /// according to GameSettings.TextSizeScale (0.8 / 1.0 / 1.2), preserving font style,
+    /// according to GameSettings.TextSizeScale (0.8 / 1.0), preserving font style,
     /// typographical emphasis, and relative hierarchy between titles and body text.
     /// </summary>
     public class TextSizeManager : MonoBehaviour

@@ -702,6 +702,7 @@ namespace NutriMind.Interface
                 // Ensure item background highlight only appears on the selected item
                 if (dropdownText.template != null)
                 {
+                    dropdownText.template.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 164f);
                     var itemToggle = dropdownText.template.GetComponentInChildren<Toggle>(true);
                     if (itemToggle != null)
                     {
@@ -740,7 +741,7 @@ namespace NutriMind.Interface
                 }
 
                 dropdownText.ClearOptions();
-                dropdownText.AddOptions(new List<string> { "Small (80%)", "Normal (100%)", "Large (120%)" });
+                dropdownText.AddOptions(new List<string> { "Small (80%)", "Normal (100%)" });
                 dropdownText.value = GameSettings.TextSizeIndex;
                 dropdownText.RefreshShownValue();
                 dropdownText.onValueChanged.RemoveAllListeners();
