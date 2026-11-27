@@ -300,6 +300,14 @@ namespace NutriMind.Interface
             return session.StudentId;
         }
 
+        static bool hasCompletedInitialBootLoading;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetBootLoadingFlag()
+        {
+            hasCompletedInitialBootLoading = false;
+        }
+
         void InitBootIfPresent()
         {
             if (SceneManager.GetActiveScene().name != SceneNames.Boot) return;
@@ -311,7 +319,16 @@ namespace NutriMind.Interface
 
             if (loadingBarGo != null && playButtonGo != null)
             {
-                StartCoroutine(BootLoadingSequence(loadingBarGo, playButtonGo));
+                if (!hasCompletedInitialBootLoading)
+                {
+                    hasCompletedInitialBootLoading = true;
+                    StartCoroutine(BootLoadingSequence(loadingBarGo, playButtonGo));
+                }
+                else
+                {
+                    loadingBarGo.SetActive(false);
+                    playButtonGo.SetActive(true);
+                }
             }
         }
 
